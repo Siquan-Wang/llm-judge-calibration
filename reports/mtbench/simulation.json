@@ -1,0 +1,73 @@
+{
+  "scenarios": {
+    "moderate": {
+      "bias": {
+        "human_only": -0.001174999999999926,
+        "ppi": 0.0010540000000001104,
+        "raw": 0.10055400000000003
+      },
+      "coverage_monte_carlo_se": 0.008277922444671728,
+      "n_labeled": 200,
+      "n_unlabeled": 2000,
+      "ppi_empirical_95pct_coverage": 0.926,
+      "ppi_mean_interval_width": 0.1329215985807778,
+      "repetitions": 1000,
+      "rmse": {
+        "human_only": 0.03379903844786121,
+        "ppi": 0.035846310828312584,
+        "raw": 0.10106803649027721
+      },
+      "scope": "One specified synthetic iid setting; not a distribution-free or small-sample guarantee.",
+      "seed": 2026,
+      "sensitivity": 0.9,
+      "specificity": 0.6,
+      "true_human_win_rate": 0.6
+    },
+    "strong": {
+      "bias": {
+        "human_only": -0.001174999999999926,
+        "ppi": 0.0012849999999999806,
+        "raw": 0.010660000000000003
+      },
+      "coverage_monte_carlo_se": 0.007270763371201131,
+      "n_labeled": 200,
+      "n_unlabeled": 2000,
+      "ppi_empirical_95pct_coverage": 0.944,
+      "ppi_mean_interval_width": 0.08459462645682296,
+      "repetitions": 1000,
+      "rmse": {
+        "human_only": 0.03379903844786121,
+        "ppi": 0.0222144097378256,
+        "raw": 0.015288230767489112
+      },
+      "scope": "One specified synthetic iid setting; not a distribution-free or small-sample guarantee.",
+      "seed": 2026,
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "true_human_win_rate": 0.6
+    },
+    "uninformative": {
+      "bias": {
+        "human_only": -0.001174999999999926,
+        "ppi": -0.001990999999999965,
+        "raw": -0.00010099999999990672
+      },
+      "coverage_monte_carlo_se": 0.00762600813007697,
+      "n_labeled": 200,
+      "n_unlabeled": 2000,
+      "ppi_empirical_95pct_coverage": 0.938,
+      "ppi_mean_interval_width": 0.19639999521898863,
+      "repetitions": 1000,
+      "rmse": {
+        "human_only": 0.03379903844786121,
+        "ppi": 0.05084377543023336,
+        "raw": 0.010409586927443383
+      },
+      "scope": "One specified synthetic iid setting; not a distribution-free or small-sample guarantee.",
+      "seed": 2026,
+      "sensitivity": 0.6,
+      "specificity": 0.4,
+      "true_human_win_rate": 0.6
+    }
+  }
+}

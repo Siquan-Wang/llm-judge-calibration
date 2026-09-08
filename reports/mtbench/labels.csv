@@ -1,0 +1,1815 @@
+question_id,turn,model_a,model_b,human_winner,n_human_votes,gpt4_winner,n_human_a,n_human_b,n_human_ties,gpt4_raw_winner,gpt4_inconsistent_order,gpt4_input_reversed
+81,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+81,1,alpaca-13b,gpt-3.5-turbo,B,4,B,0,4,0,model_b,False,False
+81,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+81,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+81,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+81,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+81,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+81,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+81,1,llama-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+81,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+81,2,alpaca-13b,gpt-3.5-turbo,B,4,B,0,4,0,model_b,False,False
+81,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+81,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+81,2,claude-v1,llama-13b,tie,1,A,0,0,1,model_b,False,True
+81,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+81,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+81,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+81,2,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,False
+82,1,alpaca-13b,gpt-3.5-turbo,A,3,tie,2,1,0,tie (inconsistent),True,False
+82,1,alpaca-13b,llama-13b,tie,1,A,0,0,1,model_b,False,True
+82,1,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,False
+82,1,claude-v1,gpt-3.5-turbo,tie,2,A,1,0,1,model_b,False,True
+82,1,claude-v1,gpt-4,A,5,B,4,1,0,model_a,False,True
+82,1,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+82,1,gpt-3.5-turbo,llama-13b,B,3,A,1,2,0,model_b,False,True
+82,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,5,B,3,1,1,model_a,False,True
+82,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+82,1,gpt-4,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+82,1,llama-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+82,2,alpaca-13b,gpt-3.5-turbo,tie,3,B,1,1,1,model_b,False,False
+82,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+82,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+82,2,claude-v1,gpt-3.5-turbo,A,2,tie,2,0,0,tie (inconsistent),True,True
+82,2,claude-v1,gpt-4,A,5,B,3,2,0,model_a,False,True
+82,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+82,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+82,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,5,A,0,4,1,model_b,False,True
+82,2,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+82,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+82,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+83,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+83,1,alpaca-13b,gpt-4,tie,3,B,1,1,1,model_b,False,False
+83,1,claude-v1,gpt-3.5-turbo,tie,2,tie,1,1,0,tie (inconsistent),True,True
+83,1,claude-v1,gpt-4,A,2,B,2,0,0,model_a,False,True
+83,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+83,1,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+83,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+83,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,B,0,0,2,model_a,False,True
+83,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+83,1,gpt-4,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+83,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+83,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+83,2,alpaca-13b,gpt-4,B,3,B,1,2,0,model_b,False,False
+83,2,claude-v1,gpt-3.5-turbo,tie,2,A,1,1,0,model_b,False,True
+83,2,claude-v1,gpt-4,B,1,A,0,1,0,model_b,False,True
+83,2,claude-v1,llama-13b,B,1,A,0,1,0,model_b,False,True
+83,2,gpt-3.5-turbo,gpt-4,tie,1,B,0,0,1,model_b,False,False
+83,2,gpt-3.5-turbo,llama-13b,tie,1,A,0,0,1,model_b,False,True
+83,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+83,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+83,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+83,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+84,1,alpaca-13b,gpt-3.5-turbo,B,4,B,1,2,1,model_b,False,False
+84,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+84,1,alpaca-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+84,1,claude-v1,gpt-3.5-turbo,tie,1,A,0,0,1,model_b,False,True
+84,1,claude-v1,llama-13b,B,2,A,0,2,0,model_b,False,True
+84,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,B,0,1,0,model_a,False,True
+84,1,gpt-4,llama-13b,B,1,A,0,1,0,model_b,False,True
+84,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+84,2,alpaca-13b,gpt-3.5-turbo,B,4,B,0,4,0,model_b,False,False
+84,2,alpaca-13b,llama-13b,B,1,B,0,1,0,model_a,False,True
+84,2,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+84,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+84,2,claude-v1,llama-13b,tie,2,A,1,0,1,model_b,False,True
+84,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+84,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+84,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+85,1,alpaca-13b,claude-v1,B,3,B,0,3,0,model_b,False,False
+85,1,alpaca-13b,gpt-3.5-turbo,B,3,B,1,2,0,model_b,False,False
+85,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+85,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+85,1,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,2,1,model_b,False,False
+85,1,claude-v1,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,True
+85,1,claude-v1,gpt-4,A,2,B,2,0,0,model_a,False,True
+85,1,gpt-3.5-turbo,gpt-4,tie,3,B,1,1,1,model_b,False,False
+85,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+85,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,2,1,1,model_b,False,True
+85,1,gpt-4,llama-13b,B,1,A,0,1,0,model_b,False,True
+85,2,alpaca-13b,claude-v1,B,3,B,0,3,0,model_b,False,False
+85,2,alpaca-13b,gpt-3.5-turbo,A,3,B,2,0,1,model_b,False,False
+85,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+85,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+85,2,alpaca-13b,vicuna-13b-v1.2,tie,3,B,1,1,1,model_b,False,False
+85,2,claude-v1,gpt-3.5-turbo,tie,2,A,1,0,1,model_b,False,True
+85,2,claude-v1,gpt-4,B,2,tie,0,2,0,tie (inconsistent),True,True
+85,2,gpt-3.5-turbo,gpt-4,B,3,A,0,2,1,model_a,False,False
+85,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+85,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,2,1,1,model_b,False,True
+85,2,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+86,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+86,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+86,1,alpaca-13b,llama-13b,tie,2,tie,0,1,1,tie (inconsistent),True,True
+86,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+86,1,claude-v1,gpt-3.5-turbo,tie,1,B,0,0,1,model_a,False,True
+86,1,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+86,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+86,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+86,1,gpt-3.5-turbo,llama-13b,A,3,A,2,0,1,model_b,False,True
+86,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+86,1,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+86,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+86,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+86,2,alpaca-13b,llama-13b,tie,2,A,1,0,1,model_b,False,True
+86,2,alpaca-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+86,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+86,2,claude-v1,gpt-4,B,2,A,0,2,0,model_b,False,True
+86,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+86,2,gpt-3.5-turbo,gpt-4,A,2,B,2,0,0,model_b,False,False
+86,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+86,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+87,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+87,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+87,1,claude-v1,gpt-3.5-turbo,tie,2,tie,0,1,1,tie (inconsistent),True,True
+87,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+87,1,claude-v1,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,True
+87,1,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+87,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+87,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,1,3,tie (inconsistent),True,True
+87,1,llama-13b,vicuna-13b-v1.2,B,4,B,0,4,0,model_b,False,False
+87,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+87,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+87,2,claude-v1,gpt-3.5-turbo,tie,2,tie,0,1,1,tie (inconsistent),True,True
+87,2,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+87,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+87,2,gpt-3.5-turbo,gpt-4,tie,2,B,1,0,1,model_b,False,False
+87,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+87,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,tie,3,1,0,tie (inconsistent),True,True
+87,2,llama-13b,vicuna-13b-v1.2,B,4,B,0,3,1,model_b,False,False
+88,1,alpaca-13b,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,False
+88,1,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+88,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+88,1,alpaca-13b,vicuna-13b-v1.2,tie,2,A,1,1,0,model_a,False,False
+88,1,claude-v1,gpt-3.5-turbo,A,3,A,2,0,1,model_b,False,True
+88,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+88,1,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+88,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+88,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+88,2,alpaca-13b,gpt-3.5-turbo,tie,1,B,0,0,1,model_b,False,False
+88,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+88,2,alpaca-13b,llama-13b,B,1,A,0,1,0,model_b,False,True
+88,2,alpaca-13b,vicuna-13b-v1.2,tie,2,A,1,1,0,model_a,False,False
+88,2,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+88,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+88,2,claude-v1,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+88,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,True
+88,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+89,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+89,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+89,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+89,1,alpaca-13b,llama-13b,B,1,A,0,1,0,model_b,False,True
+89,1,alpaca-13b,vicuna-13b-v1.2,tie,3,B,1,1,1,model_b,False,False
+89,1,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+89,1,claude-v1,gpt-4,A,1,A,1,0,0,model_b,False,True
+89,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+89,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+89,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+89,1,gpt-3.5-turbo,llama-13b,B,1,A,0,1,0,model_b,False,True
+89,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,B,0,1,0,model_a,False,True
+89,1,gpt-4,vicuna-13b-v1.2,B,2,A,0,2,0,model_b,False,True
+89,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+89,2,alpaca-13b,claude-v1,tie,2,B,1,1,0,model_b,False,False
+89,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+89,2,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+89,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+89,2,alpaca-13b,vicuna-13b-v1.2,A,3,B,2,1,0,model_b,False,False
+89,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+89,2,claude-v1,gpt-4,A,1,A,1,0,0,model_b,False,True
+89,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+89,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+89,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+89,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+89,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+89,2,gpt-4,vicuna-13b-v1.2,tie,2,A,0,1,1,model_b,False,True
+89,2,llama-13b,vicuna-13b-v1.2,A,1,B,1,0,0,model_b,False,False
+90,1,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+90,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+90,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+90,1,alpaca-13b,llama-13b,tie,2,A,1,0,1,model_b,False,True
+90,1,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+90,1,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,True
+90,1,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+90,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+90,1,claude-v1,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+90,1,gpt-3.5-turbo,gpt-4,tie,1,B,0,0,1,model_b,False,False
+90,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+90,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,B,1,0,0,model_a,False,True
+90,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+90,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+90,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+90,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+90,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+90,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+90,2,alpaca-13b,llama-13b,tie,2,A,1,1,0,model_b,False,True
+90,2,alpaca-13b,vicuna-13b-v1.2,A,2,B,2,0,0,model_b,False,False
+90,2,claude-v1,gpt-3.5-turbo,A,1,B,1,0,0,model_a,False,True
+90,2,claude-v1,gpt-4,tie,2,B,0,1,1,model_a,False,True
+90,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+90,2,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+90,2,gpt-3.5-turbo,gpt-4,tie,1,B,0,0,1,model_b,False,False
+90,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+90,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+90,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+90,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+90,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+91,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+91,1,alpaca-13b,gpt-3.5-turbo,tie,2,B,1,0,1,model_b,False,False
+91,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+91,1,alpaca-13b,llama-13b,tie,2,A,1,1,0,model_b,False,True
+91,1,claude-v1,gpt-3.5-turbo,A,2,A,2,0,0,model_b,False,True
+91,1,claude-v1,gpt-4,tie,1,A,0,0,1,model_b,False,True
+91,1,claude-v1,llama-13b,A,4,A,4,0,0,model_b,False,True
+91,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+91,1,gpt-3.5-turbo,gpt-4,tie,3,tie,0,0,3,tie (inconsistent),True,False
+91,1,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+91,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,5,B,0,3,2,model_a,False,True
+91,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+91,1,gpt-4,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+91,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+91,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,1,1,0,model_b,False,False
+91,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+91,2,alpaca-13b,llama-13b,tie,2,A,1,1,0,model_b,False,True
+91,2,claude-v1,gpt-3.5-turbo,tie,2,A,0,1,1,model_b,False,True
+91,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+91,2,claude-v1,llama-13b,A,4,A,3,1,0,model_b,False,True
+91,2,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+91,2,gpt-3.5-turbo,gpt-4,tie,3,B,1,0,2,model_b,False,False
+91,2,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+91,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,5,tie,4,1,0,tie (inconsistent),True,True
+91,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+91,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+92,1,alpaca-13b,gpt-3.5-turbo,B,5,A,0,5,0,model_a,False,False
+92,1,alpaca-13b,gpt-4,B,3,tie,0,3,0,tie (inconsistent),True,False
+92,1,alpaca-13b,vicuna-13b-v1.2,B,4,tie,0,4,0,tie (inconsistent),True,False
+92,1,claude-v1,gpt-3.5-turbo,A,3,tie,3,0,0,tie (inconsistent),True,True
+92,1,claude-v1,gpt-4,A,2,tie,2,0,0,tie (inconsistent),True,True
+92,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+92,1,claude-v1,vicuna-13b-v1.2,A,3,tie,2,1,0,tie (inconsistent),True,True
+92,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+92,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+92,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,B,0,1,1,model_a,False,True
+92,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+92,2,alpaca-13b,gpt-3.5-turbo,tie,5,tie,1,2,2,tie (inconsistent),True,False
+92,2,alpaca-13b,gpt-4,tie,3,A,1,1,1,model_a,False,False
+92,2,alpaca-13b,vicuna-13b-v1.2,A,4,B,2,1,1,model_b,False,False
+92,2,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+92,2,claude-v1,gpt-4,A,2,A,2,0,0,model_b,False,True
+92,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+92,2,claude-v1,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+92,2,gpt-3.5-turbo,gpt-4,A,2,tie,2,0,0,tie (inconsistent),True,False
+92,2,gpt-3.5-turbo,llama-13b,A,3,tie,3,0,0,tie (inconsistent),True,True
+92,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,2,B,0,2,0,model_a,False,True
+92,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+93,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+93,1,alpaca-13b,gpt-3.5-turbo,A,1,B,1,0,0,model_b,False,False
+93,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+93,1,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+93,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+93,1,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+93,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+93,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+93,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+93,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+93,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+93,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+93,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+93,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+93,2,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+93,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+93,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,1,1,tie (inconsistent),True,False
+93,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+93,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+93,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+93,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+93,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+94,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+94,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+94,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+94,1,alpaca-13b,vicuna-13b-v1.2,A,1,A,1,0,0,model_a,False,False
+94,1,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+94,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+94,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+94,1,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+94,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+94,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,3,A,1,2,0,model_b,False,True
+94,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+94,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+94,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+94,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+94,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+94,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+94,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+94,2,claude-v1,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+94,2,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+94,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+94,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,1,1,1,tie (inconsistent),True,True
+94,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+95,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+95,1,alpaca-13b,gpt-3.5-turbo,tie,1,B,0,0,1,model_b,False,False
+95,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+95,1,claude-v1,gpt-3.5-turbo,A,3,B,3,0,0,model_a,False,True
+95,1,claude-v1,gpt-4,B,1,A,0,1,0,model_b,False,True
+95,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+95,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+95,1,gpt-3.5-turbo,gpt-4,A,4,A,3,1,0,model_a,False,False
+95,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+95,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+95,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+95,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+95,1,llama-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+95,2,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+95,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+95,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+95,2,claude-v1,gpt-3.5-turbo,B,3,B,0,3,0,model_a,False,True
+95,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+95,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+95,2,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+95,2,gpt-3.5-turbo,gpt-4,A,3,tie,2,1,0,tie (inconsistent),True,False
+95,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+95,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+95,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+95,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+95,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+96,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+96,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+96,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+96,1,alpaca-13b,llama-13b,B,1,B,0,1,0,model_a,False,True
+96,1,claude-v1,gpt-4,B,1,A,0,1,0,model_b,False,True
+96,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+96,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+96,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+96,1,gpt-4,llama-13b,B,1,A,0,1,0,model_b,False,True
+96,1,gpt-4,vicuna-13b-v1.2,A,3,tie,2,1,0,tie (inconsistent),True,True
+96,1,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+96,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+96,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+96,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+96,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+96,2,claude-v1,gpt-4,B,1,A,0,1,0,model_b,False,True
+96,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+96,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+96,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,B,1,0,0,model_a,False,True
+96,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+96,2,gpt-4,vicuna-13b-v1.2,A,3,B,2,1,0,model_a,False,True
+97,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+97,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+97,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+97,1,alpaca-13b,llama-13b,B,3,B,1,2,0,model_a,False,True
+97,1,alpaca-13b,vicuna-13b-v1.2,A,3,B,2,1,0,model_b,False,False
+97,1,claude-v1,gpt-3.5-turbo,tie,2,tie,1,1,0,tie (inconsistent),True,True
+97,1,claude-v1,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,True
+97,1,claude-v1,llama-13b,tie,2,A,1,1,0,model_b,False,True
+97,1,claude-v1,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+97,1,gpt-3.5-turbo,gpt-4,B,3,B,0,3,0,model_b,False,False
+97,1,gpt-3.5-turbo,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+97,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,1,3,tie (inconsistent),True,True
+97,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+97,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+97,1,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie (inconsistent),True,False
+97,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+97,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+97,2,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+97,2,alpaca-13b,llama-13b,B,3,tie,0,2,1,tie (inconsistent),True,True
+97,2,alpaca-13b,vicuna-13b-v1.2,A,3,B,2,1,0,model_b,False,False
+97,2,claude-v1,gpt-3.5-turbo,B,2,A,0,2,0,model_b,False,True
+97,2,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+97,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+97,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+97,2,gpt-3.5-turbo,gpt-4,B,3,B,0,3,0,model_b,False,False
+97,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+97,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,A,1,0,3,model_b,False,True
+97,2,gpt-4,llama-13b,B,1,A,0,1,0,model_b,False,True
+97,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+97,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+98,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+98,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+98,1,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+98,1,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,True
+98,1,claude-v1,gpt-4,A,2,A,2,0,0,model_b,False,True
+98,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+98,1,claude-v1,vicuna-13b-v1.2,B,1,B,0,1,0,model_a,False,True
+98,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+98,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,5,B,1,3,1,model_a,False,True
+98,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+98,1,gpt-4,vicuna-13b-v1.2,tie,3,B,1,0,2,model_a,False,True
+98,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+98,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+98,2,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+98,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+98,2,claude-v1,gpt-4,A,2,B,2,0,0,model_a,False,True
+98,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+98,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+98,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+98,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,5,B,4,1,0,model_a,False,True
+98,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+98,2,gpt-4,vicuna-13b-v1.2,tie,3,A,1,1,1,model_b,False,True
+99,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+99,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+99,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+99,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+99,1,claude-v1,gpt-3.5-turbo,B,3,B,0,3,0,model_a,False,True
+99,1,claude-v1,gpt-4,A,3,B,2,1,0,model_a,False,True
+99,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+99,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+99,1,gpt-3.5-turbo,gpt-4,tie,3,B,1,1,1,model_b,False,False
+99,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+99,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,4,0,0,model_b,False,True
+99,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+99,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+99,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+99,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+99,2,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+99,2,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+99,2,claude-v1,gpt-3.5-turbo,tie,3,A,1,0,2,model_b,False,True
+99,2,claude-v1,gpt-4,B,3,B,1,2,0,model_a,False,True
+99,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+99,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+99,2,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+99,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+99,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,4,0,0,model_b,False,True
+99,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+99,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+100,1,alpaca-13b,claude-v1,A,3,A,2,0,1,model_a,False,False
+100,1,alpaca-13b,gpt-3.5-turbo,A,4,B,3,1,0,model_b,False,False
+100,1,alpaca-13b,gpt-4,A,1,A,1,0,0,model_a,False,False
+100,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+100,1,alpaca-13b,vicuna-13b-v1.2,A,3,A,3,0,0,model_a,False,False
+100,1,claude-v1,gpt-3.5-turbo,B,4,B,0,4,0,model_a,False,True
+100,1,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+100,1,claude-v1,vicuna-13b-v1.2,B,2,B,0,2,0,model_a,False,True
+100,1,gpt-3.5-turbo,gpt-4,A,1,A,1,0,0,model_a,False,False
+100,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+100,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,A,1,0,2,model_b,False,True
+100,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+100,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+100,2,alpaca-13b,claude-v1,A,3,A,2,1,0,model_a,False,False
+100,2,alpaca-13b,gpt-3.5-turbo,tie,4,B,1,1,2,model_b,False,False
+100,2,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+100,2,alpaca-13b,llama-13b,tie,1,B,0,0,1,model_a,False,True
+100,2,alpaca-13b,vicuna-13b-v1.2,A,3,B,2,1,0,model_b,False,False
+100,2,claude-v1,gpt-3.5-turbo,B,3,B,0,3,0,model_a,False,True
+100,2,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+100,2,claude-v1,vicuna-13b-v1.2,B,2,B,0,2,0,model_a,False,True
+100,2,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+100,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+100,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,A,1,0,2,model_b,False,True
+100,2,gpt-4,llama-13b,tie,2,A,1,1,0,model_b,False,True
+100,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+101,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+101,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+101,1,alpaca-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+101,1,claude-v1,gpt-3.5-turbo,tie,2,tie,0,0,2,tie,False,True
+101,1,claude-v1,gpt-4,tie,2,tie,0,0,2,tie,False,True
+101,1,claude-v1,llama-13b,A,3,A,2,1,0,model_b,False,True
+101,1,gpt-3.5-turbo,gpt-4,tie,2,tie,0,1,1,tie,False,False
+101,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+101,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,0,0,3,tie,False,True
+101,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+101,2,alpaca-13b,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,False
+101,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+101,2,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,False
+101,2,claude-v1,gpt-3.5-turbo,B,2,tie,0,2,0,tie (inconsistent),True,True
+101,2,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+101,2,claude-v1,llama-13b,tie,3,tie,1,0,2,tie,False,True
+101,2,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+101,2,gpt-3.5-turbo,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+101,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,1,0,2,tie,False,True
+101,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+102,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+102,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+102,1,alpaca-13b,llama-13b,tie,1,B,0,0,1,model_a,False,True
+102,1,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+102,1,claude-v1,gpt-3.5-turbo,B,2,B,0,2,0,model_a,False,True
+102,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+102,1,claude-v1,vicuna-13b-v1.2,B,1,B,0,1,0,model_a,False,True
+102,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+102,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+102,1,gpt-4,llama-13b,tie,1,tie,0,0,1,tie,False,True
+102,1,gpt-4,vicuna-13b-v1.2,tie,2,B,1,0,1,model_a,False,True
+102,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,0,2,model_b,False,False
+102,2,alpaca-13b,gpt-4,tie,2,B,0,0,2,model_b,False,False
+102,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+102,2,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,False
+102,2,claude-v1,gpt-3.5-turbo,tie,2,B,0,0,2,model_a,False,True
+102,2,claude-v1,gpt-4,tie,1,B,0,0,1,model_a,False,True
+102,2,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+102,2,gpt-3.5-turbo,gpt-4,A,1,tie,1,0,0,tie,False,False
+102,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,True
+102,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+102,2,gpt-4,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie,False,True
+103,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+103,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+103,1,alpaca-13b,gpt-4,B,3,B,0,3,0,model_b,False,False
+103,1,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+103,1,alpaca-13b,vicuna-13b-v1.2,tie,2,B,1,0,1,model_b,False,False
+103,1,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+103,1,claude-v1,gpt-4,A,1,A,1,0,0,model_b,False,True
+103,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+103,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+103,1,gpt-3.5-turbo,gpt-4,B,3,B,0,3,0,model_b,False,False
+103,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+103,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,1,0,3,tie (inconsistent),True,True
+103,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+103,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+103,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+103,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+103,2,alpaca-13b,gpt-4,B,3,B,0,3,0,model_b,False,False
+103,2,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+103,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+103,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+103,2,claude-v1,gpt-4,B,1,tie,0,1,0,tie,False,True
+103,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+103,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+103,2,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+103,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+103,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,tie,4,0,0,tie (inconsistent),True,True
+103,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+103,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+104,1,alpaca-13b,gpt-3.5-turbo,tie,4,B,0,0,4,model_b,False,False
+104,1,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+104,1,alpaca-13b,vicuna-13b-v1.2,tie,4,tie,1,0,3,tie,False,False
+104,1,claude-v1,gpt-4,tie,3,tie,0,0,3,tie (inconsistent),True,True
+104,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+104,1,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+104,1,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie,False,False
+104,1,gpt-3.5-turbo,llama-13b,tie,2,A,1,1,0,model_b,False,True
+104,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,A,1,0,2,model_b,False,True
+104,1,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+104,1,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+104,2,alpaca-13b,gpt-3.5-turbo,B,4,tie,0,4,0,tie (inconsistent),True,False
+104,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+104,2,alpaca-13b,vicuna-13b-v1.2,tie,4,tie,0,0,4,tie,False,False
+104,2,claude-v1,gpt-4,tie,3,B,0,0,3,model_a,False,True
+104,2,claude-v1,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+104,2,claude-v1,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,True
+104,2,gpt-3.5-turbo,gpt-4,A,2,B,2,0,0,model_b,False,False
+104,2,gpt-3.5-turbo,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+104,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,tie,3,0,0,tie,False,True
+104,2,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+104,2,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+105,1,alpaca-13b,claude-v1,tie,2,A,0,0,2,model_a,False,False
+105,1,alpaca-13b,gpt-3.5-turbo,tie,2,A,0,0,2,model_a,False,False
+105,1,alpaca-13b,gpt-4,tie,2,B,0,0,2,model_b,False,False
+105,1,alpaca-13b,llama-13b,tie,2,A,0,0,2,model_b,False,True
+105,1,alpaca-13b,vicuna-13b-v1.2,tie,1,A,0,0,1,model_a,False,False
+105,1,claude-v1,llama-13b,tie,2,tie,0,0,2,tie,False,True
+105,1,gpt-3.5-turbo,gpt-4,tie,4,B,0,1,3,model_b,False,False
+105,1,gpt-3.5-turbo,llama-13b,tie,3,tie,0,0,3,tie,False,True
+105,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,True
+105,1,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+105,2,alpaca-13b,claude-v1,tie,2,tie,0,0,2,tie (inconsistent),True,False
+105,2,alpaca-13b,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,False
+105,2,alpaca-13b,gpt-4,tie,2,B,0,0,2,model_b,False,False
+105,2,alpaca-13b,llama-13b,tie,2,tie,0,0,2,tie (inconsistent),True,True
+105,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+105,2,claude-v1,llama-13b,tie,2,tie,0,0,2,tie (inconsistent),True,True
+105,2,gpt-3.5-turbo,gpt-4,tie,4,B,0,1,3,model_b,False,False
+105,2,gpt-3.5-turbo,llama-13b,tie,3,tie,1,0,2,tie (inconsistent),True,True
+105,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,True
+105,2,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+106,1,alpaca-13b,claude-v1,B,4,B,0,4,0,model_b,False,False
+106,1,alpaca-13b,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,False
+106,1,alpaca-13b,llama-13b,tie,2,tie,0,0,2,tie,False,True
+106,1,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+106,1,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+106,1,claude-v1,gpt-4,A,1,A,1,0,0,model_b,False,True
+106,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+106,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+106,1,gpt-3.5-turbo,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+106,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,0,4,tie,False,True
+106,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+106,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+106,1,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+106,2,alpaca-13b,claude-v1,B,4,B,0,4,0,model_b,False,False
+106,2,alpaca-13b,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,False
+106,2,alpaca-13b,llama-13b,tie,2,tie,1,0,1,tie (inconsistent),True,True
+106,2,alpaca-13b,vicuna-13b-v1.2,tie,1,A,0,0,1,model_a,False,False
+106,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+106,2,claude-v1,gpt-4,A,1,tie,1,0,0,tie,False,True
+106,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+106,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+106,2,gpt-3.5-turbo,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+106,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,0,4,tie,False,True
+106,2,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+106,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+106,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+107,1,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie,False,False
+107,1,alpaca-13b,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,False
+107,1,alpaca-13b,gpt-4,tie,2,tie,0,1,1,tie,False,False
+107,1,alpaca-13b,llama-13b,B,1,tie,0,1,0,tie,False,True
+107,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+107,1,claude-v1,gpt-3.5-turbo,tie,3,tie,1,0,2,tie (inconsistent),True,True
+107,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+107,1,claude-v1,llama-13b,B,1,tie,0,1,0,tie,False,True
+107,1,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie,False,False
+107,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,True
+107,1,gpt-4,llama-13b,tie,1,tie,0,0,1,tie,False,True
+107,1,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,False
+107,2,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+107,2,alpaca-13b,gpt-3.5-turbo,A,1,tie,1,0,0,tie (inconsistent),True,False
+107,2,alpaca-13b,gpt-4,A,2,tie,2,0,0,tie (inconsistent),True,False
+107,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+107,2,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+107,2,claude-v1,gpt-3.5-turbo,tie,3,tie,1,0,2,tie (inconsistent),True,True
+107,2,claude-v1,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,True
+107,2,claude-v1,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+107,2,gpt-3.5-turbo,gpt-4,tie,2,tie,1,0,1,tie (inconsistent),True,False
+107,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+107,2,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+107,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+108,1,alpaca-13b,claude-v1,tie,2,tie,1,0,1,tie,False,False
+108,1,alpaca-13b,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,False
+108,1,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+108,1,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+108,1,claude-v1,llama-13b,tie,3,tie,1,0,2,tie,False,True
+108,1,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+108,1,gpt-3.5-turbo,gpt-4,B,3,B,0,3,0,model_b,False,False
+108,1,gpt-3.5-turbo,llama-13b,B,1,tie,0,1,0,tie,False,True
+108,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,5,tie,1,0,4,tie,False,True
+108,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+108,1,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,False
+108,2,alpaca-13b,claude-v1,tie,2,tie,0,0,2,tie,False,False
+108,2,alpaca-13b,gpt-3.5-turbo,B,2,tie,0,2,0,tie (inconsistent),True,False
+108,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+108,2,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+108,2,claude-v1,llama-13b,tie,3,tie,1,1,1,tie (inconsistent),True,True
+108,2,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+108,2,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+108,2,gpt-3.5-turbo,llama-13b,tie,1,A,0,0,1,model_b,False,True
+108,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,5,tie,1,0,4,tie (inconsistent),True,True
+108,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+108,2,llama-13b,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie,False,False
+109,1,alpaca-13b,claude-v1,A,1,tie,1,0,0,tie (inconsistent),True,False
+109,1,alpaca-13b,gpt-3.5-turbo,A,2,A,2,0,0,model_a,False,False
+109,1,alpaca-13b,gpt-4,A,4,tie,2,1,1,tie (inconsistent),True,False
+109,1,claude-v1,gpt-3.5-turbo,tie,2,tie,0,0,2,tie,False,True
+109,1,claude-v1,gpt-4,tie,2,B,1,1,0,model_a,False,True
+109,1,claude-v1,llama-13b,tie,3,tie,1,0,2,tie,False,True
+109,1,gpt-3.5-turbo,llama-13b,tie,2,tie,1,0,1,tie,False,True
+109,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,4,B,0,4,0,model_a,False,True
+109,1,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie (inconsistent),True,False
+109,2,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie,False,False
+109,2,alpaca-13b,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,False
+109,2,alpaca-13b,gpt-4,tie,4,B,0,0,4,model_b,False,False
+109,2,claude-v1,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,True
+109,2,claude-v1,gpt-4,tie,2,B,0,1,1,model_a,False,True
+109,2,claude-v1,llama-13b,tie,3,tie,1,0,2,tie (inconsistent),True,True
+109,2,gpt-3.5-turbo,llama-13b,tie,2,A,1,0,1,model_b,False,True
+109,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,0,4,tie (inconsistent),True,True
+109,2,llama-13b,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,False
+110,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+110,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+110,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+110,1,claude-v1,gpt-3.5-turbo,tie,3,A,0,0,3,model_b,False,True
+110,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+110,1,claude-v1,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+110,1,gpt-3.5-turbo,gpt-4,A,5,A,3,0,2,model_a,False,False
+110,1,gpt-3.5-turbo,llama-13b,tie,4,A,1,1,2,model_b,False,True
+110,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,True
+110,1,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+110,1,llama-13b,vicuna-13b-v1.2,tie,2,B,1,0,1,model_b,False,False
+110,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+110,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+110,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+110,2,claude-v1,gpt-3.5-turbo,A,3,A,2,0,1,model_b,False,True
+110,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+110,2,claude-v1,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+110,2,gpt-3.5-turbo,gpt-4,tie,5,B,0,1,4,model_b,False,False
+110,2,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+110,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie (inconsistent),True,True
+110,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+110,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+111,1,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie,False,False
+111,1,alpaca-13b,gpt-3.5-turbo,tie,3,tie,0,1,2,tie (inconsistent),True,False
+111,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+111,1,alpaca-13b,llama-13b,B,1,tie,0,1,0,tie,False,True
+111,1,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie,False,False
+111,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+111,1,claude-v1,llama-13b,tie,2,tie,1,1,0,tie,False,True
+111,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+111,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+111,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+111,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+111,2,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+111,2,alpaca-13b,gpt-3.5-turbo,tie,3,tie,0,1,2,tie (inconsistent),True,False
+111,2,alpaca-13b,gpt-4,tie,1,B,0,0,1,model_b,False,False
+111,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+111,2,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,False
+111,2,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+111,2,claude-v1,llama-13b,A,2,tie,2,0,0,tie,False,True
+111,2,gpt-3.5-turbo,gpt-4,tie,1,B,0,0,1,model_b,False,False
+111,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+111,2,gpt-4,llama-13b,A,3,A,2,0,1,model_b,False,True
+111,2,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+112,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+112,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+112,1,alpaca-13b,gpt-4,B,3,B,0,3,0,model_b,False,False
+112,1,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+112,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+112,1,claude-v1,gpt-3.5-turbo,tie,3,tie,0,1,2,tie,False,True
+112,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+112,1,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie,False,False
+112,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+112,1,gpt-4,vicuna-13b-v1.2,A,3,tie,2,0,1,tie,False,True
+112,1,llama-13b,vicuna-13b-v1.2,B,7,B,0,7,0,model_b,False,False
+112,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+112,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+112,2,alpaca-13b,gpt-4,B,3,B,0,3,0,model_b,False,False
+112,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+112,2,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+112,2,claude-v1,gpt-3.5-turbo,tie,3,tie,1,0,2,tie,False,True
+112,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+112,2,gpt-3.5-turbo,gpt-4,A,1,tie,1,0,0,tie,False,False
+112,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+112,2,gpt-4,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+112,2,llama-13b,vicuna-13b-v1.2,tie,7,tie,1,1,5,tie,False,False
+113,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+113,1,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+113,1,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+113,1,claude-v1,gpt-3.5-turbo,tie,3,tie,1,0,2,tie (inconsistent),True,True
+113,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+113,1,gpt-3.5-turbo,gpt-4,B,3,tie,0,2,1,tie,False,False
+113,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+113,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+113,1,gpt-4,llama-13b,A,4,A,4,0,0,model_b,False,True
+113,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+113,1,llama-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+113,2,alpaca-13b,gpt-3.5-turbo,B,2,tie,0,2,0,tie (inconsistent),True,False
+113,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+113,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+113,2,claude-v1,gpt-3.5-turbo,B,3,tie,0,3,0,tie,False,True
+113,2,claude-v1,llama-13b,tie,1,A,0,0,1,model_b,False,True
+113,2,gpt-3.5-turbo,gpt-4,A,3,B,3,0,0,model_b,False,False
+113,2,gpt-3.5-turbo,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+113,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+113,2,gpt-4,llama-13b,tie,4,A,1,0,3,model_b,False,True
+113,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+113,2,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+114,1,alpaca-13b,claude-v1,B,4,tie,0,3,1,tie,False,False
+114,1,alpaca-13b,gpt-3.5-turbo,tie,4,tie,0,2,2,tie (inconsistent),True,False
+114,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+114,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+114,1,claude-v1,llama-13b,tie,2,tie,1,0,1,tie,False,True
+114,1,gpt-3.5-turbo,llama-13b,A,3,A,2,0,1,model_b,False,True
+114,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,1,1,1,tie (inconsistent),True,True
+114,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+114,1,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+114,2,alpaca-13b,claude-v1,B,4,tie,0,4,0,tie (inconsistent),True,False
+114,2,alpaca-13b,gpt-3.5-turbo,B,4,tie,0,3,1,tie (inconsistent),True,False
+114,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+114,2,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+114,2,claude-v1,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+114,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+114,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,tie,3,0,0,tie (inconsistent),True,True
+114,2,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+114,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+115,1,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie (inconsistent),True,False
+115,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+115,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+115,1,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+115,1,alpaca-13b,vicuna-13b-v1.2,tie,3,tie,0,0,3,tie,False,False
+115,1,claude-v1,gpt-3.5-turbo,B,6,B,0,6,0,model_a,False,True
+115,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+115,1,claude-v1,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+115,1,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+115,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+115,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+115,1,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie,False,False
+115,2,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie (inconsistent),True,False
+115,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+115,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+115,2,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+115,2,alpaca-13b,vicuna-13b-v1.2,tie,3,tie,0,1,2,tie (inconsistent),True,False
+115,2,claude-v1,gpt-3.5-turbo,B,6,B,0,6,0,model_a,False,True
+115,2,claude-v1,gpt-4,tie,1,B,0,0,1,model_a,False,True
+115,2,claude-v1,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+115,2,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+115,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+115,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+115,2,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,False
+116,1,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie,False,False
+116,1,alpaca-13b,gpt-3.5-turbo,tie,2,tie,1,1,0,tie (inconsistent),True,False
+116,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+116,1,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie,False,True
+116,1,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,False
+116,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+116,1,claude-v1,gpt-4,B,1,tie,0,1,0,tie,False,True
+116,1,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+116,1,gpt-3.5-turbo,gpt-4,B,2,tie,0,2,0,tie,False,False
+116,1,gpt-3.5-turbo,llama-13b,A,3,tie,2,0,1,tie (inconsistent),True,True
+116,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,True
+116,1,gpt-4,llama-13b,A,4,tie,4,0,0,tie (inconsistent),True,True
+116,2,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie (inconsistent),True,False
+116,2,alpaca-13b,gpt-3.5-turbo,tie,2,tie,0,1,1,tie (inconsistent),True,False
+116,2,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+116,2,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie,False,False
+116,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,True
+116,2,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+116,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+116,2,gpt-3.5-turbo,llama-13b,tie,3,tie,1,0,2,tie (inconsistent),True,True
+116,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie,False,True
+116,2,gpt-4,llama-13b,A,4,A,2,1,1,model_b,False,True
+117,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+117,1,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie,False,False
+117,1,claude-v1,gpt-3.5-turbo,tie,3,tie,0,1,2,tie,False,True
+117,1,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+117,1,claude-v1,vicuna-13b-v1.2,A,3,tie,2,0,1,tie (inconsistent),True,True
+117,1,gpt-3.5-turbo,gpt-4,B,4,B,0,4,0,model_b,False,False
+117,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+117,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,4,0,0,model_b,False,True
+117,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+117,1,llama-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+117,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+117,2,alpaca-13b,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,False
+117,2,claude-v1,gpt-3.5-turbo,B,3,tie,0,3,0,tie (inconsistent),True,True
+117,2,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+117,2,claude-v1,vicuna-13b-v1.2,tie,3,tie,0,0,3,tie,False,True
+117,2,gpt-3.5-turbo,gpt-4,B,4,B,0,4,0,model_b,False,False
+117,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+117,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,tie,4,0,0,tie,False,True
+117,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+117,2,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+118,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+118,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+118,1,alpaca-13b,llama-13b,tie,2,tie,0,1,1,tie,False,True
+118,1,claude-v1,gpt-4,tie,1,B,0,0,1,model_a,False,True
+118,1,claude-v1,llama-13b,tie,2,tie,0,0,2,tie,False,True
+118,1,gpt-3.5-turbo,gpt-4,A,1,A,1,0,0,model_a,False,False
+118,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+118,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+118,1,gpt-4,llama-13b,tie,2,tie,0,0,2,tie (inconsistent),True,True
+118,1,gpt-4,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+118,1,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+118,2,alpaca-13b,gpt-3.5-turbo,tie,3,tie,0,1,2,tie,False,False
+118,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+118,2,alpaca-13b,llama-13b,tie,2,tie,0,0,2,tie,False,True
+118,2,claude-v1,gpt-4,A,1,tie,1,0,0,tie (inconsistent),True,True
+118,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+118,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+118,2,gpt-3.5-turbo,llama-13b,tie,2,tie,1,0,1,tie,False,True
+118,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,0,0,3,tie,False,True
+118,2,gpt-4,llama-13b,tie,2,A,1,0,1,model_b,False,True
+118,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+118,2,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+119,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+119,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+119,1,alpaca-13b,llama-13b,B,1,tie,0,1,0,tie,False,True
+119,1,claude-v1,gpt-3.5-turbo,A,1,tie,1,0,0,tie,False,True
+119,1,claude-v1,gpt-4,tie,3,tie,1,1,1,tie,False,True
+119,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+119,1,gpt-3.5-turbo,gpt-4,tie,1,tie,0,0,1,tie,False,False
+119,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+119,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+119,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+119,1,gpt-4,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+119,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+119,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+119,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+119,2,alpaca-13b,llama-13b,B,1,tie,0,1,0,tie,False,True
+119,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,True
+119,2,claude-v1,gpt-4,tie,3,tie,1,0,2,tie,False,True
+119,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+119,2,gpt-3.5-turbo,gpt-4,tie,1,tie,0,0,1,tie,False,False
+119,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+119,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+119,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+119,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+119,2,llama-13b,vicuna-13b-v1.2,tie,3,B,0,0,3,model_b,False,False
+120,1,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+120,1,alpaca-13b,gpt-4,tie,2,B,0,1,1,model_b,False,False
+120,1,alpaca-13b,llama-13b,tie,3,tie,0,0,3,tie,False,True
+120,1,claude-v1,gpt-4,A,1,tie,1,0,0,tie (inconsistent),True,True
+120,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+120,1,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+120,1,gpt-3.5-turbo,gpt-4,A,2,B,2,0,0,model_b,False,False
+120,1,gpt-3.5-turbo,llama-13b,A,1,tie,1,0,0,tie,False,True
+120,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+120,1,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+120,1,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie (inconsistent),True,False
+120,2,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie,False,False
+120,2,alpaca-13b,gpt-4,tie,2,B,0,1,1,model_b,False,False
+120,2,alpaca-13b,llama-13b,tie,3,tie,0,0,3,tie,False,True
+120,2,claude-v1,gpt-4,tie,1,B,0,0,1,model_a,False,True
+120,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+120,2,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie,False,True
+120,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,0,2,model_b,False,False
+120,2,gpt-3.5-turbo,llama-13b,tie,1,A,0,0,1,model_b,False,True
+120,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+120,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+120,2,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie,False,False
+121,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+121,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+121,1,alpaca-13b,gpt-4,tie,2,B,1,0,1,model_b,False,False
+121,1,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+121,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+121,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+121,1,claude-v1,vicuna-13b-v1.2,tie,3,A,1,1,1,model_b,False,True
+121,1,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+121,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+121,1,gpt-4,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+121,1,llama-13b,vicuna-13b-v1.2,B,3,tie,0,3,0,tie (inconsistent),True,False
+121,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+121,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+121,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+121,2,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie,False,True
+121,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+121,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+121,2,claude-v1,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+121,2,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+121,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+121,2,gpt-4,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,True
+121,2,llama-13b,vicuna-13b-v1.2,B,3,tie,0,3,0,tie (inconsistent),True,False
+122,1,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+122,1,alpaca-13b,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,False
+122,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+122,1,alpaca-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+122,1,claude-v1,gpt-3.5-turbo,tie,2,B,0,0,2,model_a,False,True
+122,1,claude-v1,gpt-4,tie,2,B,1,1,0,model_a,False,True
+122,1,gpt-3.5-turbo,gpt-4,tie,2,B,1,0,1,model_b,False,False
+122,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+122,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,0,0,2,model_b,False,True
+122,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+122,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+122,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+122,2,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+122,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+122,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie,False,True
+122,2,alpaca-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie,False,False
+122,2,claude-v1,gpt-3.5-turbo,tie,2,tie,0,1,1,tie (inconsistent),True,True
+122,2,claude-v1,gpt-4,tie,2,B,1,1,0,model_a,False,True
+122,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,1,1,tie (inconsistent),True,False
+122,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+122,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+122,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+122,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+122,2,llama-13b,vicuna-13b-v1.2,tie,3,tie,0,1,2,tie (inconsistent),True,False
+123,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+123,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+123,1,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+123,1,alpaca-13b,llama-13b,tie,2,tie,1,0,1,tie (inconsistent),True,True
+123,1,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+123,1,claude-v1,gpt-3.5-turbo,tie,2,tie,1,0,1,tie (inconsistent),True,True
+123,1,claude-v1,gpt-4,A,1,tie,1,0,0,tie (inconsistent),True,True
+123,1,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+123,1,gpt-3.5-turbo,gpt-4,tie,2,B,0,0,2,model_b,False,False
+123,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+123,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,1,0,3,tie,False,True
+123,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+123,1,gpt-4,vicuna-13b-v1.2,tie,2,A,0,1,1,model_b,False,True
+123,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+123,2,alpaca-13b,claude-v1,A,1,B,1,0,0,model_b,False,False
+123,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+123,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+123,2,alpaca-13b,llama-13b,A,2,tie,2,0,0,tie,False,True
+123,2,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+123,2,claude-v1,gpt-3.5-turbo,tie,2,tie,1,0,1,tie (inconsistent),True,True
+123,2,claude-v1,gpt-4,A,1,tie,1,0,0,tie,False,True
+123,2,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+123,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,1,1,tie,False,False
+123,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+123,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,tie,0,0,4,tie (inconsistent),True,True
+123,2,gpt-4,llama-13b,A,3,A,2,0,1,model_b,False,True
+123,2,gpt-4,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie,False,True
+123,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+124,1,alpaca-13b,claude-v1,A,1,A,1,0,0,model_a,False,False
+124,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+124,1,alpaca-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+124,1,claude-v1,gpt-3.5-turbo,B,4,B,0,4,0,model_a,False,True
+124,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+124,1,claude-v1,llama-13b,tie,2,tie,0,0,2,tie,False,True
+124,1,claude-v1,vicuna-13b-v1.2,tie,3,B,0,1,2,model_a,False,True
+124,1,gpt-3.5-turbo,gpt-4,tie,5,tie,0,1,4,tie (inconsistent),True,False
+124,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+124,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,True
+124,1,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+124,2,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+124,2,alpaca-13b,llama-13b,tie,1,A,0,0,1,model_b,False,True
+124,2,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+124,2,claude-v1,gpt-3.5-turbo,A,4,B,3,1,0,model_a,False,True
+124,2,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+124,2,claude-v1,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+124,2,claude-v1,vicuna-13b-v1.2,A,3,tie,3,0,0,tie (inconsistent),True,True
+124,2,gpt-3.5-turbo,gpt-4,A,5,B,3,0,2,model_b,False,False
+124,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+124,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+124,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+125,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+125,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+125,1,claude-v1,gpt-4,tie,1,A,0,0,1,model_b,False,True
+125,1,claude-v1,llama-13b,tie,2,A,1,1,0,model_b,False,True
+125,1,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie (inconsistent),True,False
+125,1,gpt-3.5-turbo,llama-13b,tie,2,A,1,0,1,model_b,False,True
+125,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,0,1,1,model_b,False,True
+125,1,gpt-4,llama-13b,tie,2,A,1,0,1,model_b,False,True
+125,1,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+125,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+125,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+125,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+125,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie,False,True
+125,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+125,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,0,2,model_b,False,False
+125,2,gpt-3.5-turbo,llama-13b,tie,2,A,1,0,1,model_b,False,True
+125,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+125,2,gpt-4,llama-13b,tie,2,A,1,0,1,model_b,False,True
+125,2,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+125,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+126,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+126,1,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie,False,True
+126,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+126,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+126,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+126,1,gpt-3.5-turbo,gpt-4,A,2,B,2,0,0,model_b,False,False
+126,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+126,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+126,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+126,1,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+126,1,llama-13b,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie,False,False
+126,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+126,2,claude-v1,gpt-3.5-turbo,A,1,tie,1,0,0,tie (inconsistent),True,True
+126,2,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+126,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+126,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+126,2,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+126,2,gpt-3.5-turbo,llama-13b,tie,2,A,1,1,0,model_b,False,True
+126,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,2,A,0,2,0,model_b,False,True
+126,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+126,2,gpt-4,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+126,2,llama-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+127,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+127,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+127,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+127,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+127,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,True
+127,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+127,1,claude-v1,llama-13b,A,4,A,4,0,0,model_b,False,True
+127,1,gpt-3.5-turbo,gpt-4,A,2,tie,2,0,0,tie (inconsistent),True,False
+127,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+127,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+127,1,gpt-4,llama-13b,A,2,tie,2,0,0,tie (inconsistent),True,True
+127,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+127,1,llama-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+127,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+127,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+127,2,alpaca-13b,gpt-4,tie,2,B,0,1,1,model_b,False,False
+127,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+127,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+127,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+127,2,claude-v1,llama-13b,A,4,A,4,0,0,model_b,False,True
+127,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie,False,False
+127,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+127,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,0,0,2,model_b,False,True
+127,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+127,2,gpt-4,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+127,2,llama-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+128,1,alpaca-13b,llama-13b,tie,2,tie,0,0,2,tie,False,True
+128,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+128,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+128,1,claude-v1,llama-13b,tie,2,tie,0,0,2,tie (inconsistent),True,True
+128,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+128,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+128,1,gpt-3.5-turbo,llama-13b,A,5,tie,5,0,0,tie,False,True
+128,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,tie,2,0,1,tie (inconsistent),True,True
+128,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+128,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+128,2,alpaca-13b,llama-13b,tie,2,tie,0,0,2,tie (inconsistent),True,True
+128,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+128,2,claude-v1,gpt-3.5-turbo,A,1,tie,1,0,0,tie (inconsistent),True,True
+128,2,claude-v1,llama-13b,tie,2,A,0,0,2,model_b,False,True
+128,2,claude-v1,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+128,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+128,2,gpt-3.5-turbo,llama-13b,A,5,A,4,0,1,model_b,False,True
+128,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,tie,2,0,1,tie (inconsistent),True,True
+128,2,gpt-4,llama-13b,A,3,A,2,0,1,model_b,False,True
+128,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+129,1,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+129,1,alpaca-13b,gpt-3.5-turbo,B,3,tie,0,2,1,tie (inconsistent),True,False
+129,1,alpaca-13b,llama-13b,A,2,tie,2,0,0,tie,False,True
+129,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie,False,False
+129,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+129,1,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+129,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+129,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+129,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+129,1,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie,False,False
+129,2,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+129,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+129,2,alpaca-13b,llama-13b,tie,2,tie,1,0,1,tie,False,True
+129,2,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,False
+129,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+129,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+129,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+129,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+129,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+129,2,llama-13b,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,False
+130,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+130,1,alpaca-13b,gpt-4,A,1,B,1,0,0,model_b,False,False
+130,1,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+130,1,alpaca-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+130,1,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,True
+130,1,claude-v1,llama-13b,A,3,tie,2,0,1,tie (inconsistent),True,True
+130,1,claude-v1,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+130,1,gpt-3.5-turbo,gpt-4,tie,2,tie,1,1,0,tie (inconsistent),True,False
+130,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+130,1,llama-13b,vicuna-13b-v1.2,B,3,tie,0,3,0,tie (inconsistent),True,False
+130,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+130,2,alpaca-13b,gpt-4,tie,1,B,0,0,1,model_b,False,False
+130,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+130,2,alpaca-13b,vicuna-13b-v1.2,A,1,A,1,0,0,model_a,False,False
+130,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+130,2,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+130,2,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+130,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,1,1,tie,False,False
+130,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+130,2,llama-13b,vicuna-13b-v1.2,B,3,tie,0,2,1,tie,False,False
+131,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+131,1,alpaca-13b,llama-13b,B,1,B,0,1,0,model_a,False,True
+131,1,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+131,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,True
+131,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie,False,True
+131,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+131,1,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+131,1,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie,False,False
+131,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+131,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+131,1,gpt-4,llama-13b,B,1,A,0,1,0,model_b,False,True
+131,1,llama-13b,vicuna-13b-v1.2,A,1,A,1,0,0,model_a,False,False
+131,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+131,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+131,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+131,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+131,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+131,2,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+131,2,gpt-3.5-turbo,gpt-4,tie,2,tie,0,0,2,tie,False,False
+131,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+131,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+131,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+131,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+132,1,alpaca-13b,claude-v1,tie,1,tie,0,0,1,tie (inconsistent),True,False
+132,1,alpaca-13b,gpt-3.5-turbo,tie,2,tie,0,0,2,tie,False,False
+132,1,claude-v1,gpt-3.5-turbo,tie,3,B,0,1,2,model_a,False,True
+132,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+132,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+132,1,claude-v1,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+132,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+132,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,True
+132,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+132,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+132,2,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+132,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+132,2,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+132,2,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+132,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+132,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+132,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+132,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+132,2,gpt-4,llama-13b,B,2,A,0,2,0,model_b,False,True
+132,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+133,1,alpaca-13b,claude-v1,tie,2,B,0,1,1,model_b,False,False
+133,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+133,1,alpaca-13b,gpt-4,tie,3,B,0,1,2,model_b,False,False
+133,1,alpaca-13b,llama-13b,A,3,A,3,0,0,model_b,False,True
+133,1,alpaca-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie (inconsistent),True,False
+133,1,claude-v1,gpt-3.5-turbo,tie,2,A,0,1,1,model_b,False,True
+133,1,claude-v1,gpt-4,tie,3,A,0,0,3,model_b,False,True
+133,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+133,1,gpt-3.5-turbo,gpt-4,tie,1,tie,0,0,1,tie,False,False
+133,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+133,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,5,tie,2,2,1,tie (inconsistent),True,True
+133,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+133,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+133,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+133,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,1,1,0,model_b,False,False
+133,2,alpaca-13b,gpt-4,B,3,B,0,3,0,model_b,False,False
+133,2,alpaca-13b,llama-13b,A,3,A,3,0,0,model_b,False,True
+133,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+133,2,claude-v1,gpt-3.5-turbo,tie,2,tie,0,0,2,tie (inconsistent),True,True
+133,2,claude-v1,gpt-4,A,3,tie,2,1,0,tie (inconsistent),True,True
+133,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+133,2,gpt-3.5-turbo,gpt-4,tie,1,B,0,0,1,model_b,False,False
+133,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+133,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,5,A,4,1,0,model_b,False,True
+133,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+133,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+134,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+134,1,alpaca-13b,gpt-3.5-turbo,tie,3,B,0,0,3,model_b,False,False
+134,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+134,1,alpaca-13b,llama-13b,tie,1,B,0,0,1,model_a,False,True
+134,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+134,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie,False,True
+134,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+134,1,gpt-3.5-turbo,gpt-4,B,4,B,0,4,0,model_b,False,False
+134,1,gpt-3.5-turbo,llama-13b,tie,3,A,0,0,3,model_b,False,True
+134,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,2,B,0,2,0,model_a,False,True
+134,1,gpt-4,llama-13b,A,4,A,3,1,0,model_b,False,True
+134,1,gpt-4,vicuna-13b-v1.2,A,1,B,1,0,0,model_a,False,True
+134,1,llama-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+134,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+134,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+134,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+134,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+134,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+134,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+134,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+134,2,gpt-3.5-turbo,gpt-4,tie,4,tie,1,0,3,tie (inconsistent),True,False
+134,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+134,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+134,2,gpt-4,llama-13b,A,4,A,4,0,0,model_b,False,True
+134,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+134,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+135,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+135,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+135,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+135,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie,False,True
+135,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+135,1,claude-v1,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+135,1,gpt-3.5-turbo,gpt-4,tie,1,tie,0,0,1,tie,False,False
+135,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+135,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,B,0,1,0,model_a,False,True
+135,1,gpt-4,vicuna-13b-v1.2,tie,2,B,0,1,1,model_a,False,True
+135,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+135,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+135,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+135,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+135,2,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,True
+135,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+135,2,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+135,2,gpt-3.5-turbo,gpt-4,A,1,A,1,0,0,model_a,False,False
+135,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+135,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+135,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+135,2,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+136,1,alpaca-13b,claude-v1,tie,2,B,0,1,1,model_b,False,False
+136,1,alpaca-13b,gpt-3.5-turbo,tie,3,B,0,1,2,model_b,False,False
+136,1,alpaca-13b,gpt-4,tie,1,B,0,0,1,model_b,False,False
+136,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+136,1,alpaca-13b,vicuna-13b-v1.2,tie,2,A,0,1,1,model_a,False,False
+136,1,claude-v1,gpt-3.5-turbo,tie,3,tie,0,0,3,tie (inconsistent),True,True
+136,1,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+136,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+136,1,gpt-3.5-turbo,gpt-4,A,1,tie,1,0,0,tie (inconsistent),True,False
+136,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+136,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+136,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+136,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+136,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+136,2,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie (inconsistent),True,True
+136,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,0,2,model_b,False,False
+136,2,claude-v1,gpt-3.5-turbo,tie,3,A,0,0,3,model_b,False,True
+136,2,claude-v1,llama-13b,tie,3,A,1,0,2,model_b,False,True
+136,2,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+136,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+136,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+136,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+137,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+137,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+137,1,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+137,1,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+137,1,claude-v1,gpt-4,tie,3,tie,0,1,2,tie,False,True
+137,1,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+137,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+137,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,3,0,1,model_b,False,True
+137,1,gpt-4,vicuna-13b-v1.2,A,4,tie,4,0,0,tie (inconsistent),True,True
+137,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+137,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+137,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+137,2,alpaca-13b,vicuna-13b-v1.2,tie,2,B,0,0,2,model_b,False,False
+137,2,claude-v1,gpt-3.5-turbo,B,1,B,0,1,0,model_a,False,True
+137,2,claude-v1,gpt-4,B,3,tie,0,3,0,tie (inconsistent),True,True
+137,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+137,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+137,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+137,2,gpt-4,vicuna-13b-v1.2,A,4,A,4,0,0,model_b,False,True
+137,2,llama-13b,vicuna-13b-v1.2,tie,1,A,0,0,1,model_a,False,False
+138,1,alpaca-13b,claude-v1,B,1,tie,0,1,0,tie (inconsistent),True,False
+138,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+138,1,alpaca-13b,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+138,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+138,1,claude-v1,gpt-3.5-turbo,A,1,B,1,0,0,model_a,False,True
+138,1,claude-v1,llama-13b,B,1,A,0,1,0,model_b,False,True
+138,1,gpt-3.5-turbo,gpt-4,tie,3,A,1,0,2,model_a,False,False
+138,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+138,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,A,2,2,0,model_b,False,True
+138,1,gpt-4,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+138,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+138,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+138,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+138,2,alpaca-13b,llama-13b,tie,1,tie,0,0,1,tie (inconsistent),True,True
+138,2,claude-v1,gpt-3.5-turbo,A,1,tie,1,0,0,tie (inconsistent),True,True
+138,2,claude-v1,llama-13b,B,1,A,0,1,0,model_b,False,True
+138,2,gpt-3.5-turbo,gpt-4,tie,3,A,1,1,1,model_a,False,False
+138,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+138,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,4,A,3,0,1,model_b,False,True
+138,2,gpt-4,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+139,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+139,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+139,1,alpaca-13b,vicuna-13b-v1.2,A,4,A,3,0,1,model_a,False,False
+139,1,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+139,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+139,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+139,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+139,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+139,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+139,1,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+139,2,alpaca-13b,gpt-3.5-turbo,A,1,B,1,0,0,model_b,False,False
+139,2,alpaca-13b,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+139,2,alpaca-13b,vicuna-13b-v1.2,A,4,A,4,0,0,model_a,False,False
+139,2,claude-v1,gpt-4,B,2,B,0,2,0,model_a,False,True
+139,2,claude-v1,llama-13b,tie,1,A,0,0,1,model_b,False,True
+139,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+139,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+139,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+139,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+139,2,llama-13b,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie,False,False
+140,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+140,1,alpaca-13b,gpt-3.5-turbo,tie,4,B,2,2,0,model_b,False,False
+140,1,alpaca-13b,llama-13b,A,1,tie,1,0,0,tie,False,True
+140,1,alpaca-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+140,1,claude-v1,gpt-4,tie,2,B,0,1,1,model_a,False,True
+140,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+140,1,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+140,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+140,1,gpt-3.5-turbo,llama-13b,A,3,A,2,0,1,model_b,False,True
+140,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,A,1,0,2,model_b,False,True
+140,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+140,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+140,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+140,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+140,2,alpaca-13b,gpt-3.5-turbo,B,4,B,1,2,1,model_b,False,False
+140,2,alpaca-13b,llama-13b,B,1,tie,0,1,0,tie (inconsistent),True,True
+140,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+140,2,claude-v1,gpt-4,tie,2,tie,0,0,2,tie (inconsistent),True,True
+140,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+140,2,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+140,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+140,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+140,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+140,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+140,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+140,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+141,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+141,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+141,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+141,1,claude-v1,gpt-4,tie,2,B,0,0,2,model_a,False,True
+141,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+141,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+141,1,gpt-3.5-turbo,gpt-4,A,4,B,2,1,1,model_b,False,False
+141,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+141,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+141,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+141,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+141,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+141,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+141,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+141,2,claude-v1,gpt-4,B,2,A,0,2,0,model_b,False,True
+141,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+141,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+141,2,gpt-3.5-turbo,gpt-4,B,4,B,0,3,1,model_b,False,False
+141,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+141,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,B,0,0,1,model_a,False,True
+141,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+141,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+142,1,alpaca-13b,gpt-3.5-turbo,tie,1,B,0,0,1,model_b,False,False
+142,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+142,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+142,1,alpaca-13b,vicuna-13b-v1.2,tie,3,B,1,1,1,model_b,False,False
+142,1,claude-v1,gpt-3.5-turbo,B,3,A,1,2,0,model_b,False,True
+142,1,claude-v1,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,True
+142,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+142,1,claude-v1,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+142,1,gpt-3.5-turbo,gpt-4,B,5,B,1,3,1,model_b,False,False
+142,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+142,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+142,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+142,1,gpt-4,vicuna-13b-v1.2,A,3,A,3,0,0,model_b,False,True
+142,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+142,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+142,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+142,2,alpaca-13b,llama-13b,tie,1,A,0,0,1,model_b,False,True
+142,2,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+142,2,claude-v1,gpt-3.5-turbo,A,3,A,2,1,0,model_b,False,True
+142,2,claude-v1,gpt-4,B,1,A,0,1,0,model_b,False,True
+142,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+142,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+142,2,gpt-3.5-turbo,gpt-4,B,4,B,0,4,0,model_b,False,False
+142,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+142,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+142,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+142,2,gpt-4,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+142,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+143,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+143,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+143,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+143,1,alpaca-13b,vicuna-13b-v1.2,A,3,B,2,1,0,model_b,False,False
+143,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+143,1,claude-v1,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,True
+143,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+143,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,1,1,1,tie (inconsistent),True,True
+143,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+143,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+143,1,llama-13b,vicuna-13b-v1.2,tie,2,B,1,1,0,model_b,False,False
+143,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+143,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+143,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+143,2,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+143,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+143,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+143,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,0,0,2,model_b,False,True
+143,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+143,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+143,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+144,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+144,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+144,1,claude-v1,gpt-3.5-turbo,tie,1,A,0,0,1,model_b,False,True
+144,1,claude-v1,gpt-4,B,3,tie,0,3,0,tie (inconsistent),True,True
+144,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+144,1,claude-v1,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,True
+144,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+144,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+144,2,alpaca-13b,gpt-3.5-turbo,tie,1,B,0,0,1,model_b,False,False
+144,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+144,2,claude-v1,gpt-3.5-turbo,A,1,tie,1,0,0,tie (inconsistent),True,True
+144,2,claude-v1,gpt-4,A,3,A,2,1,0,model_b,False,True
+144,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+144,2,claude-v1,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+144,2,gpt-3.5-turbo,llama-13b,B,1,A,0,1,0,model_b,False,True
+144,2,llama-13b,vicuna-13b-v1.2,B,2,tie,0,2,0,tie (inconsistent),True,False
+145,1,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+145,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+145,1,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+145,1,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+145,1,claude-v1,gpt-3.5-turbo,tie,2,A,1,0,1,model_b,False,True
+145,1,claude-v1,gpt-4,tie,1,A,0,0,1,model_b,False,True
+145,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+145,1,claude-v1,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+145,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+145,1,gpt-3.5-turbo,llama-13b,B,1,A,0,1,0,model_b,False,True
+145,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,True
+145,1,gpt-4,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+145,2,alpaca-13b,claude-v1,tie,1,B,0,0,1,model_b,False,False
+145,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+145,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+145,2,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+145,2,claude-v1,gpt-3.5-turbo,A,2,A,2,0,0,model_b,False,True
+145,2,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+145,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+145,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+145,2,gpt-3.5-turbo,gpt-4,tie,2,B,1,1,0,model_b,False,False
+145,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+145,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+145,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+146,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+146,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+146,1,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+146,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+146,1,claude-v1,gpt-3.5-turbo,tie,2,tie,1,0,1,tie (inconsistent),True,True
+146,1,claude-v1,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,True
+146,1,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+146,1,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+146,1,gpt-3.5-turbo,gpt-4,tie,2,B,1,0,1,model_b,False,False
+146,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+146,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+146,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+146,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+146,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+146,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+146,2,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+146,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+146,2,claude-v1,gpt-3.5-turbo,tie,2,A,1,1,0,model_b,False,True
+146,2,claude-v1,gpt-4,A,1,tie,1,0,0,tie (inconsistent),True,True
+146,2,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+146,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+146,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+146,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+146,2,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+146,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+146,2,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+147,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+147,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+147,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+147,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+147,1,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+147,1,claude-v1,gpt-4,tie,3,tie,1,1,1,tie (inconsistent),True,True
+147,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+147,1,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+147,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+147,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+147,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+147,1,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+147,1,llama-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+147,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+147,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+147,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+147,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+147,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+147,2,claude-v1,gpt-4,tie,3,tie,1,1,1,tie (inconsistent),True,True
+147,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+147,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+147,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+147,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+147,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,2,tie,2,0,0,tie (inconsistent),True,True
+147,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,0,1,model_b,False,True
+147,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+148,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+148,1,alpaca-13b,llama-13b,B,1,A,0,1,0,model_b,False,True
+148,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+148,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+148,1,claude-v1,llama-13b,A,6,A,5,0,1,model_b,False,True
+148,1,claude-v1,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+148,1,gpt-3.5-turbo,gpt-4,B,6,B,2,3,1,model_b,False,False
+148,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+148,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,3,A,0,2,1,model_b,False,True
+148,1,gpt-4,llama-13b,A,4,A,3,1,0,model_b,False,True
+148,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+148,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+148,2,alpaca-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+148,2,claude-v1,gpt-3.5-turbo,tie,1,A,0,0,1,model_b,False,True
+148,2,claude-v1,llama-13b,A,6,A,6,0,0,model_b,False,True
+148,2,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+148,2,gpt-3.5-turbo,gpt-4,B,6,B,0,6,0,model_b,False,False
+148,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+148,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,3,A,2,1,0,model_b,False,True
+148,2,gpt-4,llama-13b,A,4,A,3,1,0,model_b,False,True
+149,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+149,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+149,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+149,1,alpaca-13b,llama-13b,A,3,A,2,0,1,model_b,False,True
+149,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+149,1,claude-v1,gpt-4,tie,2,B,0,1,1,model_a,False,True
+149,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+149,1,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+149,1,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+149,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,True
+149,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+149,1,gpt-4,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+149,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+149,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+149,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+149,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+149,2,alpaca-13b,llama-13b,A,3,A,2,1,0,model_b,False,True
+149,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+149,2,claude-v1,gpt-4,A,2,B,2,0,0,model_a,False,True
+149,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+149,2,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+149,2,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+149,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie (inconsistent),True,True
+149,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+149,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+149,2,llama-13b,vicuna-13b-v1.2,B,3,B,0,2,1,model_b,False,False
+150,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+150,1,alpaca-13b,gpt-3.5-turbo,tie,2,tie,1,1,0,tie (inconsistent),True,False
+150,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+150,1,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+150,1,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+150,1,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+150,1,claude-v1,gpt-4,tie,2,tie,0,1,1,tie (inconsistent),True,True
+150,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,1,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+150,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,1,gpt-3.5-turbo,vicuna-13b-v1.2,B,3,A,1,2,0,model_b,False,True
+150,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+150,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+150,2,alpaca-13b,gpt-3.5-turbo,A,2,B,2,0,0,model_b,False,False
+150,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+150,2,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+150,2,alpaca-13b,vicuna-13b-v1.2,B,1,tie,0,1,0,tie (inconsistent),True,False
+150,2,claude-v1,gpt-3.5-turbo,tie,1,A,0,0,1,model_b,False,True
+150,2,claude-v1,gpt-4,tie,2,tie,0,0,2,tie (inconsistent),True,True
+150,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,2,gpt-3.5-turbo,gpt-4,A,1,B,1,0,0,model_b,False,False
+150,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,3,tie,1,2,0,tie (inconsistent),True,True
+150,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+150,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+151,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+151,1,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+151,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+151,1,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+151,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+151,1,claude-v1,vicuna-13b-v1.2,B,3,tie,1,2,0,tie (inconsistent),True,True
+151,1,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+151,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+151,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+151,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+151,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+151,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+151,2,claude-v1,gpt-4,A,3,B,2,1,0,model_a,False,True
+151,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+151,2,claude-v1,vicuna-13b-v1.2,A,3,A,2,1,0,model_b,False,True
+151,2,gpt-3.5-turbo,llama-13b,A,3,A,3,0,0,model_b,False,True
+151,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+151,2,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+152,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+152,1,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+152,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+152,1,alpaca-13b,vicuna-13b-v1.2,tie,5,B,2,2,1,model_b,False,False
+152,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+152,1,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+152,1,claude-v1,vicuna-13b-v1.2,A,3,A,2,1,0,model_b,False,True
+152,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+152,1,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+152,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,1,0,tie (inconsistent),True,True
+152,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+152,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+152,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+152,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+152,2,alpaca-13b,gpt-3.5-turbo,tie,2,B,0,1,1,model_b,False,False
+152,2,alpaca-13b,gpt-4,tie,1,B,0,0,1,model_b,False,False
+152,2,alpaca-13b,vicuna-13b-v1.2,A,5,B,3,1,1,model_b,False,False
+152,2,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+152,2,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+152,2,claude-v1,vicuna-13b-v1.2,A,3,A,2,1,0,model_b,False,True
+152,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+152,2,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+152,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie (inconsistent),True,True
+152,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+152,2,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+152,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+153,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+153,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+153,1,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+153,1,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+153,1,claude-v1,gpt-3.5-turbo,B,1,tie,0,1,0,tie (inconsistent),True,True
+153,1,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+153,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+153,1,claude-v1,vicuna-13b-v1.2,B,3,tie,0,3,0,tie (inconsistent),True,True
+153,1,gpt-3.5-turbo,gpt-4,B,1,B,0,1,0,model_b,False,False
+153,1,gpt-3.5-turbo,llama-13b,tie,2,A,1,0,1,model_b,False,True
+153,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,True
+153,1,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+153,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+153,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+153,2,alpaca-13b,gpt-4,B,2,B,0,2,0,model_b,False,False
+153,2,alpaca-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+153,2,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+153,2,claude-v1,gpt-4,B,1,B,0,1,0,model_a,False,True
+153,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+153,2,claude-v1,vicuna-13b-v1.2,B,3,A,0,2,1,model_b,False,True
+153,2,gpt-3.5-turbo,gpt-4,B,1,tie,0,1,0,tie (inconsistent),True,False
+153,2,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+153,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,True
+153,2,gpt-4,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+154,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+154,1,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+154,1,alpaca-13b,llama-13b,B,1,A,0,1,0,model_b,False,True
+154,1,claude-v1,gpt-3.5-turbo,tie,2,tie,1,1,0,tie (inconsistent),True,True
+154,1,claude-v1,gpt-4,tie,2,B,0,1,1,model_a,False,True
+154,1,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+154,1,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+154,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+154,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+154,1,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+154,2,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+154,2,alpaca-13b,gpt-3.5-turbo,B,1,B,0,1,0,model_b,False,False
+154,2,alpaca-13b,llama-13b,tie,1,A,0,0,1,model_b,False,True
+154,2,claude-v1,gpt-3.5-turbo,tie,2,A,1,0,1,model_b,False,True
+154,2,claude-v1,gpt-4,tie,2,tie,1,0,1,tie (inconsistent),True,True
+154,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+154,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+154,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+154,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+154,2,llama-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+155,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+155,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+155,1,alpaca-13b,vicuna-13b-v1.2,tie,1,B,0,0,1,model_b,False,False
+155,1,claude-v1,gpt-3.5-turbo,tie,3,tie,0,1,2,tie (inconsistent),True,True
+155,1,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+155,1,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+155,1,claude-v1,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+155,1,gpt-3.5-turbo,llama-13b,A,2,A,2,0,0,model_b,False,True
+155,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,6,tie,2,2,2,tie (inconsistent),True,True
+155,1,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+155,1,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+155,1,llama-13b,vicuna-13b-v1.2,A,1,B,1,0,0,model_b,False,False
+155,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+155,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+155,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+155,2,claude-v1,gpt-3.5-turbo,A,3,tie,2,0,1,tie (inconsistent),True,True
+155,2,claude-v1,gpt-4,A,1,B,1,0,0,model_a,False,True
+155,2,claude-v1,llama-13b,A,3,A,3,0,0,model_b,False,True
+155,2,claude-v1,vicuna-13b-v1.2,A,2,A,2,0,0,model_b,False,True
+155,2,gpt-3.5-turbo,llama-13b,tie,2,A,1,0,1,model_b,False,True
+155,2,gpt-3.5-turbo,vicuna-13b-v1.2,A,6,tie,5,1,0,tie (inconsistent),True,True
+155,2,gpt-4,llama-13b,A,3,A,3,0,0,model_b,False,True
+155,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+155,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+156,1,alpaca-13b,claude-v1,B,2,B,0,2,0,model_b,False,False
+156,1,alpaca-13b,gpt-3.5-turbo,tie,1,B,0,0,1,model_b,False,False
+156,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+156,1,alpaca-13b,llama-13b,tie,2,A,1,1,0,model_b,False,True
+156,1,alpaca-13b,vicuna-13b-v1.2,tie,3,B,0,1,2,model_b,False,False
+156,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+156,1,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+156,1,claude-v1,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+156,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+156,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,3,tie,1,1,1,tie (inconsistent),True,True
+156,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+156,1,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+156,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+156,2,alpaca-13b,gpt-3.5-turbo,tie,1,A,0,0,1,model_a,False,False
+156,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+156,2,alpaca-13b,llama-13b,A,2,A,2,0,0,model_b,False,True
+156,2,alpaca-13b,vicuna-13b-v1.2,B,3,B,0,3,0,model_b,False,False
+156,2,claude-v1,gpt-3.5-turbo,B,1,A,0,1,0,model_b,False,True
+156,2,claude-v1,llama-13b,A,2,A,2,0,0,model_b,False,True
+156,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+156,2,gpt-3.5-turbo,gpt-4,tie,2,B,1,1,0,model_b,False,False
+156,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,2,B,0,2,0,model_a,False,True
+156,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+156,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+157,1,alpaca-13b,claude-v1,tie,2,B,0,1,1,model_b,False,False
+157,1,alpaca-13b,gpt-3.5-turbo,B,3,B,0,2,1,model_b,False,False
+157,1,alpaca-13b,gpt-4,tie,3,B,1,1,1,model_b,False,False
+157,1,alpaca-13b,llama-13b,tie,1,B,0,0,1,model_a,False,True
+157,1,claude-v1,gpt-3.5-turbo,tie,5,A,2,2,1,model_b,False,True
+157,1,claude-v1,llama-13b,B,1,A,0,1,0,model_b,False,True
+157,1,claude-v1,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+157,1,gpt-3.5-turbo,llama-13b,tie,1,A,0,0,1,model_b,False,True
+157,1,gpt-3.5-turbo,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,True
+157,1,gpt-4,llama-13b,tie,1,A,0,0,1,model_b,False,True
+157,1,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+157,1,llama-13b,vicuna-13b-v1.2,A,1,tie,1,0,0,tie (inconsistent),True,False
+157,2,alpaca-13b,claude-v1,tie,2,B,0,1,1,model_b,False,False
+157,2,alpaca-13b,gpt-3.5-turbo,B,3,B,0,3,0,model_b,False,False
+157,2,alpaca-13b,gpt-4,B,3,B,0,2,1,model_b,False,False
+157,2,alpaca-13b,llama-13b,A,1,A,1,0,0,model_b,False,True
+157,2,claude-v1,gpt-3.5-turbo,A,5,A,3,1,1,model_b,False,True
+157,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+157,2,claude-v1,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+157,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+157,2,gpt-3.5-turbo,vicuna-13b-v1.2,B,1,A,0,1,0,model_b,False,True
+157,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+157,2,gpt-4,vicuna-13b-v1.2,A,1,A,1,0,0,model_b,False,True
+157,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+158,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+158,1,alpaca-13b,gpt-3.5-turbo,tie,2,A,0,1,1,model_a,False,False
+158,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+158,1,alpaca-13b,llama-13b,A,4,A,3,1,0,model_b,False,True
+158,1,alpaca-13b,vicuna-13b-v1.2,A,1,B,1,0,0,model_b,False,False
+158,1,claude-v1,gpt-3.5-turbo,A,2,A,2,0,0,model_b,False,True
+158,1,gpt-3.5-turbo,gpt-4,B,2,B,0,2,0,model_b,False,False
+158,1,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+158,1,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+158,1,llama-13b,vicuna-13b-v1.2,tie,2,B,0,1,1,model_b,False,False
+158,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+158,2,alpaca-13b,gpt-3.5-turbo,B,2,B,0,2,0,model_b,False,False
+158,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+158,2,alpaca-13b,llama-13b,A,4,A,4,0,0,model_b,False,True
+158,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+158,2,claude-v1,gpt-3.5-turbo,tie,2,A,1,1,0,model_b,False,True
+158,2,gpt-3.5-turbo,gpt-4,tie,2,B,0,1,1,model_b,False,False
+158,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+158,2,gpt-4,llama-13b,A,2,A,2,0,0,model_b,False,True
+158,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+159,1,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+159,1,alpaca-13b,gpt-3.5-turbo,B,4,B,0,4,0,model_b,False,False
+159,1,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+159,1,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+159,1,claude-v1,gpt-3.5-turbo,A,2,A,2,0,0,model_b,False,True
+159,1,claude-v1,gpt-4,tie,3,tie,0,1,2,tie (inconsistent),True,True
+159,1,claude-v1,vicuna-13b-v1.2,A,3,A,2,0,1,model_b,False,True
+159,1,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+159,1,gpt-3.5-turbo,llama-13b,A,4,A,3,0,1,model_b,False,True
+159,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,0,2,tie (inconsistent),True,True
+159,1,gpt-4,llama-13b,A,4,A,4,0,0,model_b,False,True
+159,1,gpt-4,vicuna-13b-v1.2,B,2,A,0,2,0,model_b,False,True
+159,1,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+159,2,alpaca-13b,claude-v1,B,1,B,0,1,0,model_b,False,False
+159,2,alpaca-13b,gpt-3.5-turbo,B,4,B,0,3,1,model_b,False,False
+159,2,alpaca-13b,gpt-4,B,1,B,0,1,0,model_b,False,False
+159,2,alpaca-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+159,2,claude-v1,gpt-3.5-turbo,tie,2,A,0,1,1,model_b,False,True
+159,2,claude-v1,gpt-4,B,3,B,0,3,0,model_a,False,True
+159,2,claude-v1,vicuna-13b-v1.2,B,3,A,0,3,0,model_b,False,True
+159,2,gpt-3.5-turbo,gpt-4,A,3,B,2,1,0,model_b,False,False
+159,2,gpt-3.5-turbo,llama-13b,A,4,A,4,0,0,model_b,False,True
+159,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,2,tie,0,1,1,tie (inconsistent),True,True
+159,2,gpt-4,llama-13b,A,4,A,4,0,0,model_b,False,True
+159,2,gpt-4,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+159,2,llama-13b,vicuna-13b-v1.2,B,1,B,0,1,0,model_b,False,False
+160,1,alpaca-13b,gpt-3.5-turbo,B,6,B,0,4,2,model_b,False,False
+160,1,alpaca-13b,llama-13b,B,2,B,0,2,0,model_a,False,True
+160,1,claude-v1,gpt-3.5-turbo,tie,1,tie,0,0,1,tie (inconsistent),True,True
+160,1,claude-v1,gpt-4,tie,1,tie,0,0,1,tie (inconsistent),True,True
+160,1,claude-v1,llama-13b,tie,1,A,0,0,1,model_b,False,True
+160,1,claude-v1,vicuna-13b-v1.2,tie,2,tie,1,0,1,tie (inconsistent),True,True
+160,1,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+160,1,gpt-3.5-turbo,llama-13b,B,1,A,0,1,0,model_b,False,True
+160,1,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,B,1,1,2,model_a,False,True
+160,1,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+160,1,gpt-4,vicuna-13b-v1.2,tie,1,tie,0,0,1,tie (inconsistent),True,True
+160,1,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False
+160,2,alpaca-13b,gpt-3.5-turbo,B,6,B,0,5,1,model_b,False,False
+160,2,alpaca-13b,llama-13b,tie,2,A,1,1,0,model_b,False,True
+160,2,claude-v1,gpt-3.5-turbo,A,1,A,1,0,0,model_b,False,True
+160,2,claude-v1,gpt-4,tie,1,A,0,0,1,model_b,False,True
+160,2,claude-v1,llama-13b,A,1,A,1,0,0,model_b,False,True
+160,2,claude-v1,vicuna-13b-v1.2,tie,2,A,1,1,0,model_b,False,True
+160,2,gpt-3.5-turbo,gpt-4,B,3,B,0,2,1,model_b,False,False
+160,2,gpt-3.5-turbo,llama-13b,A,1,A,1,0,0,model_b,False,True
+160,2,gpt-3.5-turbo,vicuna-13b-v1.2,tie,4,A,2,0,2,model_b,False,True
+160,2,gpt-4,llama-13b,A,1,A,1,0,0,model_b,False,True
+160,2,gpt-4,vicuna-13b-v1.2,tie,1,A,0,0,1,model_b,False,True
+160,2,llama-13b,vicuna-13b-v1.2,B,2,B,0,2,0,model_b,False,False

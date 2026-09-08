@@ -17,12 +17,14 @@ from .metrics import (
     win_rate,
     win_rate_with_ci,
 )
+from .ppi import PPIWinRateResult, prediction_powered_win_rate
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Interval",
     "JudgeConfusion",
+    "PPIWinRateResult",
     "agreement_rate",
     "agreement_with_ci",
     "beta_binomial_interval",
@@ -33,6 +35,7 @@ __all__ = [
     "judge_confusion",
     "paired_agreement_gap",
     "platt_scaling",
+    "prediction_powered_win_rate",
     "rogan_gladen_correction",
     "score_correlation",
     "win_rate",

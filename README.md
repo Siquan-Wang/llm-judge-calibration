@@ -1,103 +1,110 @@
-# judgecal — statistically rigorous LLM-as-a-judge evaluation
+# judgecal
 
-LLM-as-a-judge is now the default way to evaluate language models, but most
-pipelines report a single win-rate with no uncertainty and treat the judge as
-if it were ground truth. `judgecal` treats the judge as what it is — a **noisy
-measurement instrument** — and applies standard statistical machinery
-(measurement-error correction, Bayesian credible intervals, chance-corrected
-agreement) to make judge-based evaluations honest.
+[![CI](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml/badge.svg)](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml)
 
-## What it does
+**Estimate human preference from imperfect LLM judgments, with a human-audit budget and uncertainty.**
 
-| Question | Tool |
-|---|---|
-| How much does my judge agree with humans, with uncertainty? | `agreement_with_ci` (Beta-Binomial credible interval), `cohens_kappa` |
-| Is my model's win-rate significantly above 50%? | `win_rate_with_ci` (bootstrap), `compare_models` |
-| My judge is imperfect — what is the *human-judged* win-rate? | `judge_confusion` + Rogan–Gladen measurement-error correction |
-| Are my judge's scalar scores calibrated to human preference? | `platt_scaling`, `isotonic_calibration` |
-| Is judge A better than judge B at matching humans? | `paired_agreement_gap` |
-| What is the human-annotator-noise ceiling? | inter-annotator agreement via `agreement_with_ci` |
+A Python library for prediction-powered win-rate inference, measurement-error correction, agreement measures, Bayesian credible intervals and bootstrap confidence intervals. Raw judge results and corrected estimates are reported separately.
 
-The key idea behind the win-rate correction: if a judge has sensitivity `se`
-and specificity `sp` against human labels (estimated on a small human-labeled
-calibration set), the observed judge win-rate is biased:
+## Reproducible MT-Bench case study
 
-```
-p_obs = se * p_true + (1 - sp) * (1 - p_true)
-```
+The [benchmark report](reports/mtbench/REPORT.md) compares raw GPT-4 judgments, human-only estimates and prediction-powered estimates across **15 model pairs**, at **20%, 40% and 60% human-audit question budgets**, with 30 fixed splits per budget. Within each model pair, every turn of a question stays in one pool. Evaluation human labels enter only the final error calculation.
 
-Inverting this (the Rogan–Gladen estimator, standard in epidemiology for
-imperfect diagnostic tests) recovers an unbiased estimate of the human-judged
-win-rate — so you can label 200 items with humans and 20,000 with the judge,
-and still report a number that means what people think it means.
+![MT-Bench label-budget experiment](reports/mtbench/label_budget.svg)
+
+Pinned public labels, every trial, per-pair results, explicit question split IDs and a separate known-truth simulation are committed. Repeated-split errors describe this dataset; they do not establish population CI coverage or guaranteed annotation savings.
+
+In this case study, PPI lowers raw-judge error at all three budgets, while human-only estimates remain more accurate. The report retains both findings and the synthetic cases where the normal approximation undercovers.
 
 ## Install
 
 ```bash
-pip install -e ".[data,dev]"
+git clone https://github.com/Siquan-Wang/llm-judge-calibration.git
+cd llm-judge-calibration
+pip install -e ".[dev]"
 ```
 
-Core dependencies are just numpy / scipy / pandas. The `data` extra adds
-Hugging Face `datasets` for the MT-Bench demo.
+Core dependencies: NumPy, SciPy and pandas. The `data` extra downloads pinned MT-Bench judgments; `report` adds plotting. No model API key is needed for the examples or benchmark.
 
-## Quickstart
+## Prediction-powered win rates
+
+Let `Y_L` be human preference scores on an audit, `F_L` the matching judge scores and `F_U` judge scores on a separate evaluation pool. A target win scores 1, a loss 0 and a tie 0.5. Original, fixed-weight PPI estimates:
+
+```text
+human preference rate = mean(F_U) + mean(Y_L - F_L)
+SE² = Var(mean(F_U)) + Var(mean(Y_L - F_L))
+```
 
 ```python
-from judgecal import agreement_with_ci, judge_confusion, compare_models
+from judgecal import prediction_powered_win_rate
 
-# judge / human labels are "A", "B", or "tie" per comparison
-ci = agreement_with_ci(judge_labels, human_labels)
-print(f"agreement {ci.point:.3f}, 95% CrI [{ci.low:.3f}, {ci.high:.3f}]")
-
-# estimate judge error on the human-labeled subset ...
-conf = judge_confusion(judge_labels, human_labels)
-
-# ... then evaluate a model pair on the full judge-labeled set,
-# correcting the win-rate for judge measurement error
-result = compare_models(judge_labels_full, confusion=conf)
-print(result["win_rate"], result["corrected_win_rate"], result["significant"])
+result = prediction_powered_win_rate(
+    judge_labeled=["A", "A", "B", "tie", "B", "A"],
+    human_labeled=["A", "B", "B", "tie", "A", "A"],
+    judge_unlabeled=["A", "B", "A", "tie", "A", "B", "B", "A"],
+    labeled_groups=[1, 1, 2, 2, 3, 3],
+    unlabeled_groups=[4, 4, 5, 5, 6, 6, 7, 7],
+)
+print(result.point, result.interval.low, result.interval.high)
+print(result.as_dict())
 ```
 
-## Demo: GPT-4 as a judge on MT-Bench
+This tiny input illustrates the API, not adequate sample size for valid normal inference. Group IDs enable question-cluster variance and reject overlapping audit/evaluation questions. Unequal clusters retain an observation-weighted estimand. Without groups, rows are treated as independent and the caller must ensure disjoint pools.
 
-The demo uses [`lmsys/mt_bench_human_judgments`](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments)
-(Zheng et al., *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*,
-NeurIPS 2023) — 3.3k expert human pairwise votes and matching GPT-4 votes
-over six models. It reproduces the paper's judge-human agreement analysis and
-goes further:
+Both pools must represent the same target population and use the same frozen judge. Normal intervals need sufficiently many independent observations or clusters. Estimates and intervals are not clipped to [0, 1]. Original PPI may be less efficient than human-only estimation for a weak judge. This implements [Angelopoulos et al. (2023)](https://arxiv.org/abs/2301.09633), with optional one-way cluster variance; it is not a new PPI estimator or PPI++.
+
+## Other tools
+
+| Question | API | Interpretation |
+|---|---|---|
+| Does the judge agree with humans? | `agreement_rate`, `agreement_with_ci`, `cohens_kappa` | Explicit tie handling; Bayesian intervals assume independent agreement observations. |
+| What is the raw model win rate? | `win_rate_with_ci`, `compare_models` | Ties count as half a win; raw uncertainty is labeled separately. |
+| Can binary judge error be corrected? | `judge_confusion`, `rogan_gladen_correction`, `compare_models` | Rogan–Gladen requires a binary estimand and transferable sensitivity/specificity. |
+| How uncertain is the correction? | `compare_models(..., calibration_judge=..., calibration_human=...)` | Resamples calibration pairs and independent evaluation judgments; reports invalid draws. |
+| Are numeric judge scores calibrated? | `platt_scaling`, `isotonic_calibration` | Fit on calibration data, evaluate separately; duplicate isotonic scores are pooled. |
+| Which judge agrees more with humans? | `paired_agreement_gap` | The paired difference has its own bootstrap interval. |
+
+Rogan–Gladen uses `p_true = (p_observed + specificity - 1) / (sensitivity + specificity - 1)`. Plugging in estimated error rates and clipping is not generally unbiased. The correction does not repair selection bias or distribution shift. Binary correction rejects ties rather than silently changing its estimand. Summary confusion statistics alone do not supply calibration-uncertainty intervals.
+
+Inter-annotator agreement is a reference, not a universal ceiling. Overlapping confidence intervals do not establish equivalence. Repeated annotations or comparisons sharing a question are not independent trials.
+
+## Run the experiments
 
 ```bash
+pip install -e ".[data,dev,report]"
 python examples/demo_mtbench.py
+python examples/benchmark_mtbench.py --plot
+
+# Offline: reuse the committed derived public labels.
+python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output reports/reproduced
 ```
 
-1. **Agreement with uncertainty** — GPT-4 vs. human majority vote, with a
-   Beta-Binomial credible interval and Cohen's kappa instead of a bare
-   percentage.
-2. **Measurement-error-corrected win-rates** — estimates GPT-4's
-   sensitivity/specificity against humans, then reports per-model-pair
-   win-rates both raw and Rogan–Gladen-corrected, with bootstrap CIs.
-3. **The annotator-noise ceiling** — computes human-human inter-annotator
-   agreement and asks whether the judge is statistically distinguishable
-   from a human annotator.
+The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.
 
-## Testing
+## Test
 
 ```bash
-pytest
+pytest -q
+python -m pip wheel --no-deps . --wheel-dir dist
 ```
 
-Tests are fully offline (synthetic data with known ground truth); one
-end-to-end test verifies the measurement-error correction recovers a known
-true win-rate from deliberately corrupted judge labels.
+Tests cover analytic variance, clustered dependence, target reversal, ties, disjoint splits, hidden-label leakage, calibration uncertainty, degenerate inputs and fixed-seed simulations. CI runs offline tests and a benchmark smoke test across supported Python versions.
+
+## Related work
+
+- [ppi_py](https://github.com/aangelopoulos/ppi_py): the statistical foundation for fixed-weight mean correction.
+- [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval): evaluator validation and length-controlled comparisons.
+- [FastChat / MT-Bench](https://github.com/lm-sys/FastChat): the cached human and GPT-4 judgments used here.
 
 ## Roadmap
 
-- [ ] Position-bias and verbosity-bias estimation from swapped-order judgments
-- [ ] Bayesian hierarchical model for per-category judge reliability
-- [ ] Sample-size calculator: "how many human labels do I need to calibrate?"
-- [ ] Multi-judge ensembling with Dawid–Skene-style latent-truth models
-- [ ] Technical report with MT-Bench + Chatbot Arena case studies
+- [x] PPI win rates with optional question-cluster variance.
+- [x] Question-disjoint MT-Bench benchmark with pinned provenance and complete results.
+- [x] Joint calibration/evaluation bootstrap for binary Rogan–Gladen correction.
+- [ ] Dedicated swapped-order and verbosity-bias estimators; the loader currently preserves source inconsistency flags only.
+- [ ] Hierarchical category reliability and validated label-budget planning.
+- [ ] Broader benchmarks on newer model judgments.
 
 ## License
 
-MIT
+Code: [MIT](LICENSE). The derived MT-Bench snapshot retains the dataset's **CC BY 4.0** license and attribution, separately from the code license.

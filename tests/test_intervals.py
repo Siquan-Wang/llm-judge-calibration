@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from judgecal import beta_binomial_interval, bootstrap_ci, wilson_interval
 
@@ -46,3 +47,32 @@ def test_interval_excludes():
     ci = beta_binomial_interval(90, 100)
     assert ci.excludes(0.5)
     assert not ci.excludes(0.9)
+
+
+@pytest.mark.parametrize("alpha", [0, 1, -.1, 1.1, np.nan, np.inf, True])
+def test_interval_alpha_validation(alpha):
+    for function, args in [(wilson_interval, (1, 2)), (beta_binomial_interval, (1, 2)), (bootstrap_ci, ([0, 1],))]:
+        with pytest.raises(ValueError):
+            function(*args, alpha=alpha)
+
+
+@pytest.mark.parametrize("k,n", [(-1, 2), (3, 2), (0, -1), (1.0, 2), (True, 2)])
+def test_invalid_binomial_counts(k, n):
+    for function in (wilson_interval, beta_binomial_interval):
+        with pytest.raises(ValueError):
+            function(k, n)
+
+
+@pytest.mark.parametrize("n_boot", [0, 1, -1, 2.5, True])
+def test_bootstrap_count_validation(n_boot):
+    with pytest.raises(ValueError):
+        bootstrap_ci([0, 1], n_boot=n_boot)
+
+
+def test_bootstrap_shape_and_nonfinite_statistics():
+    with pytest.raises(ValueError):
+        bootstrap_ci([[1], [2]])
+    with pytest.raises(ValueError):
+        bootstrap_ci([0, np.nan])
+    with pytest.raises(ValueError):
+        beta_binomial_interval(1, 2, prior_a=0)

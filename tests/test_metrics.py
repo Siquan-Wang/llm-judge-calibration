@@ -57,3 +57,36 @@ def test_score_correlation():
     y = [10.0, 20.0, 30.0, 40.0]
     assert score_correlation(x, y, "spearman") == pytest.approx(1.0)
     assert score_correlation(x, y, "pearson") == pytest.approx(1.0)
+
+
+def test_constant_or_empty_kappa_is_undefined():
+    assert np.isnan(cohens_kappa([], []))
+    assert np.isnan(cohens_kappa(["A", "A"], ["A", "A"]))
+
+
+def test_agreement_ci_validates_lengths_instead_of_broadcasting():
+    with pytest.raises(ValueError):
+        agreement_with_ci(["A"], ["A", "B"])
+
+
+def test_win_rate_rejects_unknown_labels_invalid_target_and_tie_weight():
+    for labels, kwargs in [(["other"], {}), (["A"], {"target": "tie"}), (["tie"], {"tie_value": 2})]:
+        with pytest.raises(ValueError):
+            win_rate(labels, **kwargs)
+    with pytest.raises(ValueError):
+        win_rate_with_ci(["unknown"])
+
+
+def test_boundary_win_rate_intervals_do_not_claim_certainty_from_one_item():
+    for label in ("A", "B", "tie"):
+        ci = win_rate_with_ci([label], n_boot=20)
+        assert ci.low < ci.high
+        assert not ci.excludes(.5)
+    assert win_rate_with_ci(["A"] * 4).low < .5
+
+
+def test_score_correlation_rejects_nonfinite_and_mismatched_inputs():
+    for a, b in [([1], [2]), ([1, 2], [1]), ([1, np.nan], [1, 2])]:
+        with pytest.raises(ValueError):
+            score_correlation(a, b)
+    assert np.isnan(score_correlation([1, 1], [1, 2]))

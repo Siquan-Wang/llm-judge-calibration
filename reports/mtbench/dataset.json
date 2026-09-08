@@ -1,0 +1,33 @@
+{
+  "aligned_comparisons": 1814,
+  "aligned_order_inconsistent_comparisons": 290,
+  "citation": "Zheng et al., Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena, NeurIPS 2023",
+  "contains": "Derived public labels and IDs only; no prompts, responses or private user material.",
+  "dataset_id": "lmsys/mt_bench_human_judgments",
+  "dataset_revision": "f7d2896d2cc5d80f8b55c2bbc722613555233c25",
+  "dataset_url": "https://huggingface.co/datasets/lmsys/mt_bench_human_judgments/tree/f7d2896d2cc5d80f8b55c2bbc722613555233c25",
+  "deduplication_policy": "One vote per (question_id, turn, canonical model pair, judge); identical repeated labels are deduplicated; conflicting labels raise ValueError.",
+  "human_vote_aggregation": "Unique modal label among A/B/tie (plurality); any tie for the largest vote count becomes tie. Includes both author_* and expert_* annotators.",
+  "labels_sha256": "ac0b5b074a4c0ecef978983ee7ab7c64c82f94c4eea38def24c68938d96ab943",
+  "license": "CC-BY-4.0",
+  "min_human_votes": 1,
+  "order_diagnostics": "The source contains a combined GPT-4 judgment, not its separate order-specific votes. input_reversed is source ordering versus canonical ordering, not a position-bias estimate.",
+  "response_alignment_checked": true,
+  "source_counts": {
+    "aligned_comparisons_after_filter": 1814,
+    "aligned_comparisons_before_filter": 1814,
+    "aligned_inconsistent_order_after_filter": 290,
+    "aligned_inconsistent_order_before_filter": 290,
+    "aligned_questions_after_filter": 80,
+    "gpt4_inconsistent_order_rows": 380,
+    "gpt4_only_comparisons": 586,
+    "gpt4_rows": 2400,
+    "human_comparisons": 1814,
+    "human_duplicates_removed": 1,
+    "human_only_comparisons": 0,
+    "human_raw_rows": 3355,
+    "human_unique_votes": 3354
+  },
+  "tie_policy": "Both tie and tie (inconsistent) map to tie; the latter flag is retained.",
+  "unique_questions": 80
+}

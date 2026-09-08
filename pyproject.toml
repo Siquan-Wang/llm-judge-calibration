@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "judgecal"
-version = "0.1.0"
+version = "0.2.0"
 description = "Statistically rigorous calibration and evaluation of LLM-as-a-judge against human labels"
 readme = "README.md"
 license = { text = "MIT" }
@@ -20,6 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 data = ["datasets>=2.14"]
 dev = ["pytest>=7.0", "pytest-cov"]
+report = ["matplotlib>=3.7"]
 
 [project.urls]
 Homepage = "https://github.com/Siquan-Wang/llm-judge-calibration"

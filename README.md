@@ -28,6 +28,11 @@ realized held-out means. Every experiment retains its failures and assumptions.
   nominal 95% interval covers in only 52.4% of 1,000 repetitions. Applicable
   finite-sample bounds have a substantial width cost. Grouping helps with
   dependence, but few groups and audit-to-target shift remain failure modes.
+- **Known group size is an essential control.** In the separate fixed-corpus
+  audit, the size-only rule has lower MSE and narrower intervals than the
+  agreement-proxy rule in all six judge/budget cells. Both use the same finite
+  coefficient grid and error allocation. The [complete study](reports/finite-corpus/REPORT.md)
+  retains these negative proxy results and conservative coverage outcomes.
 
 ![The same coefficient change affects two targets differently](reports/synthesis/target_tradeoff.png)
 
@@ -50,6 +55,7 @@ population interval, and no guaranteed deployment or annotation saving.
 | Population versus pool | How do target covariance and coefficient choice interact? | [Report](reports/estimand/REPORT.md) |
 | RewardBench | Does one cross-judge agreement signal serve two accuracy targets? | [Report](reports/rewardbench-audit/REPORT.md) |
 | Independent pilot | Does reserving labels for tuning pay off at the same total budget? | [Report](reports/pilot-study/REPORT.md) |
+| Fixed finite corpus | Does agreement improve a uniform group audit beyond known group-size adjustment? | [Report](reports/finite-corpus/REPORT.md) |
 
 These are linked analyses, not independent datasets. LLMBar extensions
 reuse the same comparisons; RewardBench contains 419 verified LLMBar overlaps.
@@ -90,6 +96,8 @@ The [API guide](docs/API_GUIDE.md) preserves categorical preference examples and
 other utilities. It distinguishes `predict_heldout_mean` (iid marginal pool
 prediction), `audit_residual_mean` (grouped point estimation only), and
 `finite_sample_mean` (fixed/grid coefficients under bounded iid assumptions).
+`finite_corpus_mean` separately targets a full fixed corpus under uniform
+sampling of complete groups without replacement, using finite-population bounds.
 The [mathematical methods](docs/METHODS.md) and
 [pinned author-implementation comparison](docs/REFERENCE_BASELINE.md) explain
 contracts and finite-sample implementation differences.
@@ -132,7 +140,7 @@ attributes these methods and distinguishes fixed-budget means from sequential
 model selection and judge-misclassification transfer methods. The contribution
 is an auditable comparison of established corrections under explicit targets,
 references and sampling designs. Prospective current-model validation,
-unequal-group fixed-corpus intervals and a validated budget planner remain open.
+broader fixed-corpus sampling designs and a validated budget planner remain open.
 
 ## Licenses and sources
 

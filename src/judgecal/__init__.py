@@ -9,6 +9,7 @@ from .calibration import (
 )
 from .compare import compare_models, paired_agreement_gap
 from .finite_sample import FiniteSampleMeanResult, finite_sample_mean
+from .finite_corpus import FiniteCorpusMeanResult, finite_corpus_mean
 from .intervals import Interval, beta_binomial_interval, bootstrap_ci, wilson_interval
 from .metrics import (
     agreement_rate,
@@ -26,13 +27,14 @@ from .pool_prediction import (
     predict_heldout_mean,
 )
 
-__version__ = "0.11.0"
+__version__ = "0.12.0"
 
 __all__ = [
     "Interval",
     "AuditResidualMeanResult",
     "PoolMeanPredictionResult",
     "FiniteSampleMeanResult",
+    "FiniteCorpusMeanResult",
     "JudgeConfusion",
     "PPIMeanResult",
     "PPIWinRateResult",
@@ -44,6 +46,7 @@ __all__ = [
     "cohens_kappa",
     "compare_models",
     "finite_sample_mean",
+    "finite_corpus_mean",
     "isotonic_calibration",
     "judge_confusion",
     "paired_agreement_gap",

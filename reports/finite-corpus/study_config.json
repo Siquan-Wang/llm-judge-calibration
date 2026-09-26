@@ -1,0 +1,61 @@
+{
+  "alpha": 0.05,
+  "audit_group_counts": [
+    463,
+    1389,
+    2083
+  ],
+  "census": "one exact check per method and judge; excluded from Monte Carlo summaries",
+  "cohort": "NonLLMBar",
+  "cost": "random audited row count; expected k*M/G; shared across methods and target directions",
+  "coverage_scope": "each individual method/judge/budget conditional on fixed corpus and declared SRS design",
+  "coverage_scoring": "eight-epsilon membership tolerance only; endpoints unchanged",
+  "frame_hash_encoding": "SHA256(compact sorted-key ensure_ascii=True JSON catalog UTF8; no trailing newline)",
+  "frame_sha256": "811baac79924a9368ba0c7cedd0c3cf2407cc917dda39504cde74529ff6bc4eb",
+  "group_fractions": [
+    0.2,
+    0.6,
+    0.9
+  ],
+  "group_size_counts": {
+    "1": 2177,
+    "2": 27,
+    "3": 110,
+    "5": 1
+  },
+  "independent_random_objects": 2000,
+  "judges": [
+    "openai/gpt-4o-2024-08-06",
+    "openai/gpt-4o-mini-2024-07-18"
+  ],
+  "materialized_cached_choices": 5132,
+  "mc_interval": "pointwise 95% exact binomial for coverage; independent design replications only",
+  "methods": [
+    "ht_hs",
+    "ht_ebs",
+    "agreement_grid_ebs",
+    "size_grid_ebs"
+  ],
+  "n_groups": 2315,
+  "n_rows": 2566,
+  "new_model_calls": 0,
+  "numpy_version": "2.5.3",
+  "plots": true,
+  "power_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "random_stream_scheme": "numpy.Generator(Philox(SeedSequence([seed,repetition]))).permutation(G)",
+  "range_policy": "full known-frame min(-power*F_g), max(n_g-power*F_g); no outcome-based range",
+  "reference_scope": "frozen benchmark references, not error-free latent truth",
+  "repetitions": 2000,
+  "sampling": "fixed-k uniform groups without replacement; shared nested permutation prefixes",
+  "schema_version": 1,
+  "seed": 2032,
+  "selected_id_hash_encoding": "SHA256(sorted IDs joined by LF plus terminal LF; UTF8)",
+  "study": "fixed-corpus-without-replacement-v1",
+  "target": "full fixed corpus row-average reference correctness"
+}

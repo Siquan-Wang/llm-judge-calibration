@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0
+
+- A separate full fixed-corpus mean API for uniform audits of complete, unequal
+  groups, with classical difference estimates and Hoeffding–Serfling or empirical
+  Bernstein–Serfling bounds. Prespecified finite grids preserve interval coverage;
+  selected points need not retain fixed-coefficient design unbiasedness.
+- An offline RewardBench design study separates cross-judge agreement from a
+  matched group-size-only control. Every draw retains actual row-label costs,
+  lossless sampled membership, paired errors and widths, plus exact census checks.
+
 ## 0.11.0
 
 - An independent-pilot simulation compares eight established procedures at the

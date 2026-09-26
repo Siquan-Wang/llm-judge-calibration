@@ -10,10 +10,43 @@ Choose the outcome, target and sampling unit before selecting an interval.
 | Random held-out mean under iid sampling | `predict_heldout_mean` | Marginal prediction interval over both pools; no cluster arguments or conditional fixed-pool guarantee. |
 | Grouped audit-residual candidate | `audit_residual_mean` | Point estimate and audit criterion only; no prediction interval. |
 | Population bounded mean with conservative finite-sample inference | `finite_sample_mean` | Independent iid pools; fixed power or prespecified finite grid; no continuous automatic tuning or groups. |
+| Full fixed-corpus row mean | `finite_corpus_mean` | Uniform fixed-size sampling of complete groups without replacement; known frame and proxy totals; HS/EBS bounds, fixed coefficient or finite grid. |
 
 The [technical report](TECHNICAL_REPORT.md) explains why these targets differ.
 For full formulas, attribution and assumptions, see [Methods](METHODS.md).
 The small examples below illustrate signatures, not adequate audit sizes.
+
+## Full fixed-corpus mean
+
+```python
+from judgecal import finite_corpus_mean
+
+result = finite_corpus_mean(
+    group_sizes=[1, 2, 1, 3],
+    group_prediction_totals=[0.2, 1.4, 0.9, 2.1],
+    audited_group_indices=[0, 3],
+    audited_outcome_totals=[1, 2],
+    power=(0, 0.25, 0.5, 0.75, 1),
+    method="empirical_bernstein_serfling",
+)
+print(result.point, result.interval, result.audited_rows)
+```
+
+Here the supplied indices must be one realized uniform sample of exactly two
+complete groups from the four-group frame. Arrays cannot verify randomization.
+The target is all seven rows' outcome mean, with known group membership, sizes
+and full proxy totals. Only the two audited groups' outcome totals are supplied.
+Each row outcome and proxy lies in [0,1], so group totals lie in [0,group_size].
+
+The number of audited rows varies with the sampled groups. Do not stop at a row
+budget or pass partial groups while claiming the same coverage guarantee.
+There is no independent prediction pool, group-outcome independence assumption,
+population target or held-out target. Fixed coefficients are design-unbiased;
+the finite-grid selection preserves simultaneous interval coverage within that
+declared family but can bias the selected point. Select the grid and bound
+family before seeing audit outcomes. A full census returns the exact mean and
+zero width. [Methods and source attribution](METHODS.md) and the
+[study protocol](FINITE_CORPUS_PROTOCOL.md) state the remaining conditions.
 
 ## Prediction-powered win rates
 

@@ -3,8 +3,9 @@
 `judgecal` estimates bounded outcome means using a frozen prediction or
 proxy and a smaller labeled audit. Outcomes include human-preference
 scores and a judge's correctness against benchmark references. Its mean
-inference APIs target population expectations; the separate held-out-mean
-prediction API is described below. The package implements established mean
+inference APIs with two independent pools target population expectations;
+the separate held-out-mean prediction API and fixed finite-corpus sampling
+design are described below. The package implements established mean
 correction and power-tuning ideas, with an explicit cluster-variance
 adaptation. It does not introduce a new PPI estimator or establish general
 annotation savings.
@@ -374,3 +375,80 @@ predate this project. These are relevant external benchmarks and baselines,
 not implemented contributions of the current study.
 [JudgeBench](https://arxiv.org/abs/2410.12784),
 [FairEval](https://arxiv.org/abs/2305.17926).
+
+## Fixed finite-corpus inference by uniform group sampling
+
+The [finite-corpus protocol](FINITE_CORPUS_PROTOCOL.md) defines a separate
+design-based target: the recorded row mean of a complete fixed corpus. It
+does not reinterpret the earlier empirical held-out means as population
+confidence targets or transfer their normal intervals to this setting.
+The dedicated `finite_corpus_mean` API receives full-frame `group_sizes`
+and `group_prediction_totals`, plus `audited_group_indices` and only those
+groups' `audited_outcome_totals`. It returns a `FiniteCorpusMeanResult`
+with the point, interval, radius and candidate diagnostics; it does not
+return a normal standard error.
+Let the frame contain `G` groups and `M=sum_g n_g` rows, with bounded
+outcomes `Y_i` and fully known proxies `F_i`. Write `Y_g` and `F_g` for
+group totals. Draw exactly `k` groups uniformly without replacement and
+observe every outcome in those groups. For a fixed coefficient,
+
+```text
+mu_C = sum_g Y_g/M
+R_g(lambda) = Y_g - lambda F_g
+theta_hat(lambda) = lambda sum_g F_g/M + G/(k M) sum_{g in S} R_g(lambda)
+theta_hat(lambda) - mu_C = (G/M) [mean_S R(lambda) - mean_frame R(lambda)].
+```
+
+Group inclusion probability `k/G` makes each fixed-coefficient estimate
+design-unbiased. At zero coefficient this is the Horvitz–Thompson expansion
+of group totals; unequal group sizes do not permit replacing its denominator
+with the number of sampled rows. The realized row-label cost is random at
+fixed `k`. The full proxy total includes sampled groups, so there is no
+independent prediction-pool variance or error allocation. Within-group
+outcomes may be dependent because the finite corpus is held fixed.
+
+Known support is `R_g(lambda) in [-lambda F_g, n_g-lambda F_g]`. Let
+`L_lambda` be the width of the common enclosing interval over the complete
+frame, and let `v_hat_lambda` be the audited group residual variance with
+divisor `k` (`ddof=0`). Define
+
+```text
+rho(k,G) = 1-(k-1)/G                 if k <= G/2
+           (1-k/G)(1+1/k)           if k > G/2.
+
+r_H(lambda) = (G/M) L_lambda sqrt[rho(k,G) log(2K/alpha)/(2k)]
+
+r_E(lambda) = (G/M) {
+    sqrt[2 rho(k,G) v_hat_lambda log(10K/alpha)/k]
+    + (7/3 + 3/sqrt(2)) L_lambda log(10K/alpha)/k
+}.
+```
+
+These apply Bardenet and Maillard's Hoeffding–Serfling Corollary 2.5 and
+empirical Bernstein–Serfling Theorem 4.3 to group residual totals. The latter
+has one-sided failure `5 delta`; two signs and `K` fixed candidates require
+`delta=alpha/(10K)`. The empirical variance convention is Eq. (26), not the
+`ddof=1` convention of the package's iid normal estimator. See
+[Bardenet and Maillard (2015), arXiv v2, reprint pp. 10, 19, 21–23](https://arxiv.org/abs/1309.4029v2),
+*Concentration inequalities for sampling without replacement*,
+Bernoulli 21(3), 1361–1385,
+[DOI 10.3150/14-BEJ605](https://doi.org/10.3150/14-BEJ605).
+
+A union bound guarantees simultaneous containment for the prespecified
+coefficient grid within one method. Selecting its smallest untruncated
+radius therefore preserves coverage for this corpus, but does not imply
+that the selected point is design-unbiased. No cross-family selection,
+continuous coefficient search, simultaneous guarantee across reported
+cells, or superpopulation guarantee follows. When `k=G`, compute the
+observed corpus mean and zero radius directly: the empirical-Bernstein
+range term does not vanish merely because `rho` vanishes.
+
+For these support bounds, `L_lambda >= max_g n_g = L_0`. Thus a range-only
+radius-minimizing grid containing zero cannot improve on its zero candidate
+at equal allocation. Variance-sensitive selection may help but has no
+guaranteed efficiency advantage. The study compares agreement with the
+constant row proxy `F_i=1`, whose group totals are known sizes. This control
+uses no auxiliary judge information and can reveal benefits attributable
+to group-size adjustment. Correct frame membership, uniform fixed-size
+sampling and fully observed sampled groups are essential; general survey
+weights, missing labels and arbitrary sampling designs remain outside scope.

@@ -1,0 +1,58 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "5715e95f6bbfb72b8f902fe7be574f905ca10d60883709b8c97091a9d5db2243",
+    "census.csv": "abaf1ff73fc6d6272536b84fa50e0a8bab94e5b708689c654a276199dbc929ae",
+    "finite_corpus_tradeoff.png": "07d63c857c0bf6df1af59d025ba688107325cf6a3f8039c03bdea077707b41af",
+    "finite_corpus_tradeoff.svg": "9ade2abd90c8bf7cb9ed8710ed4bab0c4aaf098427cc608ac906efaae2b8e0cd",
+    "frame_catalog.json": "3b786bfb002e87b227329509fc264003dcb7e0d77de95630ad7ef87120b9107a",
+    "paired_differences.csv": "6c76e481e93c2b13ab9b9865cdd55760a74c28ccb1eefaa50586129d14e09d39",
+    "permutations.json.gz": "7b35da7db7675faf6d75e850c04c3fa6be97fb7ad0d7b2937272923bad8b9131",
+    "splits.csv": "b9377ccedf0f38b06c50754bf421454a0c245fa62280e658922a401a73617605",
+    "study_config.json": "4e3be2ce08c49354843ca12c9bb980ddb38e7c188a97ddfa606cb7f51fd27a49",
+    "summary.csv": "9bd89962d8d1c445dd5d38ba2335ca13492e4396b2671901e2755f9d5df772b1",
+    "trials.csv.gz": "ebc3abe1307b10eb76db73659ba3c3c8d3951bc68fd0438f356871ccd7ac44f4"
+  },
+  "input_sha256": {
+    "NOTICE.md": "dbefe540583543f0e0b29b237b73ccfb3fdd16c5075066898923b35dea2f1491",
+    "dataset.json": "3ff9bd62f5a939c645b1a18e75cacf83bbe4e37a3d6e26747980894f993062f2",
+    "labels.csv": "7dc7d8aad832f470a2831df5011fd7e8e1c670996a225b5d91c81f760350120f"
+  },
+  "kind": "fixed-corpus randomized group audit",
+  "packages": {
+    "judgecal": "0.12.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/FINITE_CORPUS_PROTOCOL.md": "7972854e108f2b64e51906103cbce197522508eefff50968a5cefe6a54e8f0b2",
+    "examples/finite_corpus_study.py": "506ba4841e52a7ba8ef81dbb78a979a77215b43a141a8069c8da80b6344db343",
+    "pyproject.toml": "8f110c6a0d866390b832e53e114acc4f3629299e44ae51c1861bf7d8a4912ed5",
+    "src/judgecal/__init__.py": "e7353b36feb118c6ce944f90e3e1e458ad5591bfbedc5b61e7a1db38282dedc0",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/cross_judge_audit.py": "098e518dacc4fbc02ba3f3047350bdeb19108b73f4cae6f5288c837a4836c388",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/estimand_study.py": "85a7b29dbe05b0efd1a61a44b32249b6a02358e7e6515c21eee94b97f4a627ce",
+    "src/judgecal/finite_corpus.py": "d68a58149b606569a8722208b7b11bba7fe539efd623e0740cda5e908f17c91d",
+    "src/judgecal/finite_corpus_study.py": "f0f7bda74ecfdc761bca3edc86f2e17ee5ab3fe3a4b1f7dca3182fb5120267b9",
+    "src/judgecal/finite_sample.py": "a9139d6f85ed3832b2bf9634081c29e07b971e4bca32cef22aaab8fba517e25f",
+    "src/judgecal/finite_study.py": "984fca779501429963dbb9e18269f63720cbcd1e11a05b4874269e40cde01599",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/judge_audit.py": "c4efddb6e0168cfaa41cf49b482119a4a450c9919cd49130fecd60c02d7f9499",
+    "src/judgecal/llmbar.py": "8bd2abc9f33024b15802901295a8ac13bde7fe66c2d94953e8332b9707326467",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/pilot_study.py": "2951725e6c97abe99894ef478f9a32f5ce620483cceed7cbba9350af6ea2252a",
+    "src/judgecal/pool_prediction.py": "9a6c7a27ec3921e75149b8a8a10cf583328fd0a65208a58b0ba2b52c0f1bee3b",
+    "src/judgecal/ppi.py": "79c95b549a2f0946388c567cfb80e2b2b5abfb82513856f146f06e82e20dcd90",
+    "src/judgecal/rewardbench.py": "690ab2eb07cc434d5462ffc4df58431a00ac6b108ba033bb4c4bf192d11785b2",
+    "src/judgecal/signed_study.py": "8156403d24983e82df1df43c5945aa4b51492db254b61a00e3f8ab96e3f91c76",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA256"
+}

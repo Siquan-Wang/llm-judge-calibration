@@ -1,0 +1,60 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "ed2c008211c2768ebd8a69b9cad031f52e2a6c8f34cfddcc440470fcbda16f06",
+    "config.json": "4edddea456f7485272ab4d9c718611603e288f96f0e6799ebf3f9e6eb05d670d",
+    "estimand_tradeoff.png": "d28cde80acc7e6586040198c5b3229f0dd5a4e7c1c15c0ed90c9d2656f39fb87",
+    "estimand_tradeoff.svg": "3d4d5d50bded72395091bb6215f7958d73281706f708e19b199c2e16b1eec7ea",
+    "llmbar_paired_differences.csv": "02780123a357ae33b810bfd07b752ff18f2e79d318c09b41df8c39e1fb56d336",
+    "llmbar_summary.csv": "0a2940f0afe66fa58dfbb8b69cfc0f7b44488ea4ecf96b09cbe5ec5395552222",
+    "llmbar_trials.csv": "0a8a526e8c05b0110171a092ef6071c54ac74b564d9230850dcd07adfe85fb52",
+    "pool_target_llmbar.png": "491c12b73853868dc517f47985cd4a4e99f6f849e7d37f86b7eb5c1d5f2b6071",
+    "pool_target_llmbar.svg": "b0df0c5e5fd6acbe3fdf8b3e9c48bcb817b60ad118b94a1f6d95d62657fbf4a9",
+    "simulation_paired_differences.csv": "f832fe03acf394451d32b4c4cf3ddb3a90009e46103912832f9734fb70955c2f",
+    "simulation_summary.csv": "e85107c61972ca91bf62a40ef6df2b88c690591724b5b1cca76fff4d882f3a55",
+    "simulation_trials.csv.gz": "9e3c13a97eeb1485eac90e04c13e734e106c090028d2cbf9b689c379f845b7a9",
+    "split_manifest.json": "35e8d4eaa365a078f68502db2c8329aa4a4c764b76c692a6a91ddbfc44b33530"
+  },
+  "historical_alignment": {
+    "historical_method_trials_verified": 4050,
+    "historical_splits_verified": 270,
+    "split_manifest_sha256": "35e8d4eaa365a078f68502db2c8329aa4a4c764b76c692a6a91ddbfc44b33530",
+    "trials_sha256": "27d3ba5cd90e00f5d56da53685095f14b6554b945bb3ca6e6772ade7579e44cc"
+  },
+  "input_labels_sha256": "aafff984b410bd1f60e0a3196a10957c5a1f241caf8c85c4c391d8b1e2ef1f97",
+  "input_provenance_sha256": "e6ee5d891fe5697a058af1247634ffc6c3d92338c60bbff14521b03a0f68fb98",
+  "packages": {
+    "judgecal": "0.9.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/ESTIMAND_PROTOCOL.md": "0c70de850303c567e80631b033b06654a3081985c3558ddb3df3826e9f99f6e1",
+    "docs/METHODS.md": "e56709b0e8ed705487a85f261c48ed4f351ce3f007906e2a09687e505143cbdd",
+    "examples/estimand_study.py": "9326e5bc59acd509b04893bf96e8bb72af285c8f0da6536a5cd23c02c06e0680",
+    "examples/llmbar_audit.py": "da4aeca46b696549276b62d4fd91c7cfe15e57038c39e3030d1d8eb5487b3288",
+    "examples/research_study.py": "af05fc3463a63b70995e9e5ccba429782e512e55b65a54d3444457224e750143",
+    "pyproject.toml": "b5410dbad535673647729aaba82ac5ef82739f2921dff4b3b18c2098db3bd752",
+    "src/judgecal/__init__.py": "b5cb616f0218464c227de9b477bb0716fce7341324ca35f82381e13eda1fc7b8",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/estimand_study.py": "85a7b29dbe05b0efd1a61a44b32249b6a02358e7e6515c21eee94b97f4a627ce",
+    "src/judgecal/finite_sample.py": "a9139d6f85ed3832b2bf9634081c29e07b971e4bca32cef22aaab8fba517e25f",
+    "src/judgecal/finite_study.py": "984fca779501429963dbb9e18269f63720cbcd1e11a05b4874269e40cde01599",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/judge_audit.py": "c4efddb6e0168cfaa41cf49b482119a4a450c9919cd49130fecd60c02d7f9499",
+    "src/judgecal/llmbar.py": "8bd2abc9f33024b15802901295a8ac13bde7fe66c2d94953e8332b9707326467",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/pool_prediction.py": "9a6c7a27ec3921e75149b8a8a10cf583328fd0a65208a58b0ba2b52c0f1bee3b",
+    "src/judgecal/ppi.py": "79c95b549a2f0946388c567cfb80e2b2b5abfb82513856f146f06e82e20dcd90",
+    "src/judgecal/signed_study.py": "8156403d24983e82df1df43c5945aa4b51492db254b61a00e3f8ab96e3f91c76",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256"
+}

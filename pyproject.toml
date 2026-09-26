@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "judgecal"
-version = "0.8.0"
+version = "0.9.0"
 description = "Human-audit reliability experiments and prediction-powered inference for LLM judges"
 readme = "README.md"
 license = { text = "MIT" }

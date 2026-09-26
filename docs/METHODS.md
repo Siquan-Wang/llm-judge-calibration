@@ -89,6 +89,11 @@ an unconstrained minimum above one selects one. The categorical win-rate API
 retains this range. The point estimate and interval endpoints themselves are
 never clipped to `[0,1]`.
 
+Moment calculations recognize exactly constant input arrays before centering,
+so summation roundoff cannot create spurious variance or covariance for a
+repeated decimal value. This uses exact equality, not a near-zero tolerance:
+representable variation, however small, is retained.
+
 The numeric mean API also accepts explicit `power_bounds=(-1,1)`, projecting
 the same ratio onto that signed interval. Allowed bounds are contained in
 `[-1,1]`, contain zero, and must be chosen before examining evaluation outcomes.
@@ -230,6 +235,25 @@ label savings. Raw judging consumes no human audit labels. Raw intervals are
 omitted here because uncertainty in the judge mean is not uncertainty about
 its discrepancy from the human reference. The earlier complementary-pool
 benchmark remains available separately.
+
+## Predicting a random held-out mean
+
+The separate IID-only `predict_heldout_mean` API targets the realized mean
+of a random prediction pool. Its result explicitly names a
+`prediction_interval` and `prediction_standard_error`, rather than reusing
+population-confidence-interval fields. For fixed coefficient `lambda`,
+error against this target equals `mean(R_L)-mean(R_U)`, where `R=Y-lambda*F`.
+Its marginal variance is `(1/n+1/N)*Var(R)` under independent IID sampling.
+The audit-only fitted slope minimizes residual variance; it lacks the
+population coefficient's `N/(n+N)` shrinkage. Both constructions remain
+asymptotic when a coefficient is estimated from the same audit.
+
+This prediction interval averages over draws of both pools. It is not a
+conditional guarantee for every frozen U or observed proxy composition.
+The grouped `audit_residual_mean` candidate returns only a point estimate
+and tuning diagnostics. It provides no grouped prediction interval. The
+[estimand protocol](ESTIMAND_PROTOCOL.md) derives the target distinction,
+separates finite-population sampling designs, and defines the paired study.
 
 ## Synthetic study: exact targets and failure cases
 

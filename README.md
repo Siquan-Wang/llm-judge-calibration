@@ -193,6 +193,37 @@ it is exploratory rather than independent validation. The
 [protocol](docs/SIGNED_POWER_PROTOCOL.md) specifies sign selection,
 constraint assumptions, identical costs and the limits of normal inference.
 
+## Follow-up: which mean are you estimating?
+
+The [estimand study](reports/estimand/REPORT.md) distinguishes the population
+mean from the realized mean of a held-out pool. Both use the same correction
+formula, but their error variances and optimal coefficients differ. With
+`b=Cov(Y,F)/Var(F)`, the IID population oracle is `N/(n+N)*b`; the pool oracle
+is `b`. The latter incorporates covariance between the estimate and its
+random target. These are established difference/regression-estimation ideas,
+with their assumptions and derivation stated in the
+[protocol](docs/ESTIMAND_PROTOCOL.md).
+
+![Target-specific correction tradeoff](reports/estimand/estimand_tradeoff.svg)
+
+All **144,000 simulation rows** retain both targets across 36 settings.
+For a positive proxy at prevalence 0.5, with 200 audit and 100 prediction
+observations, pool tuning reduces pool-target RMSE from **0.0472 to 0.0323**
+but raises population-target RMSE from **0.0309 to 0.0462**. Those are separate
+within-target comparisons. Fitting remains fragile at small sample sizes:
+at prevalence 0.95 with 20 audit and 10 prediction observations, pool tuning
+worsens pool-target RMSE and its nominal 95% prediction interval covers
+in only **77.4%** of replications.
+
+`predict_heldout_mean` supplies an explicitly named **marginal prediction
+interval** under independent IID sampling of both pools. It does not promise
+conditional coverage for every frozen evaluation set. The grouped
+`audit_residual_mean` API returns a point estimate without uncertainty.
+On unchanged LLMBar splits, this point candidate improves MAE in 17 of 27
+cells and worsens it in ten against signed population tuning. All **4,860
+empirical trials** are retained; no IID pool interval is assigned to the
+unequal instruction groups. Existing population APIs keep their original target.
+
 ## Install
 
 ```bash
@@ -309,6 +340,7 @@ python examples/reference_sensitivity.py --output reports/reproduced/sensitivity
 python examples/finite_sample_study.py --output reports/reproduced/finite-sample --plot
 python examples/llmbar_audit.py --output reports/reproduced/llmbar-audit --plot
 python examples/signed_power_study.py --output reports/reproduced/signed-power --plot
+python examples/estimand_study.py --output reports/reproduced/estimand --plot
 ```
 
 The MT-Bench loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The LLMBar loader joins full comparison content, preserves already-canonical choices and pins source-byte hashes. Its [separate attribution](reports/llmbar/DATA_LICENSE.md) retains the official repository notice. Both committed label snapshots contain no prompts, model responses or private user material.
@@ -351,6 +383,7 @@ supported Python versions.
 - [x] Sensitivity to human-vote aggregation and a separate cached order-consistency audit.
 - [x] Conservative finite-sample bounds with explicit width/coverage tradeoffs.
 - [x] Optional signed mean coefficients, inverse-proxy experiments and unchanged historical splits.
+- [x] Population versus random-pool target sensitivity, with distinct uncertainty APIs.
 - [ ] Dedicated position-bias and verbosity-bias correction estimators.
 - [ ] Hierarchical category reliability and validated label-budget planning.
 - [ ] Broader benchmarks on newer model judgments.

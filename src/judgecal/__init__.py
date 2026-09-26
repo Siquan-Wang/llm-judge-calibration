@@ -19,17 +19,26 @@ from .metrics import (
     win_rate_with_ci,
 )
 from .ppi import PPIMeanResult, PPIWinRateResult, prediction_powered_mean, prediction_powered_win_rate
+from .pool_prediction import (
+    AuditResidualMeanResult,
+    PoolMeanPredictionResult,
+    audit_residual_mean,
+    predict_heldout_mean,
+)
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 __all__ = [
     "Interval",
+    "AuditResidualMeanResult",
+    "PoolMeanPredictionResult",
     "FiniteSampleMeanResult",
     "JudgeConfusion",
     "PPIMeanResult",
     "PPIWinRateResult",
     "agreement_rate",
     "agreement_with_ci",
+    "audit_residual_mean",
     "beta_binomial_interval",
     "bootstrap_ci",
     "cohens_kappa",
@@ -40,6 +49,7 @@ __all__ = [
     "paired_agreement_gap",
     "platt_scaling",
     "prediction_powered_mean",
+    "predict_heldout_mean",
     "prediction_powered_win_rate",
     "rogan_gladen_correction",
     "score_correlation",

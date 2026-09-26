@@ -256,3 +256,52 @@ def test_signed_hidden_and_unused_gold_do_not_enter_fitting():
 def test_include_signed_requires_boolean(value):
     with pytest.raises(ValueError, match="include_signed"):
         run(include_signed=value)
+
+
+def test_pool_extension_is_point_only_and_preserves_every_existing_row():
+    previous, previous_summary = run(include_signed=True)
+    explicit, explicit_summary = run(include_signed=True, include_pool_tuned=False)
+    assert previous.to_csv(index=False) == explicit.to_csv(index=False)
+    assert previous_summary.to_csv(index=False) == explicit_summary.to_csv(index=False)
+    assert previous.attrs == explicit.attrs
+    extended, summary = run(include_signed=True, include_pool_tuned=True)
+    assert len(extended) == len(previous) // 5 * 6
+    assert extended.attrs["split_manifest"] == previous.attrs["split_manifest"]
+    old = extended.loc[extended.method != "audit_residual", previous.columns]
+    assert old.to_csv(index=False) == previous.to_csv(index=False)
+    assert summary.loc[summary.method != "audit_residual"].to_csv(index=False) == previous_summary.to_csv(index=False)
+    new = extended.loc[extended.method == "audit_residual"]
+    no_uncertainty = ["interval_low", "interval_high", "interval_width", "standard_error", "estimated_variance_ratio"]
+    assert new[no_uncertainty].isna().all().all()
+    assert new.audit_residual_criterion.ge(0).all()
+    assert new.audit_residual_criterion_name.eq("audit-residual-mean-variance").all()
+    assert new.power_lower.eq(-1).all() and new.power_upper.eq(1).all()
+    assert summary.loc[summary.method == "audit_residual", "mean_interval_width"].isna().all()
+    costs = ["human_labels_used", "cached_judgments_used", "heldout_reference_labels_scored"]
+    pd.testing.assert_frame_equal(new[costs].reset_index(drop=True),
+                                  extended.loc[extended.method == "ppi_signed", costs].reset_index(drop=True))
+
+
+def test_point_only_candidate_ignores_hidden_and_unused_gold():
+    frame = panel()
+    before, _ = run(frame, cohorts=["All"], fractions=[.2], include_signed=True, include_pool_tuned=True)
+    split = before.attrs["split_manifest"][0]
+    changed = frame.copy()
+    hidden = changed.sample_id.isin(split["evaluation_sample_ids"] + split["unused_sample_ids"])
+    changed.loc[hidden, "reference_label"] = 3 - changed.loc[hidden, "reference_label"]
+    changed.loc[changed.sample_id.isin(split["unused_sample_ids"]), ["forward_prediction", "reverse_prediction"]] = 0
+    after, _ = run(changed, cohorts=["All"], fractions=[.2], include_signed=True, include_pool_tuned=True)
+    cols = ["estimate", "selected_power", "interval_low", "interval_high", "standard_error",
+            "human_labels_used", "cached_judgments_used", "audit_residual_criterion"]
+    pd.testing.assert_frame_equal(before[cols], after[cols])
+    assert before.attrs["split_manifest"] == after.attrs["split_manifest"]
+    assert not before.heldout_accuracy_reference.equals(after.heldout_accuracy_reference)
+
+
+@pytest.mark.parametrize("kwargs", [
+    {"include_pool_tuned": True}, {"include_signed": True, "include_pool_tuned": "true"},
+    {"include_signed": True, "include_pool_tuned": 1}, {"include_pool_tuned": None},
+])
+def test_point_only_extension_requires_explicit_nested_boolean_options(kwargs):
+    with pytest.raises(ValueError, match="include_pool_tuned"):
+        run(**kwargs)

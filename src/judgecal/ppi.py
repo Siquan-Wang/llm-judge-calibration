@@ -249,6 +249,10 @@ def _group_codes(
 
 
 def _variance_of_mean(values: np.ndarray, groups: np.ndarray | None) -> float:
+    # A decimal constant need not equal its rounded computed mean. Preserve
+    # exact zero empirical variation instead of creating a centering artifact.
+    if np.all(values == values[0]):
+        return 0.0
     if groups is None:
         return float(np.var(values, ddof=1) / values.size)
     group_sums = np.bincount(groups, weights=values - values.mean())
@@ -262,6 +266,8 @@ def _covariance_of_means(
     first: np.ndarray, second: np.ndarray, groups: np.ndarray | None
 ) -> float:
     """Paired covariance using the same iid/cluster convention as variance."""
+    if np.all(first == first[0]) or np.all(second == second[0]):
+        return 0.0
     first_centered = first - first.mean()
     second_centered = second - second.mean()
     if groups is None:

@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 from .ppi import prediction_powered_mean
+from .pool_prediction import audit_residual_mean
 
 
 _SUBSETS = {"Natural", "Neighbor", "GPTInst", "GPTOut", "Manual"}
@@ -91,6 +92,7 @@ def judge_accuracy_audit(
     *,
     cohorts: Sequence[str] = _COHORTS,
     include_signed: bool = False,
+    include_pool_tuned: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Audit forward-judge accuracy with gold-free response-order agreement.
 
@@ -132,11 +134,22 @@ def judge_accuracy_audit(
     power bounds [-1,1] on exactly the same pools and at the same input cost
     as PPI. Signed-enabled tables additionally record power_lower/upper;
     the default tables, schemas and split manifests remain unchanged.
+    ``include_pool_tuned=True`` requires the signed extension and appends a
+    point-only ``audit_residual`` candidate minimizing audit cluster residual
+    variance. It receives no interval, standard error or population variance
+    ratio: an unequal-instruction-group pool interval is not justified here.
+    Optional audit_residual_criterion fields describe its tuning criterion
+    only, not uncertainty about population or held-out accuracy.
     """
     data = _validate_frame(frame)
     if not isinstance(include_signed, (bool, np.bool_)):
         raise ValueError("include_signed must be a boolean")
-    methods = _METHODS + (("ppi_signed",) if include_signed else ())
+    if not isinstance(include_pool_tuned, (bool, np.bool_)):
+        raise ValueError("include_pool_tuned must be a boolean")
+    if include_pool_tuned and not include_signed:
+        raise ValueError("include_pool_tuned=True requires include_signed=True")
+    methods = (_METHODS + (("ppi_signed",) if include_signed else ())
+               + (("audit_residual",) if include_pool_tuned else ()))
     fractions, seeds, cohorts = tuple(fractions), tuple(seeds), tuple(cohorts)
     if (not fractions or any(not _fraction(f) for f in fractions)
             or len(set(float(f) for f in fractions)) != len(fractions)):
@@ -222,10 +235,17 @@ def judge_accuracy_audit(
                             predictions_labeled=audit_proxy, predictions_unlabeled=evaluation_proxy,
                             **arguments, power="auto", power_bounds=(-1., 1.),
                         )
+                    if include_pool_tuned:
+                        results["audit_residual"] = audit_residual_mean(
+                            audit_proxy, audit_correct, evaluation_proxy,
+                            labeled_groups=audit["instruction_id"],
+                            unlabeled_groups=evaluation["instruction_id"], power_bounds=(-1., 1.),
+                        )
                     # Held-out gold first enters numerical scoring after inference.
                     reference = float(_correct(evaluation).mean())
                     for method in methods:
                         result = results.get(method)
+                        interval_result = None if method == "audit_residual" else result
                         estimate = float(evaluation_proxy.mean()) if result is None else result.point
                         error = estimate - reference
                         audit_cache = (0 if method == "raw_proxy" else
@@ -235,13 +255,13 @@ def judge_accuracy_audit(
                             **common, "judge": judge, "method": method,
                             "heldout_accuracy_reference": reference, "estimate": estimate,
                             "signed_error": error, "absolute_error": abs(error), "squared_error": error**2,
-                            "interval_low": None if result is None else result.interval.low,
-                            "interval_high": None if result is None else result.interval.high,
-                            "interval_width": None if result is None else result.interval.high - result.interval.low,
-                            "standard_error": None if result is None else result.standard_error,
+                            "interval_low": None if interval_result is None else interval_result.interval.low,
+                            "interval_high": None if interval_result is None else interval_result.interval.high,
+                            "interval_width": None if interval_result is None else interval_result.interval.high - interval_result.interval.low,
+                            "standard_error": None if interval_result is None else interval_result.standard_error,
                             "selected_power": None if result is None else result.selected_power,
                             "power_method": None if result is None else result.power_method,
-                            "estimated_variance_ratio": None if result is None else result.estimated_variance_ratio,
+                            "estimated_variance_ratio": None if interval_result is None else interval_result.estimated_variance_ratio,
                             "variance_method": None if result is None else result.variance_method,
                             "human_labels_used": 0 if result is None else len(audit),
                             "audit_cached_judgments_used": audit_cache,
@@ -252,6 +272,9 @@ def judge_accuracy_audit(
                             **({"power_lower": None if result is None else result.power_bounds[0],
                                 "power_upper": None if result is None else result.power_bounds[1]}
                                if include_signed else {}),
+                            **({"audit_residual_criterion": result.criterion_value if method == "audit_residual" else None,
+                                "audit_residual_criterion_name": result.criterion if method == "audit_residual" else None}
+                               if include_pool_tuned else {}),
                         })
     trials = pd.DataFrame(records)
     summary = (
@@ -268,9 +291,9 @@ def judge_accuracy_audit(
     summary["root_mean_squared_error"] = np.sqrt(summary["mean_squared_error"])
     if include_signed:
         summary["power_lower"] = summary.method.map({
-            "human_only": 0., "ppi": 0., "ppi_tuned": 0., "ppi_signed": -1.})
+            "human_only": 0., "ppi": 0., "ppi_tuned": 0., "ppi_signed": -1., "audit_residual": -1.})
         summary["power_upper"] = summary.method.map({
-            "human_only": 1., "ppi": 1., "ppi_tuned": 1., "ppi_signed": 1.})
+            "human_only": 1., "ppi": 1., "ppi_tuned": 1., "ppi_signed": 1., "audit_residual": 1.})
     # Attach large metadata only after grouping, avoiding repeated pandas attrs copies.
     trials.attrs["split_manifest"] = manifests
     trials.attrs["audit_protocol"] = {
@@ -291,5 +314,13 @@ def judge_accuracy_audit(
             "selection": "Audit covariance and both proxy pools; no held-out correctness or unused data",
             "interpretation": "Algebraic scalar-proxy orientation; canonical choices and correctness outcomes unchanged",
             "default_bounds": [0., 1.],
+        }
+    if include_pool_tuned:
+        trials.attrs["audit_protocol"]["pool_tuned_extension"] = {
+            "method": "audit_residual", "power_bounds": [-1., 1.],
+            "selection": "Minimize audit cluster residual variance; no evaluation correctness or unused data",
+            "uncertainty": "Point-only candidate; no grouped pool prediction interval or population variance ratio",
+            "criterion_scope": "audit_residual_criterion is an optimization criterion, not population or pool error variance",
+            "design_limit": "Unequal-size instruction-group partitions do not justify a row-iid or conditional fixed-pool interval",
         }
     return trials, summary

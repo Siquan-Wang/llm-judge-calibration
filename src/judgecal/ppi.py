@@ -135,6 +135,19 @@ def _bounded_scores(values: Sequence[float], name: str) -> np.ndarray:
     """Require actual real-valued scores, without coercing strings or nulls."""
     if np.ma.isMaskedArray(values) and np.any(np.ma.getmaskarray(values)):
         raise ValueError(f"{name} must not contain masked or missing scores")
+    # Large simulation pools already have real NumPy dtypes. Validate those
+    # in array operations; object conversion would box and inspect every row.
+    # Restrict this path to existing numeric arrays so mixed Python sequences
+    # cannot coerce booleans, strings or missing objects into valid floats.
+    if isinstance(values, np.ndarray) and values.dtype.kind in "iuf":
+        arr = np.asarray(values)
+        if arr.ndim != 1:
+            raise ValueError(f"{name} must be a one-dimensional numeric score sequence")
+        if arr.size < 2:
+            raise ValueError(f"{name} must contain at least two observations")
+        if not np.all(np.isfinite(arr)) or np.any(arr < 0) or np.any(arr > 1):
+            raise ValueError(f"{name} requires finite real numeric scores in [0, 1]")
+        return np.asarray(arr, dtype=float)
     try:
         arr = np.asarray(values, dtype=object)
     except (TypeError, ValueError) as exc:

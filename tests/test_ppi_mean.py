@@ -138,6 +138,24 @@ def test_supported_real_numeric_containers_keep_scores():
     assert result.standard_error**2 == pytest.approx(11 / 150)
 
 
+@pytest.mark.parametrize("dtype", [np.float32, np.float64, np.longdouble, np.int32, np.uint64])
+@pytest.mark.parametrize("power", [0, .25, 1, "auto"])
+def test_numeric_array_validation_preserves_object_path_inference(dtype, power):
+    arrays = [np.asarray(values, dtype=dtype) for values in
+              ([.2, 1., 0., .7], [.3, 1., .5, 0.], [1., .6, .5, 0., .1])]
+    fast = prediction_powered_mean(*arrays, power=power)
+    objects = prediction_powered_mean(*(a.astype(object) for a in arrays), power=power)
+    assert fast.as_dict() == objects.as_dict()
+
+
+@pytest.mark.parametrize("bad", [np.array([0, 2], dtype=np.uint64), np.array([0., np.nan]),
+                                 np.array([0., np.inf]), np.array([-1., 0.]),
+                                 np.array([0., 1.01], dtype=np.float32), np.array([[0., 1.]])])
+def test_numeric_array_fast_validation_keeps_bounds_and_shape_checks(bad):
+    with pytest.raises(ValueError):
+        prediction_powered_mean(bad, [0., 1.], [0., 1.])
+
+
 @pytest.mark.parametrize("position", [0, 1, 2])
 @pytest.mark.parametrize("bad", [
     [], [.2], .5, "01", [[.2, .4]], [np.nan, .2], [np.inf, .2],

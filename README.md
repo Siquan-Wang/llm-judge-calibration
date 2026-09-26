@@ -100,6 +100,33 @@ The direction of the pair-level comparison changes in 5 of 45 matched
 pair/budget cases. The aggregate finding is stable here, while individual
 model-pair conclusions can depend on how human votes are summarized.
 
+## Follow-up: finite-sample coverage has a width cost
+
+The [finite-sample report](reports/finite-sample/REPORT.md) compares normal
+intervals with established Hoeffding and empirical Bernstein bounds on
+12 iid settings and two deliberate dependence/shift violations. All eight
+methods share each draw; **112,000 trial rows** retain coverage, untruncated
+width, selected powers and simulation uncertainty.
+
+![Finite-sample coverage and width](reports/finite-sample/finite_sample_tradeoff.svg)
+
+`finite_sample_mean` accepts a fixed coefficient or a prespecified finite
+power tuple. Tuple selection is covered by simultaneous bounds over all
+candidates, with explicit error allocation. It does not accept continuous
+`power="auto"` or grouped rows. The [derivation and protocol](docs/FINITE_SAMPLE_PROTOCOL.md)
+state the iid assumptions, known score ranges, source theorems and limits.
+These are conservative baselines, with no guarantee of narrower intervals
+than a human-only audit. Perfect observed predictions do not justify
+replacing the known residual range with the observed range.
+
+At human prevalence 0.95 with 20 audit labels, tuned PPI improves point
+RMSE yet its nominal 95% normal interval covers the population target in
+only **52.4%** of 1,000 replications. Human Hoeffding covers in all 1,000 draws, with mean
+width **0.607** versus **0.093** for tuned normal. Grid EB is wider still
+and contains the entire [0,1] range in 64.7% of draws. Coverage counts have
+explicit Monte Carlo intervals; these findings concern the specified
+generator, and neither concentration bound repairs population shift.
+
 ## Install
 
 ```bash
@@ -207,6 +234,7 @@ python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output
 python examples/research_study.py --output reports/reproduced/research --plot
 python examples/stress_grid.py --output reports/reproduced/stress --plot
 python examples/reference_sensitivity.py --output reports/reproduced/sensitivity --plot
+python examples/finite_sample_study.py --output reports/reproduced/finite-sample --plot
 ```
 
 The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.

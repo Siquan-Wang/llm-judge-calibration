@@ -33,6 +33,8 @@ jobs:
         run: python examples/stress_grid.py --repetitions 2 --output "${{ runner.temp }}/judgecal-stress"
       - name: Human-reference sensitivity smoke test
         run: python examples/reference_sensitivity.py --seeds 2 --output "${{ runner.temp }}/judgecal-sensitivity"
+      - name: Finite-sample interval study smoke test
+        run: python examples/finite_sample_study.py --repetitions 2 --output "${{ runner.temp }}/judgecal-finite-sample"
   author-reference:
     runs-on: ubuntu-latest
     steps:

@@ -8,6 +8,7 @@ from .calibration import (
     rogan_gladen_correction,
 )
 from .compare import compare_models, paired_agreement_gap
+from .finite_sample import FiniteSampleMeanResult, finite_sample_mean
 from .intervals import Interval, beta_binomial_interval, bootstrap_ci, wilson_interval
 from .metrics import (
     agreement_rate,
@@ -19,10 +20,11 @@ from .metrics import (
 )
 from .ppi import PPIMeanResult, PPIWinRateResult, prediction_powered_mean, prediction_powered_win_rate
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 __all__ = [
     "Interval",
+    "FiniteSampleMeanResult",
     "JudgeConfusion",
     "PPIMeanResult",
     "PPIWinRateResult",
@@ -32,6 +34,7 @@ __all__ = [
     "bootstrap_ci",
     "cohens_kappa",
     "compare_models",
+    "finite_sample_mean",
     "isotonic_calibration",
     "judge_confusion",
     "paired_agreement_gap",

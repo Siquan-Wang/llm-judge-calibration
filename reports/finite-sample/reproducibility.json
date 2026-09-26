@@ -1,0 +1,38 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "491c5bd3d1cb84735d01c99d19597d45454eb67ac63998944c527abc22689c5e",
+    "config.json": "6159b57991cd5cbacef5e8f6b14c160a3a7d7df83b283ffa51ca898be02413b5",
+    "finite_sample_tradeoff.png": "7a83e1ce5c9b8ba2ad009ef755e52315eb444ec36e4479a9e327961fd433ab98",
+    "finite_sample_tradeoff.svg": "097fd37a923601dd3450a5299a50f15d4818367a896e890dfd045d840635635a",
+    "summary.csv": "1bd5f5b609865247bd68739bb98a957768fa019303e5153c0cdfa58350b248a5",
+    "trials.csv.gz": "b3ce266f829ec638d9c6fdee1b76a699975f36bb933d79cc1c2b467dfff216d0"
+  },
+  "packages": {
+    "judgecal": "0.6.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/FINITE_SAMPLE_PROTOCOL.md": "da33146e16f8dbb5230ce93ff5ec608293ca9984b5df7247d8cfd689d480ef7d",
+    "examples/finite_sample_study.py": "10c2e8b823e9ed1ea490f02329b3fa80dec5fd7e0687d40489916f7da699abab",
+    "examples/research_study.py": "af05fc3463a63b70995e9e5ccba429782e512e55b65a54d3444457224e750143",
+    "pyproject.toml": "3c83b905bd077d716d3f44daf0bd7e844d11eb84ee52b7977b57e04f3acb61aa",
+    "src/judgecal/__init__.py": "4276406fa2c6a1861659aa85903af6ed23c13884372fb47ba1e280ecdae4627e",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/finite_sample.py": "a9139d6f85ed3832b2bf9634081c29e07b971e4bca32cef22aaab8fba517e25f",
+    "src/judgecal/finite_study.py": "984fca779501429963dbb9e18269f63720cbcd1e11a05b4874269e40cde01599",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/ppi.py": "1428c63fc38406110d5951e7bf145334cfdbc8dfc035742b71152101af0959f3",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256 (matches Git text attributes)"
+}

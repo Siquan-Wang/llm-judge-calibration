@@ -1,0 +1,175 @@
+{
+  "aggregate_validation": {
+    "judges": 2,
+    "maximum_allowed_absolute_difference": 1e-14,
+    "subsets_per_judge": 23
+  },
+  "available_code_revision": "47512a010f748dcdacab422654b43c51c91fa63d",
+  "cache_license": "named license not specified at pinned results revision; README describes release for further research",
+  "canonical_choices": "1/2 index in lexicographically sorted exact response strings",
+  "code_license_scope": "Apache-2.0 applies to inspected upstream code; not inferred for caches or source datasets",
+  "comparisons": 2985,
+  "dataset": "allenai/reward-bench",
+  "dataset_license": "ODC-BY dataset card plus source-subset license notices; see pinned DATA_LICENSE.md",
+  "dataset_revision": "168d848cdbbea9764fae4a544dc9ca1e6cca4931",
+  "derived_artifact_license": "No upstream data or cache relicensing is asserted by the package license",
+  "historical_invocation_verified": false,
+  "instruction_groups": 2733,
+  "instruction_id_encoding": "sha256(exact prompt UTF-8), no normalization or subset salt",
+  "judges": [
+    "openai/gpt-4o-2024-08-06",
+    "openai/gpt-4o-mini-2024-07-18"
+  ],
+  "label_columns": [
+    "sample_id",
+    "instruction_id",
+    "source_id",
+    "subset",
+    "judge",
+    "reference_choice",
+    "canonical_choice",
+    "reference_correct",
+    "agreement_proxy",
+    "auxiliary_judge"
+  ],
+  "label_cost": "one reference reveal gives correctness for both cached judges",
+  "labels_bytes": 1264024,
+  "labels_sha256": "7dc7d8aad832f470a2831df5011fd7e8e1c670996a225b5d91c81f760350120f",
+  "limitations": [
+    "No exact historical command, random order, completion text, seed, or request timestamp in selected score caches",
+    "Available source configuration is evidence of semantics, not proof of historical invocation",
+    "Benchmark correctness is not latent truth or a uniform human-preference estimand",
+    "Exact prompt grouping does not establish independence of semantically related prompts",
+    "Both directions reuse the same references and model pair; they are not independent replications"
+  ],
+  "outcome": "designated judge correctness against heterogeneous benchmark reference",
+  "presentation": "one cached randomly swapped judgment per model; not both orders",
+  "proxy": "equality of the two canonical choices; invariant to consistent gold reversal",
+  "results_dataset": "allenai/reward-bench-results",
+  "results_revision": "96302cc604e4f257dc526272c803c4eff27e3469",
+  "rows": 5970,
+  "sample_id_encoding": "sha256(UTF-8 compact ensure_ascii=False JSON [prompt, sorted([chosen,rejected])])",
+  "source_id_is_unique": false,
+  "source_id_join_used": false,
+  "source_text_exported": false,
+  "sources": {
+    "CODE_LICENSE": {
+      "bytes": 11357,
+      "role": "code_license_only",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "url": "https://raw.githubusercontent.com/allenai/reward-bench/bc72fb2a573fc31c614eef3405d354b398977b02/LICENSE"
+    },
+    "DATASET_README.md": {
+      "bytes": 21113,
+      "role": "dataset_card",
+      "sha256": "819086ae803ffe3d3126eb2c188b8c67e2a0acb91b67096727f59f5aff423256",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench/resolve/168d848cdbbea9764fae4a544dc9ca1e6cca4931/README.md"
+    },
+    "DATA_LICENSE.md": {
+      "bytes": 19792,
+      "role": "dataset_subset_license_notices",
+      "sha256": "d1659bcee5039d7de41a1a57bc003a9f8a55ffaf397753ae05b66bce6561ed60",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench/resolve/168d848cdbbea9764fae4a544dc9ca1e6cca4931/LICENSE.md"
+    },
+    "RESULTS_README.md": {
+      "bytes": 2409,
+      "role": "results_research_release_card",
+      "sha256": "15b3ad0f0b498cae879a6524be4b2309c9177cf17526de97976644274f3cf012",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench-results/resolve/96302cc604e4f257dc526272c803c4eff27e3469/README.md"
+    },
+    "filtered.parquet": {
+      "bytes": 2354751,
+      "role": "reference_dataset",
+      "sha256": "65473c20ed0627e02503557ae102c25c6b0e66b5ed69ee327e224bb95e70ca29",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench/resolve/168d848cdbbea9764fae4a544dc9ca1e6cca4931/data/filtered-00000-of-00001.parquet"
+    },
+    "generative_47512a.py": {
+      "bytes": 21806,
+      "role": "available_judge_helpers",
+      "sha256": "3f8526a7d5359a1aaf16537e107f245dad8e04e70819d87248d467f66ab17db7",
+      "url": "https://raw.githubusercontent.com/allenai/reward-bench/47512a010f748dcdacab422654b43c51c91fa63d/rewardbench/generative.py"
+    },
+    "gpt-4o-2024-08-06-aggregate.json": {
+      "bytes": 969,
+      "role": "published_subset_aggregates",
+      "sha256": "bc89223df6622c5a571bded58622a340f8ed6051d4c3820170054069e99ab2ad",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench-results/resolve/96302cc604e4f257dc526272c803c4eff27e3469/eval-set/openai/gpt-4o-2024-08-06.json"
+    },
+    "gpt-4o-2024-08-06.json": {
+      "bytes": 6871466,
+      "role": "binary_judge_cache",
+      "sha256": "fee650e9066e2be5cb4bba1a605ea905720aa24a87eaf0113c09e4742761e069",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench-results/resolve/96302cc604e4f257dc526272c803c4eff27e3469/eval-set-scores/openai/gpt-4o-2024-08-06.json"
+    },
+    "gpt-4o-mini-2024-07-18-aggregate.json": {
+      "bytes": 991,
+      "role": "published_subset_aggregates",
+      "sha256": "b3152175ae2ebbb2d634f677b41410d4a0ac03d6b727ca06e703da72504a9468",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench-results/resolve/96302cc604e4f257dc526272c803c4eff27e3469/eval-set/openai/gpt-4o-mini-2024-07-18.json"
+    },
+    "gpt-4o-mini-2024-07-18.json": {
+      "bytes": 6871471,
+      "role": "binary_judge_cache",
+      "sha256": "5fcd13fad7b57b29d6120a9782ac762080a796860c66f87d9da8d61ea13bfc77",
+      "url": "https://huggingface.co/datasets/allenai/reward-bench-results/resolve/96302cc604e4f257dc526272c803c4eff27e3469/eval-set-scores/openai/gpt-4o-mini-2024-07-18.json"
+    },
+    "run_generative_47512a.py": {
+      "bytes": 15249,
+      "role": "available_single_order_runner",
+      "sha256": "8187db5c301d2ebd94356abdfefb22579511c8a5ca8ab9ada97b2dab86795b8e",
+      "url": "https://raw.githubusercontent.com/allenai/reward-bench/47512a010f748dcdacab422654b43c51c91fa63d/scripts/run_generative.py"
+    }
+  },
+  "subset_comparisons": {
+    "alpacaeval-easy": 100,
+    "alpacaeval-hard": 95,
+    "alpacaeval-length": 95,
+    "donotanswer": 136,
+    "hep-cpp": 164,
+    "hep-go": 164,
+    "hep-java": 164,
+    "hep-js": 164,
+    "hep-python": 164,
+    "hep-rust": 164,
+    "llmbar-adver-GPTInst": 92,
+    "llmbar-adver-GPTOut": 47,
+    "llmbar-adver-manual": 46,
+    "llmbar-adver-neighbor": 134,
+    "llmbar-natural": 100,
+    "math-prm": 447,
+    "mt-bench-easy": 28,
+    "mt-bench-hard": 37,
+    "mt-bench-med": 40,
+    "refusals-dangerous": 100,
+    "refusals-offensive": 100,
+    "xstest-should-refuse": 154,
+    "xstest-should-respond": 250
+  },
+  "subsets": [
+    "alpacaeval-easy",
+    "alpacaeval-hard",
+    "alpacaeval-length",
+    "donotanswer",
+    "hep-cpp",
+    "hep-go",
+    "hep-java",
+    "hep-js",
+    "hep-python",
+    "hep-rust",
+    "llmbar-adver-GPTInst",
+    "llmbar-adver-GPTOut",
+    "llmbar-adver-manual",
+    "llmbar-adver-neighbor",
+    "llmbar-natural",
+    "math-prm",
+    "mt-bench-easy",
+    "mt-bench-hard",
+    "mt-bench-med",
+    "refusals-dangerous",
+    "refusals-offensive",
+    "xstest-should-refuse",
+    "xstest-should-respond"
+  ],
+  "unique_source_ids": 2984,
+  "unknown_score_policy": "reject; only exact numeric 0/1 accepted, no 0.5 coercion"
+}

@@ -224,6 +224,38 @@ cells and worsens it in ten against signed population tuning. All **4,860
 empirical trials** are retained; no IID pool interval is assigned to the
 unequal instruction groups. Existing population APIs keep their original target.
 
+## RewardBench: one agreement signal, two accuracy targets
+
+The [cross-judge audit](reports/rewardbench-audit/REPORT.md) analyzes the dated
+GPT-4o 2024-08-06 and GPT-4o mini 2024-07-18 caches on **2,985 comparisons**.
+The proxy is whether the two judges choose the same answer. Equality of their
+binary correctness bits reconstructs that gold-invariant relation; using an
+individual correctness bit as a proxy would leak the reference.
+
+The primary component excludes LLMBar: **2,566 comparisons and 2,315 exact-prompt
+groups**. The full mixture and LLMBar component remain separate sensitivity
+analyses. All **3,240 method trials**, 108 summaries and 270 exact shared split
+manifests are retained. Repeated prompts stay together across source subsets;
+full-content joins preserve two distinct comparisons with the same raw ID.
+
+![Cross-judge audit across reference budgets](reports/rewardbench-audit/cross_judge_audit_budget.svg)
+
+The primary agreement rate is **89.95%**, while reference accuracy is **90.80%**
+for GPT-4o and **86.67%** for GPT-4o mini. Both agree on the reference-incorrect
+answer in 160 comparisons. Positive and signed population tuning improve MAE
+over reference-audit-only in all six primary judge/budget cells, while fixed
+coefficient-one correction worsens five of six. Audit-residual tuning improves
+five and worsens one. Raw agreement still outperforms correction for GPT-4o
+at the lowest budget; this is not a uniform benefit or deployment guarantee.
+
+The [protocol](docs/REWARDBENCH_PROTOCOL.md) separates reference semantics,
+shared label/input costs, empirical point errors and population uncertainty.
+Both caches are historical and from one model family. The analysis is not the
+official weighted leaderboard. [Source notices](reports/rewardbench/NOTICE.md)
+record dataset-specific terms and the cached results' unspecified named license;
+the package license does not relicense source records. No source text or new
+model calls are included.
+
 ## Install
 
 ```bash

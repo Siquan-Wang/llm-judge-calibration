@@ -5,7 +5,7 @@ title: "judgecal: Human-audit reliability for LLM judges"
 authors:
   - family-names: Wang
     given-names: Siquan
-version: 0.9.0
+version: 0.10.0
 url: "https://github.com/Siquan-Wang/llm-judge-calibration"
 repository-code: "https://github.com/Siquan-Wang/llm-judge-calibration"
 license: MIT

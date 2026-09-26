@@ -1,0 +1,172 @@
+{
+  "audit_protocol": {
+    "aggregation": "Descriptive dependent-split errors; no independent-replication MCSE; not the official weighted leaderboard score",
+    "alpha": 0.05,
+    "auxiliary_by_target": {
+      "openai/gpt-4o-2024-08-06": "openai/gpt-4o-mini-2024-07-18",
+      "openai/gpt-4o-mini-2024-07-18": "openai/gpt-4o-2024-08-06"
+    },
+    "choice_contract": "Complete fixed two-model panel; strict binary canonical choices only; no coercion or row dropping",
+    "cohorts": {
+      "All": "Sensitivity: full comparison mixture",
+      "LLMBar": "Sensitivity: llmbar- source overlap, not independent new data",
+      "NonLLMBar": "Primary: subsets without llmbar- prefix"
+    },
+    "cost_scope": "Logical reference labels and cached judgments read, not new API calls, annotations, tokens or money",
+    "cost_sharing": "One reference serves both targets; both directions reuse the same two caches; deduplicate unions across methods, targets and cohorts",
+    "evaluation_fraction": 0.25,
+    "fraction_denominator": "Total cohort exact-prompt groups; floor each size; audits nested in remaining bank",
+    "human_only_definition": "Established method identifier for the reference-only baseline; references need not be human annotations",
+    "identity": "Gold-independent unordered-response sample IDs and exact-prompt group IDs are certified by the source loader",
+    "interval_scope": "Untruncated asymptotic prompt-cluster population intervals; no empirical coverage claim",
+    "labeled_fractions": [
+      0.2,
+      0.4,
+      0.6
+    ],
+    "model_scope": "Historical dated model caches; no assertion about current models or recovered API invocation settings",
+    "models": [
+      "openai/gpt-4o-2024-08-06",
+      "openai/gpt-4o-mini-2024-07-18"
+    ],
+    "outcome": "1[target canonical choice equals benchmark reference choice]",
+    "point_only_method": "audit_residual: no interval, standard error or population variance ratio",
+    "power_bounds": {
+      "audit_residual": [
+        -1.0,
+        1.0
+      ],
+      "ppi_signed": [
+        -1.0,
+        1.0
+      ],
+      "ppi_tuned": [
+        0.0,
+        1.0
+      ]
+    },
+    "proxy": "1[target canonical choice equals auxiliary canonical choice]; no reference label",
+    "scoring_cost_scope": "Held-out reference and target-judgment scoring reads are separate and may overlap inference inputs",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "target": "Realized target-judge strict reference accuracy in the fixed held-out pool",
+    "weighting": "Equal comparison weight; complete exact-prompt groups assigned together across subsets"
+  },
+  "cohort_metadata": [
+    {
+      "cohort": "NonLLMBar",
+      "instruction_groups": 2315,
+      "role": "primary",
+      "samples": 2566,
+      "subset_counts": {
+        "alpacaeval-easy": 100,
+        "alpacaeval-hard": 95,
+        "alpacaeval-length": 95,
+        "donotanswer": 136,
+        "hep-cpp": 164,
+        "hep-go": 164,
+        "hep-java": 164,
+        "hep-js": 164,
+        "hep-python": 164,
+        "hep-rust": 164,
+        "math-prm": 447,
+        "mt-bench-easy": 28,
+        "mt-bench-hard": 37,
+        "mt-bench-med": 40,
+        "refusals-dangerous": 100,
+        "refusals-offensive": 100,
+        "xstest-should-refuse": 154,
+        "xstest-should-respond": 250
+      }
+    },
+    {
+      "cohort": "All",
+      "instruction_groups": 2733,
+      "role": "sensitivity",
+      "samples": 2985,
+      "subset_counts": {
+        "alpacaeval-easy": 100,
+        "alpacaeval-hard": 95,
+        "alpacaeval-length": 95,
+        "donotanswer": 136,
+        "hep-cpp": 164,
+        "hep-go": 164,
+        "hep-java": 164,
+        "hep-js": 164,
+        "hep-python": 164,
+        "hep-rust": 164,
+        "llmbar-adver-GPTInst": 92,
+        "llmbar-adver-GPTOut": 47,
+        "llmbar-adver-manual": 46,
+        "llmbar-adver-neighbor": 134,
+        "llmbar-natural": 100,
+        "math-prm": 447,
+        "mt-bench-easy": 28,
+        "mt-bench-hard": 37,
+        "mt-bench-med": 40,
+        "refusals-dangerous": 100,
+        "refusals-offensive": 100,
+        "xstest-should-refuse": 154,
+        "xstest-should-respond": 250
+      }
+    },
+    {
+      "cohort": "LLMBar",
+      "instruction_groups": 418,
+      "role": "sensitivity",
+      "samples": 419,
+      "subset_counts": {
+        "llmbar-adver-GPTInst": 92,
+        "llmbar-adver-GPTOut": 47,
+        "llmbar-adver-manual": 46,
+        "llmbar-adver-neighbor": 134,
+        "llmbar-natural": 100
+      }
+    }
+  ],
+  "paired_contrasts": "same target, cohort, seed and budget; descriptive means without iid split MCSE",
+  "plots": true,
+  "primary_cohort": "NonLLMBar",
+  "retrospective": true,
+  "sensitivity_cohorts": [
+    "All",
+    "LLMBar"
+  ],
+  "shared_costs": "union across both target directions; inference and held-out scoring separated",
+  "split_manifest_encoding": "indexed-content-identities-v1; zero-based catalog indexes preserve exact ID order",
+  "split_manifests": 270,
+  "split_seeds": 30,
+  "study": "rewardbench-cross-judge-audit-v1",
+  "summary_rows": 108,
+  "trial_rows": 3240
+}

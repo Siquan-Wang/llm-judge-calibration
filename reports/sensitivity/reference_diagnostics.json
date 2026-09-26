@@ -1,0 +1,10 @@
+{
+  "changed_scores": 305,
+  "comparisons": 1814,
+  "comparisons_with_disagreeing_votes": 386,
+  "human_votes": 3354,
+  "mean_absolute_score_change": 0.03851984564498346,
+  "mean_signed_score_change": -0.0074926497611172375,
+  "single_vote_comparisons": 854,
+  "weighting": "equal comparison weights, not pooled individual votes"
+}

@@ -1,0 +1,45 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "41d6b681df42f268a23a9cdc64dafa188bae4b4d33258ab5a7347afb6d9e6c9c",
+    "config.json": "c30610995e7cf46fd31089afc240365b49dcf656e5a930959fbce5c35468e17a",
+    "dataset.json": "3c9309179e16ba5a35e53c5b78aa7ecdde99e69e300c4a98ebaf10550ea240a9",
+    "paired_method_gaps.csv": "0b93e78e8a1078cf31e142ff6b80badbbc7ae99a084aab38c5585df20b4cec7a",
+    "paired_reference_differences.csv": "63b6d0ba6b9e43059559e25b6b27279ccc2e1593904ea3c3668bd786ad9b4c32",
+    "per_pair.csv": "950fe016d52530893b2ca11af3fbb56ef4fa0abdef0992bd4853b0083853b4bf",
+    "reference_changes.csv": "f995f0f084d5308a4c7d88e0be885a608c76c89ecb11b9e5ff51193b813dcb98",
+    "reference_diagnostics.json": "4af33179a0ba087c29210607e10a034880f03598bba8603fc692bd0f9feee140",
+    "reference_sensitivity.png": "574b2ce4b24e3534ed69660a93cfb5dd6fd61b6e91ef55acc6760237e880f458",
+    "reference_sensitivity.svg": "b8604cafeca82c2aa4d1f0647f39a81669e7c0deed68f9117401250cced6cc76",
+    "split_manifest.json": "98685dc0861c95eb4ff635c5a1d126a3b2d082a1ae5395d111ede565e32b31de",
+    "summary.csv": "2a7e4a79a1333f92a62be7db1962c9e83491e66464803702d3a7a8279f8b8e2d",
+    "trials.csv": "349a37e358b360e473093ce0c5437b1720b9c1430afa53c3dc6eec09814ce8a2"
+  },
+  "input_labels_sha256": "ac0b5b074a4c0ecef978983ee7ab7c64c82f94c4eea38def24c68938d96ab943",
+  "packages": {
+    "judgecal": "0.5.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/METHODS.md": "d17c3cf16eb11922d7731ced7584b1251232e802730e96a02ad2a5fcb3f11db0",
+    "docs/REFERENCE_SENSITIVITY.md": "eb2c5734d1e325450ebc18e59166befeed2f7809bd53a49e7faae2bc223fb481",
+    "examples/reference_sensitivity.py": "b17bf3b3650ad0c5247fff952eb64fa968ef7a2a252f35f15ac1bbf5a42feb5e",
+    "examples/research_study.py": "af05fc3463a63b70995e9e5ccba429782e512e55b65a54d3444457224e750143",
+    "pyproject.toml": "e04730938cfd9b2b07d231d952b1e0983cb16751c65cd11ac23fc16659a056da",
+    "src/judgecal/__init__.py": "1e790b2628044f2077b89f43db0663b424e0e8962e735b75f3239ca9698bb2d3",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/ppi.py": "a8cfd7175a1ba57c2a94b4ee52980631c05d7bff9e7b32a7ee34415739711cdb",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256 (matches Git text attributes)"
+}

@@ -14,15 +14,35 @@ The population target is `theta = E[Y]` under that convention. This is a
 human-preference target; it is not automatically factual correctness, an
 individual annotator's preference, or latent consensus.
 
+`prediction_powered_mean` extends the same mean-estimation algebra to
+finite numeric predictions and outcomes in `[0,1]`, without rounding them
+to categories. Its `PPIMeanResult` names the raw prediction-pool mean
+`prediction_mean` and the audit outcome mean `outcome_mean`; it does not
+assign an A/B target. For example, an outcome can be the mean recorded
+vote score within one comparison. Averaging those rows weights comparisons
+equally, not individual votes. Changing from a plurality outcome to an
+average vote score changes `Y` and therefore the estimand. Fractional
+scores are not automatically calibrated probabilities or latent truth.
+See the [human-reference sensitivity protocol](REFERENCE_SENSITIVITY.md).
+
+The generic and categorical APIs share the same inference core. Both
+require aligned audit predictions/outcomes, at least two observations per
+pool, and (when supplied) at least two disjoint groups per pool. These are
+computational minima, not claims of adequate sample size. Estimates and
+normal intervals can extend beyond the bounded outcome range.
+
 The labeled audit contains aligned `(Y_L, F_L)` values, and a separate
 prediction-only pool contains `F_U`. Human labels in the prediction-only
 pool are unavailable to the estimator. The pools must be independent and
 represent the same relevant population, and both use the same frozen judge.
-When the audit human mean equals the target human mean and judge means are
-equal across pools, the correction is unbiased for a fixed power. The
-documented same-population condition is a stronger, convenient sampling
-assumption. Changing prompts, model versions, or audit selection can violate
-it.
+For a fixed power, the correction is unbiased when the audit outcome
+sample mean is unbiased for the target and the two judge sample means have
+the same expectation, as under iid sampling from the same population.
+Random unequal cluster sizes can introduce finite-sample ratio bias in
+row-weighted means; their asymptotic population interpretation is described
+below. The documented same-population condition is a convenient sampling
+assumption. Changing prompts, model versions, or audit selection can
+violate it.
 
 Rows are independent in iid mode. In grouped mode, groups are independent
 and dependence within a group is allowed. Group IDs must be supplied for

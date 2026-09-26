@@ -1,4 +1,4 @@
-"""Human-audit corrected win rates using PPI and bounded mean power tuning.
+"""Prediction-powered bounded means and human-audit corrected win rates.
 
 The default implements the fixed-weight (lambda=1) mean correction of
 Angelopoulos et al., "Prediction-powered inference" (2023):
@@ -33,6 +33,43 @@ _REFERENCES = (
     "https://ppi-py.readthedocs.io/en/latest/ppi.html",
     "https://github.com/aangelopoulos/ppi_py",
 )
+
+
+@dataclass(frozen=True)
+class PPIMeanResult:
+    """Inference for a population mean of an explicitly defined bounded score.
+
+    ``prediction_mean`` is mean(F_U); ``outcome_mean`` is mean(Y_L).
+    ``residual_correction`` always records mean(Y_L - F_L), regardless of
+    selected power. Generally the point is outcome_mean + power *
+    (mean(F_U) - mean(F_L)); only power one gives prediction_mean plus
+    residual_correction. Fractions are scores, not implicit win labels.
+    ``estimated_variance_ratio`` compares estimated variance to the audit-only
+    mean's estimated variance and is None if that denominator is zero.
+    """
+
+    point: float
+    prediction_mean: float
+    outcome_mean: float
+    residual_correction: float
+    standard_error: float
+    interval: Interval
+    n_labeled: int
+    n_unlabeled: int
+    n_labeled_groups: int | None
+    n_unlabeled_groups: int | None
+    estimand: str
+    variance_method: str
+    method: str
+    assumptions: tuple[str, ...]
+    references: tuple[str, ...]
+    selected_power: float = 1.0
+    power_method: str = "fixed"
+    estimated_variance_ratio: float | None = None
+
+    def as_dict(self) -> dict:
+        """Serialize the result, including the nested Interval, to a dict."""
+        return asdict(self)
 
 
 @dataclass(frozen=True)
@@ -75,6 +112,8 @@ class PPIWinRateResult:
 
 
 def _scores(labels: Sequence[str], name: str, target: str) -> np.ndarray:
+    if np.ma.isMaskedArray(labels) and np.any(np.ma.getmaskarray(labels)):
+        raise ValueError(f"{name} must not contain masked or missing labels")
     try:
         arr = np.asarray(labels, dtype=object)
     except (TypeError, ValueError) as exc:
@@ -92,9 +131,57 @@ def _scores(labels: Sequence[str], name: str, target: str) -> np.ndarray:
     )
 
 
+def _bounded_scores(values: Sequence[float], name: str) -> np.ndarray:
+    """Require actual real-valued scores, without coercing strings or nulls."""
+    if np.ma.isMaskedArray(values) and np.any(np.ma.getmaskarray(values)):
+        raise ValueError(f"{name} must not contain masked or missing scores")
+    try:
+        arr = np.asarray(values, dtype=object)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must be a one-dimensional numeric score sequence") from exc
+    if arr.ndim != 1:
+        raise ValueError(f"{name} must be a one-dimensional numeric score sequence")
+    if arr.size < 2:
+        raise ValueError(f"{name} must contain at least two observations")
+    if any(
+        isinstance(value, (bool, np.bool_))
+        or not isinstance(value, Real)
+        or not 0 <= value <= 1
+        or not np.isfinite(float(value))
+        for value in arr
+    ):
+        raise ValueError(f"{name} requires finite real numeric scores in [0, 1]; booleans are not scores")
+    return np.asarray(arr, dtype=float)
+
+
+def _inference_options(alpha: float, power: float | str) -> tuple[float, float | str]:
+    if (
+        isinstance(alpha, (bool, np.bool_))
+        or not isinstance(alpha, Real)
+        or not 0 < alpha < 1
+        or not np.isfinite(float(alpha))
+    ):
+        raise ValueError("alpha must be a finite number strictly between 0 and 1")
+    if not (isinstance(power, str) and power == "auto"):
+        if (
+            isinstance(power, (bool, np.bool_))
+            or not isinstance(power, Real)
+            or not 0 <= power <= 1
+            or not np.isfinite(float(power))
+        ):
+            raise ValueError("power must be a finite number in [0, 1] or 'auto'")
+        power = float(power)
+    alpha = float(alpha)
+    if not 0 < alpha < 1:
+        raise ValueError("alpha must remain strictly between 0 and 1 at floating-point precision")
+    return alpha, power
+
+
 def _group_codes(
     groups: Sequence, n: int, name: str
 ) -> tuple[np.ndarray, set]:
+    if np.ma.isMaskedArray(groups) and np.any(np.ma.getmaskarray(groups)):
+        raise ValueError(f"{name} must not contain masked or missing group IDs")
     try:
         arr = np.asarray(groups, dtype=object)
     except (TypeError, ValueError) as exc:
@@ -149,6 +236,77 @@ def _covariance_of_means(
     return float(
         n_groups / (n_groups - 1)
         * np.dot(first_sums, second_sums) / first.size**2
+    )
+
+
+def prediction_powered_mean(
+    predictions_labeled: Sequence[float],
+    outcomes_labeled: Sequence[float],
+    predictions_unlabeled: Sequence[float],
+    alpha: float = 0.05,
+    labeled_groups: Sequence | None = None,
+    unlabeled_groups: Sequence | None = None,
+    *,
+    power: float | str = 1.0,
+) -> PPIMeanResult:
+    """Estimate a population mean using audited outcomes and frozen predictions.
+
+    The aligned audit predictions F_L and outcomes Y_L, and separate
+    prediction-only scores F_U, must be real finite one-dimensional numeric
+    sequences in [0, 1], with at least two observations per pool. Strings,
+    complex values, booleans and missing values are rejected. Fractional
+    outcomes are allowed and retain their literal score meaning. For example,
+    a per-comparison average annotation score defines a different outcome
+    than a plurality winner. This API does not infer latent truth, convert
+    fractional scores into labels, or weight rows by annotation counts.
+
+    For fixed power lambda in [0, 1], the estimator and variance estimate are
+
+        mean(Y_L) + lambda * (mean(F_U) - mean(F_L)),
+        Q(lambda) = var_mean(Y_L - lambda * F_L)
+                    + lambda**2 * var_mean(F_U).
+
+    Default power one gives original PPI; zero gives the audit-only mean.
+    ``power='auto'`` uses the bounded PPI++ mean plug-in minimizer
+    clip(cov_mean(Y_L, F_L)/(var_mean(F_L)+var_mean(F_U)), 0, 1), falling back
+    to zero for a zero denominator. It minimizes estimated variance, not
+    realized MSE; it is not generally finite-sample unbiased. This per-pool
+    variance implementation differs from ppi_py's pooled variance convention.
+
+    Both pools must be independent, disjoint, and representative of the same
+    target population. All predictions must use the same frozen predictor,
+    not one trained or calibrated on these audit outcomes. Scalar power
+    tuning on the audit is allowed; predictor training is a different step.
+    Without group IDs the caller must ensure disjointness and independent
+    rows. Both group arrays, if given, must contain finite nonmissing scalar
+    IDs, at least two independent groups per pool, and no overlapping IDs.
+    One-way cluster covariance/variance uses centered cluster sums and the
+    G/(G-1) correction. Unequal clusters retain observation weighting.
+
+    Returns an untruncated two-sided asymptotic normal interval at 1-alpha.
+    Neither the estimate nor its bounds are clipped to [0, 1]. Two rows or
+    groups merely permit variance computation; valid normal approximation
+    needs sufficiently many independent units, nondegenerate limiting
+    variance, and no dominating cluster. Cluster power tuning is a sandwich
+    adaptation, not a direct consequence of the iid PPI++ theorem. Zero
+    empirical variance can yield zero width without implying certainty.
+    Grouping does not repair crossed dependence, selection bias, distribution
+    shift or audit leakage. No finite-sample coverage or efficiency guarantee
+    is made, including for fractional outcomes.
+    """
+    alpha, power = _inference_options(alpha, power)
+    f_l = _bounded_scores(predictions_labeled, "predictions_labeled")
+    y_l = _bounded_scores(outcomes_labeled, "outcomes_labeled")
+    f_u = _bounded_scores(predictions_unlabeled, "predictions_unlabeled")
+    if f_l.shape != y_l.shape:
+        raise ValueError("predictions_labeled and outcomes_labeled must have the same length")
+    return _mean_inference(
+        f_l, y_l, f_u, alpha, labeled_groups, unlabeled_groups, power,
+        population_assumptions=(
+            "Independent, disjoint audit and prediction-only pools from the same target population.",
+            "Same frozen predictor for both pools; no fitting or calibration on the audit outcomes.",
+            "Observation-weighted mean of the bounded outcome; fractional scores retain their defined meaning.",
+        ),
     )
 
 
@@ -225,29 +383,43 @@ def prediction_powered_win_rate(
     """
     if not isinstance(target, str) or target not in {"A", "B"}:
         raise ValueError("target must be 'A' or 'B'")
-    if (
-        isinstance(alpha, (bool, np.bool_))
-        or not isinstance(alpha, Real)
-        or not np.isfinite(alpha)
-        or not 0 < alpha < 1
-    ):
-        raise ValueError("alpha must be a finite number strictly between 0 and 1")
-    alpha = float(alpha)
-    auto_power = isinstance(power, str) and power == "auto"
-    if not auto_power:
-        if (
-            isinstance(power, (bool, np.bool_))
-            or not isinstance(power, Real)
-            or not np.isfinite(power)
-            or not 0 <= power <= 1
-        ):
-            raise ValueError("power must be a finite number in [0, 1] or 'auto'")
-        power = float(power)
+    alpha, power = _inference_options(alpha, power)
     f_l = _scores(judge_labeled, "judge_labeled", target)
     y_l = _scores(human_labeled, "human_labeled", target)
     f_u = _scores(judge_unlabeled, "judge_unlabeled", target)
     if f_l.shape != y_l.shape:
         raise ValueError("judge_labeled and human_labeled must have the same length")
+    result = _mean_inference(
+        f_l, y_l, f_u, alpha, labeled_groups, unlabeled_groups, power,
+        population_assumptions=(
+            "Independent, disjoint audit and judge-only pools from the same target population.",
+            "Same frozen judge for both pools; no fitting or calibration on the audit labels.",
+            "Observation-weighted human preference; target win=1, loss=0, tie=0.5.",
+        ),
+    )
+    fields = result.as_dict()
+    # Preserve the categorical result's public field names and Interval type.
+    fields["raw_rate"] = fields.pop("prediction_mean")
+    fields["human_only_rate"] = fields.pop("outcome_mean")
+    fields.pop("estimand")
+    fields["target"] = target
+    fields["interval"] = result.interval
+    return PPIWinRateResult(**fields)
+
+
+def _mean_inference(
+    f_l: np.ndarray,
+    y_l: np.ndarray,
+    f_u: np.ndarray,
+    alpha: float,
+    labeled_groups: Sequence | None,
+    unlabeled_groups: Sequence | None,
+    power: float | str,
+    *,
+    population_assumptions: tuple[str, str, str],
+) -> PPIMeanResult:
+    """Shared inference on validated scores; preserves original arithmetic."""
+    auto_power = isinstance(power, str) and power == "auto"
     if (labeled_groups is None) != (unlabeled_groups is None):
         raise ValueError("labeled_groups and unlabeled_groups must be supplied together")
 
@@ -306,10 +478,10 @@ def prediction_powered_win_rate(
     half_width = z * standard_error
     interval = Interval(point, point - half_width, point + half_width, alpha, method)
     assumptions = (
-        "Independent, disjoint audit and judge-only pools from the same target population.",
-        "Same frozen judge for both pools; no fitting or calibration on the audit labels.",
+        population_assumptions[0],
+        population_assumptions[1],
         "Independent rows, or independent one-way clusters when group IDs are supplied.",
-        "Observation-weighted human preference; target win=1, loss=0, tie=0.5.",
+        population_assumptions[2],
         "Large-sample normal interval; no finite-sample or distribution-free guarantee.",
         (
             "Power minimizes estimated variance over [0,1]; no finite-sample MSE or coverage guarantee."
@@ -325,10 +497,10 @@ def prediction_powered_win_rate(
     references = _REFERENCES
     if auto_power or selected_power != 1.0:
         references += ("https://arxiv.org/abs/2311.01453",)
-    return PPIWinRateResult(
+    return PPIMeanResult(
         point=point,
-        raw_rate=raw_rate,
-        human_only_rate=float(y_l.mean()),
+        prediction_mean=raw_rate,
+        outcome_mean=float(y_l.mean()),
         residual_correction=correction,
         standard_error=standard_error,
         interval=interval,
@@ -336,7 +508,7 @@ def prediction_powered_win_rate(
         n_unlabeled=int(f_u.size),
         n_labeled_groups=n_labeled_groups,
         n_unlabeled_groups=n_unlabeled_groups,
-        target=target,
+        estimand="population mean of the bounded outcome",
         variance_method=variance_method,
         method=method,
         assumptions=assumptions,

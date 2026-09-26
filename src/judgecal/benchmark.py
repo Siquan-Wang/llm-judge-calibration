@@ -14,7 +14,7 @@ from typing import Sequence
 import numpy as np
 import pandas as pd
 
-from .ppi import prediction_powered_win_rate
+from .ppi import prediction_powered_mean, prediction_powered_win_rate
 
 
 def question_disjoint_split(
@@ -313,4 +313,146 @@ def fixed_evaluation_label_budget(
              trials=("estimate", "size"))
         .reset_index()
     )
+    return trials, summary
+
+
+def reference_definition_sensitivity(
+    frame: pd.DataFrame,
+    fractions: Sequence[float] = (0.2, 0.4, 0.6),
+    seeds: Sequence[int] = tuple(range(30)),
+    evaluation_fraction: float = 0.25,
+    min_pair_questions: int = 40,
+    alpha: float = 0.05,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Compare plurality and mean-vote human references on identical splits.
+
+    ``plurality`` is the existing unique modal A/B/tie outcome, with a tie
+    for the largest vote count mapped to ``tie``. ``mean_vote`` assigns each
+    comparison ``(n_human_a + .5*n_human_ties) / n_human_votes``. Both average
+    comparisons equally; the latter does not pool all votes or weight a
+    comparison by its annotation count. They define different estimands,
+    neither of which is established here as objective or latent truth.
+
+    The plurality branch delegates to ``fixed_evaluation_label_budget`` to
+    preserve its exact splits, costs and numerical results. The mean-vote
+    branch uses the same retained question IDs and numeric PPI mean API.
+    Audit outcomes enter correction/tuning; evaluation outcomes enter only
+    validation and post-inference error scoring. Unused observations never
+    enter either method's inference. All methods use the same judge scores.
+
+    Required count columns are ``n_human_a``, ``n_human_b``, ``n_human_ties``
+    and ``n_human_votes``. Counts must be nonnegative integers, totals must
+    be positive and match their component sum, and ``human_winner`` must
+    agree with the plurality implied by those counts.
+
+    Trial and summary schemas extend the fixed benchmark with
+    ``reference_definition`` (``plurality`` or ``mean_vote``). Error metrics
+    are relative to the named reference, so differences between definitions
+    are descriptive sensitivity changes, not a superiority comparison.
+    Split manifests omit a single ``heldout_human_reference`` because that
+    value now depends on the definition; every trial retains its own value.
+    """
+    count_columns = ("n_human_a", "n_human_b", "n_human_ties", "n_human_votes")
+    missing = set(count_columns + ("human_winner",)) - set(frame.columns)
+    if missing:
+        raise ValueError(f"missing reference-definition columns: {sorted(missing)}")
+    _scores(frame["human_winner"])
+    vote_scores, plurality_labels = [], []
+    for a, b, ties, total in frame[list(count_columns)].itertuples(index=False, name=None):
+        values = (a, b, ties, total)
+        if any(isinstance(value, (bool, np.bool_)) or not isinstance(value, Integral)
+               or value < 0 for value in values):
+            raise ValueError("human vote counts must be nonnegative integers")
+        a, b, ties, total = (int(value) for value in values)
+        if total <= 0 or a + b + ties != total:
+            raise ValueError("n_human_votes must be positive and equal the sum of A/B/tie counts")
+        counts = (a, b, ties)
+        maximum = max(counts)
+        plurality_labels.append(
+            ("A", "B", "tie")[counts.index(maximum)] if counts.count(maximum) == 1 else "tie"
+        )
+        # Divide each count before adding; every ratio stays in [0,1].
+        vote_scores.append(a / total + .5 * (ties / total))
+    if any(actual != expected for actual, expected in zip(frame["human_winner"], plurality_labels)):
+        raise ValueError("human_winner must match the plurality implied by its vote counts")
+    scored = frame.copy()
+    scored["_mean_vote_reference"] = vote_scores
+
+    plurality, _ = fixed_evaluation_label_budget(
+        frame, fractions=fractions, seeds=seeds, evaluation_fraction=evaluation_fraction,
+        min_pair_questions=min_pair_questions, alpha=alpha,
+    )
+    manifests = plurality.attrs["split_manifest"]
+    # pandas propagates attrs through grouping/copying. Keeping the complete
+    # manifest on every tiny pair/budget/seed group causes quadratic metadata
+    # copying; retain it separately until all table operations are complete.
+    plurality.attrs = {}
+    keys = ["question_id", "model_a", "model_b"] + (["turn"] if "turn" in frame else [])
+    pairs = {key: group.sort_values(keys).reset_index(drop=True)
+             for key, group in scored.groupby(["model_a", "model_b"], sort=True)}
+    trial_lookup = {
+        key: group for key, group in plurality.groupby(
+            ["model_a", "model_b", "labeled_fraction", "seed"], sort=False
+        )
+    }
+    records = []
+    for manifest in manifests:
+        pair_key = (manifest["model_a"], manifest["model_b"])
+        pair = pairs[pair_key]
+        audit = pair.loc[pair.question_id.isin(manifest["labeled_question_ids"])]
+        evaluation = pair.loc[pair.question_id.isin(manifest["evaluation_question_ids"])]
+        arguments = {
+            "predictions_labeled": _scores(audit["gpt4_winner"]),
+            "outcomes_labeled": audit["_mean_vote_reference"].to_numpy(),
+            "predictions_unlabeled": _scores(evaluation["gpt4_winner"]),
+            "labeled_groups": audit["question_id"],
+            "unlabeled_groups": evaluation["question_id"],
+            "alpha": float(alpha),
+        }
+        results = {
+            method: prediction_powered_mean(**arguments, power=power)
+            for method, power in (("human_only", 0.), ("ppi", 1.), ("ppi_tuned", "auto"))
+        }
+        # Evaluation outcomes are scored only after estimates and powers exist.
+        reference = float(evaluation["_mean_vote_reference"].mean())
+        old_trials = trial_lookup[(*pair_key, manifest["labeled_fraction"], manifest["seed"])]
+        for old_row in old_trials.to_dict("records"):
+            method = old_row["method"]
+            result = results.get(method)
+            estimate = old_row["estimate"] if result is None else result.point
+            error = estimate - reference
+            records.append({
+                **old_row, "reference_definition": "mean_vote",
+                "heldout_human_reference": reference, "estimate": estimate,
+                "signed_error": error, "absolute_error": abs(error), "squared_error": error**2,
+                "interval_low": None if result is None else result.interval.low,
+                "interval_high": None if result is None else result.interval.high,
+                "standard_error": None if result is None else result.standard_error,
+                "interval_width": None if result is None else result.interval.high - result.interval.low,
+                "selected_power": None if result is None else result.selected_power,
+                "power_method": None if result is None else result.power_method,
+                "estimated_variance_ratio": None if result is None else result.estimated_variance_ratio,
+            })
+    trials = pd.concat(
+        [plurality.assign(reference_definition="plurality"), pd.DataFrame(records)],
+        ignore_index=True,
+    )
+    summary = (
+        trials.groupby(["reference_definition", "labeled_fraction", "method"], sort=True)
+        .agg(mean_absolute_error=("absolute_error", "mean"),
+             mean_squared_error=("squared_error", "mean"),
+             mean_interval_width=("interval_width", "mean"),
+             mean_bias=("signed_error", "mean"),
+             mean_selected_power=("selected_power", "mean"),
+             trials=("estimate", "size"))
+        .reset_index()
+    )
+    trials.attrs["split_manifest"] = [
+        {key: value for key, value in manifest.items() if key != "heldout_human_reference"}
+        for manifest in manifests
+    ]
+    trials.attrs["reference_definitions"] = {
+        "plurality": "Unique modal A/B/tie label; a tied largest count maps to tie.",
+        "mean_vote": "Mean A=1/B=0/tie=.5 vote score within each comparison; equal comparison weighting.",
+    }
     return trials, summary

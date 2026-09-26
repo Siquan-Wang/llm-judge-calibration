@@ -74,6 +74,32 @@ authors' `ppi-python==0.2.3` implementation. It verifies fixed-weight algebra
 and explicitly retains the expected finite-sample differences in automatic
 power and interval variance conventions.
 
+## Follow-up: which human reference?
+
+The [reference-sensitivity report](reports/sensitivity/REPORT.md) repeats
+the fixed-target experiment with both plurality outcomes and the mean
+recorded vote score within each comparison. All splits, frozen judge scores
+and audit costs are identical. The latter averages comparisons equally;
+it does not pool individual votes or claim to recover latent consensus.
+
+The snapshot has 1,814 comparisons and 3,354 unique votes; 854 comparisons
+have only one vote. The two outcome scores differ on 305 comparisons.
+Averages alone cannot distinguish unanimous ties from polarized A/B votes,
+so the artifact retains the underlying counts and every paired outcome.
+
+![Human-reference sensitivity](reports/sensitivity/reference_sensitivity.svg)
+
+Each method is evaluated against its own named reference. Differences in
+error across reference definitions do not establish which definition is
+better. The [retrospective protocol](docs/REFERENCE_SENSITIVITY.md) specifies
+the estimands, sampling, weighting and limits of the comparison.
+
+Tuned PPI retains a modest aggregate MAE advantage over human-only at all
+three budgets under both definitions (about 0.20–0.36 percentage points).
+The direction of the pair-level comparison changes in 5 of 45 matched
+pair/budget cases. The aggregate finding is stable here, while individual
+model-pair conclusions can depend on how human votes are summarized.
+
 ## Install
 
 ```bash
@@ -132,6 +158,26 @@ power can use audit labels, while the underlying judge must remain frozen.
 Estimated-variance reduction is not a finite-sample MSE or coverage guarantee.
 See [Methods](docs/METHODS.md) for equations, attribution and assumptions.
 
+For bounded numeric predictions or fractional human outcomes, use the
+same inference through `prediction_powered_mean`:
+
+```python
+from judgecal import prediction_powered_mean
+
+result = prediction_powered_mean(
+    predictions_labeled=[0.2, 0.8, 0.6, 0.1],
+    outcomes_labeled=[1/3, 1.0, 2/3, 0.0],
+    predictions_unlabeled=[0.3, 0.7, 0.5, 0.9, 0.2],
+    power="auto",
+)
+print(result.point, result.prediction_mean, result.outcome_mean)
+```
+
+This is another small API illustration. Inputs must be finite numeric
+scores in `[0,1]`; fractional values are preserved. The result estimates
+the population mean of the explicitly defined outcome, with the same
+sampling assumptions and untruncated normal intervals as above.
+
 ## Other tools
 
 | Question | API | Interpretation |
@@ -160,6 +206,7 @@ python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output
 # New fixed-target study and seven known-truth stress tests, fully offline.
 python examples/research_study.py --output reports/reproduced/research --plot
 python examples/stress_grid.py --output reports/reproduced/stress --plot
+python examples/reference_sensitivity.py --output reports/reproduced/sensitivity --plot
 ```
 
 The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.

@@ -56,3 +56,16 @@ jobs:
         run: pytest -q tests/test_reference_contract.py
       - name: Write author-baseline evidence
         run: python examples/compare_ppi_reference.py --output "${{ runner.temp }}/judgecal-reference"
+  research-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install report dependencies
+        run: pip install -e ".[dev,paper]"
+      - name: Verify PDF text, links and repeatability
+        run: pytest -q tests/test_research_report.py
+      - name: Verify evidence and build the technical report
+        run: python examples/build_research_report.py --output-directory "${{ runner.temp }}/judgecal-synthesis"

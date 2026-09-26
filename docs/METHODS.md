@@ -1,14 +1,18 @@
 # Methods and interpretation
 
-`judgecal` estimates a population human-preference rate using an imperfect,
-frozen judge and a smaller human audit. It implements established mean
+`judgecal` estimates bounded outcome means using a frozen prediction or
+proxy and a smaller labeled audit. Outcomes include human-preference
+scores and a judge's correctness against benchmark references. Its mean
+inference APIs target population expectations; the separate held-out-mean
+prediction API is described below. The package implements established mean
 correction and power-tuning ideas, with an explicit cluster-variance
-adaptation. The package and experiments do not introduce a new PPI estimator
-or establish general annotation savings.
+adaptation. It does not introduce a new PPI estimator or establish general
+annotation savings.
 
 ## Target and sampling units
 
-For a consistently oriented comparison, let the human score `Y` and judge
+For the categorical human-preference API and a consistently oriented
+comparison, let the human score `Y` and judge
 score `F` equal 1 for a target-model win, 0 for a loss, and 0.5 for a tie.
 The population target is `theta = E[Y]` under that convention. This is a
 human-preference target; it is not automatically factual correctness, an
@@ -25,6 +29,13 @@ average vote score changes `Y` and therefore the estimand. Fractional
 scores are not automatically calibrated probabilities or latent truth.
 See the [human-reference sensitivity protocol](REFERENCE_SENSITIVITY.md).
 
+In the [LLMBar](LLMBAR_PROTOCOL.md) and
+[RewardBench](REWARDBENCH_PROTOCOL.md) audits, `Y` instead denotes a
+designated judge's correctness against the supplied benchmark reference,
+and `F` is an observable choice-agreement proxy. These references are not
+uniformly human-preference annotations, and agreement is not itself a
+calibrated correctness probability. The chosen outcome defines the target.
+
 The generic and categorical APIs share the same inference core. Both
 require aligned audit predictions/outcomes, at least two observations per
 pool, and (when supplied) at least two disjoint groups per pool. These are
@@ -32,11 +43,12 @@ computational minima, not claims of adequate sample size. Estimates and
 normal intervals can extend beyond the bounded outcome range.
 
 The labeled audit contains aligned `(Y_L, F_L)` values, and a separate
-prediction-only pool contains `F_U`. Human labels in the prediction-only
+prediction-only pool contains `F_U`. Outcomes in the prediction-only
 pool are unavailable to the estimator. The pools must be independent and
-represent the same relevant population, and both use the same frozen judge.
+represent the same relevant population, and both use the same frozen
+prediction or proxy definition.
 For a fixed power, the correction is unbiased when the audit outcome
-sample mean is unbiased for the target and the two judge sample means have
+sample mean is unbiased for the target and the two proxy sample means have
 the same expectation, as under iid sampling from the same population.
 Random unequal cluster sizes can introduce finite-sample ratio bias in
 row-weighted means; their asymptotic population interpretation is described
@@ -66,10 +78,11 @@ theta_hat(lambda) = mean(Y_L) + lambda * [mean(F_U) - mean(F_L)]
 ```
 
 The default `power=1` is the original mean correction; `power=0` returns
-the human audit mean. The original framework is due to Angelopoulos,
+the labeled audit mean. The PPI framework is due to Angelopoulos,
 Bates, Fannjiang, Jordan, and Zrnic; efficient power tuning is developed by
-Angelopoulos, Duchi, and Zrnic in PPI++. [Original PPI paper](https://arxiv.org/abs/2301.09633),
-[PPI++ paper](https://arxiv.org/abs/2311.01453).
+Angelopoulos, Duchi, and Zrnic in PPI++.
+[PPI, 2023, v4](https://arxiv.org/abs/2301.09633v4),
+[PPI++, 2023/2024, v2](https://arxiv.org/abs/2311.01453v2).
 
 Write `V_L(X)` and `V_U(X)` for estimated variances of sample means, and
 `C_L(Y,F)` for the paired covariance of the audit means. With the default
@@ -164,22 +177,26 @@ lambda_hat = projection_to_[0,1](
 
 The paper's common-population limit replaces the two judge variances by
 the same population variance. The inspected scalar-mean implementation
-in `ppi_py` uses pooled judge variance in its automatic coefficient, with
-its own finite-sample covariance conventions. Its normal-interval variance
+in `ppi-python==0.2.3` uses pooled judge variance in its automatic
+coefficient, with its own finite-sample covariance conventions. Its normal-interval variance
 also uses different finite-sample moment divisors. Consequently numerical
 equality at finite sample sizes is not expected. This package uses separate
 pool variances so its selected coefficient minimizes exactly the variance
 formula it reports; the cluster version applies the same principle to
 cluster moments. This is an implementation choice, not a claimed statistical
 innovation or a claim of superiority to `ppi_py`.
-[Authors' code](https://github.com/aangelopoulos/ppi_py/blob/main/ppi_py/ppi.py).
+[Authors' versioned code](https://github.com/aangelopoulos/ppi_py/blob/v0.2.3/ppi_py/ppi.py),
+[release 0.2.3](https://pypi.org/project/ppi-python/0.2.3/).
+The [reference comparison](REFERENCE_BASELINE.md) records the inspected
+wheel/source hashes and same-array numerical checks; it is not a coverage
+or superiority experiment.
 
 ## What same-audit tuning does and does not justify
 
-`power='auto'` uses the audit labels and both judge pools, without accessing
-evaluation human labels. It estimates one coefficient; it does not fit or
-fine-tune the underlying judge. To see why same-audit scalar tuning can be
-first-order valid, compare a consistent coefficient with its deterministic
+`power='auto'` uses the audit labels and both proxy pools, without accessing
+evaluation outcomes. It estimates one coefficient; it does not fit or
+fine-tune the underlying judge or proxy. To see why same-audit scalar tuning
+can be first-order valid, compare a consistent coefficient with its deterministic
 limit:
 
 ```text
@@ -254,6 +271,10 @@ The grouped `audit_residual_mean` candidate returns only a point estimate
 and tuning diagnostics. It provides no grouped prediction interval. The
 [estimand protocol](ESTIMAND_PROTOCOL.md) derives the target distinction,
 separates finite-population sampling designs, and defines the paired study.
+Finite-population CLTs and random-partition arguments have established
+sampling-design assumptions; they do not give the grouped audit-selected
+rule a conditional interval for an arbitrary fixed target pool.
+[Li and Ding, 2017; inspected preprint v1](https://arxiv.org/abs/1610.04821v1).
 
 ## Synthetic study: exact targets and failure cases
 
@@ -305,22 +326,45 @@ Separate method MCSEs are not a paired significance test of method differences.
 
 ## Related work and scope
 
+Difference and generalized regression estimation with auxiliary information
+are classical survey methods. PPI explicitly identifies that connection;
+the scalar residual correction here is not a new estimator principle.
+This package does not implement general survey weights or unequal-probability
+design inference. [Cassel, Särndal, and Wretman, 1976](https://doi.org/10.1093/biomet/63.3.615).
+
 PPI and PPI++ supply the statistical foundation; wrapping them for judge
 labels, adding tests, or using cluster sandwiches is not by itself a novelty
 claim. The authors' repository also contains cross-fitting, bootstrap,
 nonuniform-sampling, and distribution-shift methods. [PPI author repository](https://github.com/aangelopoulos/ppi_py).
 
+Combining automatic metrics with human evaluation through control variates
+also predates PPI. Chaganty, Mussmann, and Liang study that construction
+for NLP evaluation and discuss bias from estimating its coefficient on
+the same sample. Observable judge-agreement proxies here are applications
+of this established idea, not the first correction of automatic evaluation.
+[Chaganty, Mussmann, and Liang, ACL 2018, Sections 3.2–3.3](https://nlp.stanford.edu/pubs/chaganty2018price.pdf).
+
+Finite-sample costs of power tuning also have direct prior analysis.
+Mani, Xu, Lipton, and Oberst characterize settings where PPI++ increases
+error and where same-sample variance estimates are optimistic. The
+repository's stress results are setting-specific evidence, not discovery
+of these effects. Their exact results depend on their estimator and
+sampling regime; Gaussian thresholds or effectively infinite prediction
+pools do not automatically apply to the constrained, per-pool or clustered
+rules here. [No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered
+Inference, 2025/2026, v2](https://arxiv.org/abs/2505.20178v2).
+
 Adaptive evaluation with fallback and reliable model selection already has
 direct prior work in R-AutoEval+. That method addresses a sequential
 model-selection problem, so comparing it with these fixed-sample mean
 intervals requires aligning the decision target and protocol.
-[Park, Zecchin, and Simeone](https://arxiv.org/abs/2505.18659).
+[Park, Zecchin, and Simeone, NeurIPS 2025, v2](https://arxiv.org/abs/2505.18659v2).
 
 Misclassification correction, calibration/test uncertainty, and audit
 allocation are studied specifically for LLM judges by Lee and colleagues.
 Their transfer analysis assumes invariant conditional judge behavior;
 it is not a guarantee under arbitrary changes in judge error.
-[How to Correctly Report LLM-as-a-Judge Evaluations](https://arxiv.org/abs/2511.21140).
+[How to Correctly Report LLM-as-a-Judge Evaluations, ICML 2026, v4](https://arxiv.org/abs/2511.21140v4).
 
 Judge reliability also involves the validity of the reference outcome.
 JudgeBench supplies response pairs labeled for objective correctness,

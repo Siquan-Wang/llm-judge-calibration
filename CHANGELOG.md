@@ -1,5 +1,54 @@
 # Changelog
 
+## Unreleased
+
+- A retrospective technical report with three figures, an offline PDF builder,
+  and eleven machine-readable claim-to-evidence records. The synthesis preserves
+  target distinctions, overlapping data, negative results and method attribution;
+  it creates no new experiment or estimator.
+- A concise research README and a separate API guide preserving the detailed
+  examples. CI verifies evidence pins, PDF content, links and repeatability.
+
+## 0.10.0
+
+- Reproducible RewardBench cross-judge accuracy audits from two dated caches:
+  all 2,985 comparisons, exact prompt grouping, both target directions and six
+  estimators. A non-LLMBar primary component separates the verified overlap.
+- Gold-independent agreement extraction, complete shared split records,
+  explicit source terms and lossless indexed manifest encoding.
+
+## 0.9.0
+
+- Separate population-mean and random held-out-mean estimands, an iid marginal
+  pool prediction interval, and grouped audit-residual point estimation.
+- Shared-draw simulations and a repeated LLMBar analysis preserve target-specific
+  errors and limitations of unequal-group fixed-corpus inference.
+
+## 0.8.0
+
+- Explicit signed coefficient bounds for numeric inference and a study of
+  inverse proxies, fitted noise and repeated LLMBar outcomes. Negative powers
+  are attributed to the existing PPI++ framework.
+
+## 0.7.0
+
+- Cached LLMBar judge-correctness audits retain all 419 comparisons and invalid
+  judgments. Order agreement is a proxy, not a reference label; failures and
+  exact-instruction split identities remain in the report.
+
+## 0.6.0
+
+- Fixed-coefficient and finite-grid Hoeffding/empirical-Bernstein intervals for
+  bounded iid means, with an explicit simultaneous error allocation.
+- A finite-sample study reports coverage and untruncated width separately,
+  including deliberate assumption violations and degenerate normal intervals.
+
+## 0.5.0
+
+- Bounded numeric outcome means and MT-Bench reference sensitivity comparing
+  plurality with mean recorded votes. Changed targets are not treated as
+  interchangeable truth, and annotator uncertainty remains explicit.
+
 ## 0.4.0
 
 ### Research follow-up

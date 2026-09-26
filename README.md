@@ -2,320 +2,70 @@
 
 [![CI](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml/badge.svg)](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml)
 
-**When does an imperfect LLM judge help a limited human audit—and when does it hurt?**
+**When does an imperfect LLM proxy improve a limited reference audit, and what can we say separately about uncertainty?**
 
-A research toolkit for human-preference and judge-accuracy estimation: prediction-powered inference,
-adaptive reliance on a judge, question-level dependence, and explicit failure
-analysis. It combines established statistical methods with reproducible empirical
-studies. Raw judge predictions, human references and corrected estimates remain
-separate. This project does not claim a new PPI estimator.
+A reproducible research toolkit for prediction-assisted estimation of LLM-evaluation
+means. It applies established difference-estimation, control-variate and PPI
+methods to public cached judgments and known-truth simulations. The studies
+separate human preference, judge reference-correctness, population means and
+realized held-out means. Every experiment retains its failures and assumptions.
 
-## Research study: audit reliability
+**[Technical report](docs/TECHNICAL_REPORT.md) · [PDF](reports/synthesis/judgecal_technical_report.pdf) · [Evidence index](docs/RESEARCH_EVIDENCE.md) · [API guide](docs/API_GUIDE.md)**
 
-The [full report](reports/research/REPORT.md), [analysis plan](docs/RESEARCH_PROTOCOL.md)
-and [mathematical methods](docs/METHODS.md) compare four estimators on identical
-samples: raw GPT-4 judge, human audit only, coefficient-one PPI and tuned PPI.
-All **15 eligible MT-Bench model pairs** and **30 deterministic splits** are retained.
-Evaluation questions stay fixed while audit budgets grow; complete questions,
-including their repeated turns, remain disjoint. No evaluation human labels tune
-the estimator. The analysis is retrospective, not preregistered.
+## Main findings
 
-![Fixed-target MT-Bench experiment](reports/research/fixed_target_budget.svg)
+- **The target changes the preferred correction.** On the same synthetic draws,
+  switching from population tuning to pool tuning changes population RMSE from
+  0.0309 to 0.0462, while held-out-mean RMSE changes from 0.0472 to 0.0323.
+  Those are separate within-target comparisons, not a contest between targets.
+- **Useful corrections can have small, heterogeneous benefits.** In RewardBench's
+  non-LLMBar component, population tuning improves MAE over reference-audit-only
+  in all six judge/budget cells, by approximately 0.011-0.252 percentage points.
+  Fixed coefficient-one correction worsens five of six. Raw agreement can still
+  outperform correction for one judge and budget; MAE and RMSE can disagree.
+- **Point accuracy does not establish interval validity.** In a near-boundary
+  simulation with 20 audit labels, tuned correction improves RMSE while its
+  nominal 95% interval covers in only 52.4% of 1,000 repetitions. Applicable
+  finite-sample bounds have a substantial width cost. Grouping helps with
+  dependence, but few groups and audit-to-target shift remain failure modes.
 
-| Audit budget | Raw judge MAE | Human-only MAE | PPI MAE | Tuned PPI MAE |
-|---:|---:|---:|---:|---:|
-| 20% | 9.132 pp | 7.842 pp | 8.610 pp | 7.480 pp |
-| 40% | 9.132 pp | 6.506 pp | 7.127 pp | 6.267 pp |
-| 60% | 9.132 pp | 6.321 pp | 7.112 pp | 6.113 pp |
+![The same coefficient change affects two targets differently](reports/synthesis/target_tradeoff.png)
 
-Tuning yields a modest aggregate improvement over human-only on this case study;
-it does not win on every pair or split. Errors target the realized heldout human
-plurality mean. Correlated repeated splits are descriptive, not independent
-replications or tests of population interval coverage.
+These findings are retrospective and conditional on the named designs. The
+[claim-to-artifact crosswalk](docs/research_evidence.json) records exact selectors,
+metrics, denominators, hashes and overlap. There is no pooled improvement score
+across incomparable targets, no empirical fixed-pool coverage claim from a
+population interval, and no guaranteed deployment or annotation saving.
 
-Seven known-truth scenarios examine judge quality, repeated-turn dependence,
-few independent questions, prevalence shift and changing judge error rates.
-Each has **1,000 independent replications** with complete trial records and
-Monte Carlo errors. Small-cluster undercoverage and transfer failures are
-retained: optimizing estimated variance does not remove distribution-shift bias.
+## Evidence and complete experiments
 
-![Known-truth simulation stress tests](reports/research/simulation.svg)
+| Study | Main question | Complete evidence |
+|---|---|---|
+| MT-Bench fixed target | Does correction improve observed human-preference estimation? | [Report](reports/research/REPORT.md) |
+| Reference sensitivity | Does plurality versus mean recorded vote change conclusions? | [Report](reports/sensitivity/REPORT.md) |
+| Factorial stress and dependence | How do audit size, proxy quality and repeated questions matter? | [Report](reports/stress/REPORT.md) |
+| Finite-sample intervals | What width is paid for applicable conservative coverage? | [Report](reports/finite-sample/REPORT.md) |
+| LLMBar | Can order consistency be confidently wrong? | [Report](reports/llmbar-audit/REPORT.md) |
+| Signed coefficients | When does inverse signal help or fitted flexibility hurt? | [Report](reports/signed-power/REPORT.md) |
+| Population versus pool | How do target covariance and coefficient choice interact? | [Report](reports/estimand/REPORT.md) |
+| RewardBench | Does one cross-judge agreement signal serve two accuracy targets? | [Report](reports/rewardbench-audit/REPORT.md) |
 
-The [historical coefficient-one study](reports/mtbench/REPORT.md) remains intact.
-Its evaluation subset shrinks with audit budget, so its numbers answer a
-different question. Neither study establishes guaranteed annotation savings,
-finite-sample validity or reliability on contemporary judge families.
+These are linked analyses, not eight independent datasets. LLMBar extensions
+reuse the same comparisons; RewardBench contains 419 verified LLMBar overlaps.
+Its primary component excludes those rows, while the full mixture and overlap
+component remain visible sensitivities. Exact prompts stay together across
+subsets. Historical model caches, heterogeneous references and semantic
+relationships beyond exact prompt matches limit external validity.
 
-## Follow-up: where the methods fail
-
-The [factorial stress report](reports/stress/REPORT.md) expands to **36 iid
-settings** across human prevalence, judge quality and audit size, plus six
-analyses of paired dependence-ablation data. Each setting uses 500 replications;
-all **84,000 method/trial rows** are retained in deterministic compressed CSV.
-
-![Factorial study of tuned PPI](reports/stress/factorial_grid.svg)
-
-The tuned method improves observed RMSE in all 18 strong/moderate-judge cells.
-Uninformative judges provide no reliable gain and can slightly worsen error.
-For a strong judge with only 20 audit labels, tuned 95% coverage is 86.8% at
-human prevalence 0.2 and 88.2% at prevalence 0.8. These are simulation-specific
-findings with Monte Carlo uncertainty, not distribution-free guarantees.
-
-![Dependence ablation](reports/stress/dependence_ablation.svg)
-
-The dependence experiment analyzes identical generated data with and without
-question grouping. Naive independent-row intervals substantially undercover;
-correct grouping helps but does not make few-cluster normal inference reliable.
-The report includes paired method-difference Monte Carlo errors, rather than
-treating competing estimates on the same draws as independent.
-
-An [optional numerical comparison](docs/REFERENCE_BASELINE.md) pins the PPI
-authors' `ppi-python==0.2.3` implementation. It verifies fixed-weight algebra
-and explicitly retains the expected finite-sample differences in automatic
-power and interval variance conventions.
-
-## Follow-up: which human reference?
-
-The [reference-sensitivity report](reports/sensitivity/REPORT.md) repeats
-the fixed-target experiment with both plurality outcomes and the mean
-recorded vote score within each comparison. All splits, frozen judge scores
-and audit costs are identical. The latter averages comparisons equally;
-it does not pool individual votes or claim to recover latent consensus.
-
-The snapshot has 1,814 comparisons and 3,354 unique votes; 854 comparisons
-have only one vote. The two outcome scores differ on 305 comparisons.
-Averages alone cannot distinguish unanimous ties from polarized A/B votes,
-so the artifact retains the underlying counts and every paired outcome.
-
-![Human-reference sensitivity](reports/sensitivity/reference_sensitivity.svg)
-
-Each method is evaluated against its own named reference. Differences in
-error across reference definitions do not establish which definition is
-better. The [retrospective protocol](docs/REFERENCE_SENSITIVITY.md) specifies
-the estimands, sampling, weighting and limits of the comparison.
-
-Tuned PPI retains a modest aggregate MAE advantage over human-only at all
-three budgets under both definitions (about 0.20–0.36 percentage points).
-The direction of the pair-level comparison changes in 5 of 45 matched
-pair/budget cases. The aggregate finding is stable here, while individual
-model-pair conclusions can depend on how human votes are summarized.
-
-## Follow-up: finite-sample coverage has a width cost
-
-The [finite-sample report](reports/finite-sample/REPORT.md) compares normal
-intervals with established Hoeffding and empirical Bernstein bounds on
-12 iid settings and two deliberate dependence/shift violations. All eight
-methods share each draw; **112,000 trial rows** retain coverage, untruncated
-width, selected powers and simulation uncertainty.
-
-![Finite-sample coverage and width](reports/finite-sample/finite_sample_tradeoff.svg)
-
-`finite_sample_mean` accepts a fixed coefficient or a prespecified finite
-power tuple. Tuple selection is covered by simultaneous bounds over all
-candidates, with explicit error allocation. It does not accept continuous
-`power="auto"` or grouped rows. The [derivation and protocol](docs/FINITE_SAMPLE_PROTOCOL.md)
-state the iid assumptions, known score ranges, source theorems and limits.
-These are conservative baselines, with no guarantee of narrower intervals
-than a human-only audit. Perfect observed predictions do not justify
-replacing the known residual range with the observed range.
-
-At human prevalence 0.95 with 20 audit labels, tuned PPI improves point
-RMSE yet its nominal 95% normal interval covers the population target in
-only **52.4%** of 1,000 replications. Human Hoeffding covers in all 1,000 draws, with mean
-width **0.607** versus **0.093** for tuned normal. Grid EB is wider still
-and contains the entire [0,1] range in 64.7% of draws. Coverage counts have
-explicit Monte Carlo intervals; these findings concern the specified
-generator, and neither concentration bound repairs population shift.
-
-## Second benchmark: consistency can be confidently wrong
-
-The [LLMBar audit report](reports/llmbar-audit/REPORT.md) uses **419 comparisons,
-three cached judges and both presentation orders**. Its outcome is agreement
-with curated instruction-following references, a different target from MT-Bench
-human preference. The gold-free proxy is whether the judge chooses the same
-answer in both orders. No new model calls or annotations are purchased.
-
-![Judge accuracy versus order consistency](reports/llmbar-audit/accuracy_vs_consistency.svg)
-
-On the Adversarial subset, ChatGPT's order agreement is **64.3%** while its
-original-order accuracy is **28.2%**. Of 205 consistent comparisons, 176
-consistently choose the reference-incorrect answer. Consistency alone does
-not validate judge accuracy.
-
-The fixed-target experiment retains **3,240 method trials**, with 30 shared
-instruction-group splits, three nested audit budgets and three named cohorts.
-Tuned PPI has lower MAE than gold-audit-only estimation in **14 of 27**
-cohort/judge/budget cells, ties in nine, and has higher MAE in four.
-For ChatGPT and LLaMA2 on the Adversarial subset, fixed-power PPI worsens
-MAE at every budget; tuned PPI sets power to zero on every split and falls
-back to the gold audit. This is evidence about when to distrust a proxy,
-not a universal gain from calibration.
-
-![LLMBar judge accuracy audit](reports/llmbar-audit/judge_accuracy_budget.svg)
-
-The [retrospective protocol](docs/LLMBAR_PROTOCOL.md) preserves invalid outputs,
-groups the one repeated instruction, distinguishes shared gold-label cost from
-cached judgment records, and prohibits using heldout labels to fit the estimator.
-It reports errors against realized heldout accuracy; normal interval widths do
-not establish coverage. These historical GPT-4, ChatGPT and LLaMA2 caches do
-not represent current model versions, and adversarial filtering limits
-comparative model conclusions. The [pinned provenance](reports/llmbar/dataset.json)
-records all 27 source hashes and source model configurations.
-
-## Follow-up: using an inverse proxy
-
-The [signed-coefficient report](reports/signed-power/REPORT.md) asks whether
-a negatively associated proxy can still help. The numeric mean API now
-accepts explicit `power_bounds=(-1,1)` with `power="auto"`; the existing
-default remains `[0,1]`. This applies the established PPI++ mean principle
-and minimizes the same estimated variance over a larger coefficient range.
-Negative weight on `F` is equivalent to positive weight on `1-F`.
-
-![Signed correction error and coverage](reports/signed-power/signed_simulation_tradeoff.svg)
-
-All **72,000 simulation trial rows** are retained across 18 known-truth
-settings. For an inverse proxy with prevalence 0.5 and 20 audit labels,
-signed tuning reduces RMSE from **0.1098 to 0.0683** relative to positive-only
-tuning. That flexibility has a cost: with an uninformative proxy in the
-same prevalence/sample-size setting, RMSE increases from **0.1108 to 0.1125**.
-Near prevalence 0.95, the inverse-proxy signed normal interval covers in
-only **52.4%** of 1,000 small-audit replications despite lower point error.
-Paired squared-loss Monte Carlo errors and exact coverage uncertainty are
-reported; optimizing estimated variance does not guarantee realized gains.
-
-The empirical extension preserves all 270 historical LLMBar splits and
-every preceding method result, adding signed tuning for **4,050 total
-trials**. Against positive-range tuning, MAE improves in 11 of 27 cells,
-ties in 12 and worsens in four. All six ChatGPT/LLaMA2 Adversarial
-judge/budget cells improve modestly; losses elsewhere remain visible.
-This follow-up was motivated by earlier results on the same corpus, so
-it is exploratory rather than independent validation. The
-[protocol](docs/SIGNED_POWER_PROTOCOL.md) specifies sign selection,
-constraint assumptions, identical costs and the limits of normal inference.
-
-## Follow-up: which mean are you estimating?
-
-The [estimand study](reports/estimand/REPORT.md) distinguishes the population
-mean from the realized mean of a held-out pool. Both use the same correction
-formula, but their error variances and optimal coefficients differ. With
-`b=Cov(Y,F)/Var(F)`, the IID population oracle is `N/(n+N)*b`; the pool oracle
-is `b`. The latter incorporates covariance between the estimate and its
-random target. These are established difference/regression-estimation ideas,
-with their assumptions and derivation stated in the
-[protocol](docs/ESTIMAND_PROTOCOL.md).
-
-![Target-specific correction tradeoff](reports/estimand/estimand_tradeoff.svg)
-
-All **144,000 simulation rows** retain both targets across 36 settings.
-For a positive proxy at prevalence 0.5, with 200 audit and 100 prediction
-observations, pool tuning reduces pool-target RMSE from **0.0472 to 0.0323**
-but raises population-target RMSE from **0.0309 to 0.0462**. Those are separate
-within-target comparisons. Fitting remains fragile at small sample sizes:
-at prevalence 0.95 with 20 audit and 10 prediction observations, pool tuning
-worsens pool-target RMSE and its nominal 95% prediction interval covers
-in only **77.4%** of replications.
-
-`predict_heldout_mean` supplies an explicitly named **marginal prediction
-interval** under independent IID sampling of both pools. It does not promise
-conditional coverage for every frozen evaluation set. The grouped
-`audit_residual_mean` API returns a point estimate without uncertainty.
-On unchanged LLMBar splits, this point candidate improves MAE in 17 of 27
-cells and worsens it in ten against signed population tuning. All **4,860
-empirical trials** are retained; no IID pool interval is assigned to the
-unequal instruction groups. Existing population APIs keep their original target.
-
-## RewardBench: one agreement signal, two accuracy targets
-
-The [cross-judge audit](reports/rewardbench-audit/REPORT.md) analyzes the dated
-GPT-4o 2024-08-06 and GPT-4o mini 2024-07-18 caches on **2,985 comparisons**.
-The proxy is whether the two judges choose the same answer. Equality of their
-binary correctness bits reconstructs that gold-invariant relation; using an
-individual correctness bit as a proxy would leak the reference.
-
-The primary component excludes LLMBar: **2,566 comparisons and 2,315 exact-prompt
-groups**. The full mixture and LLMBar component remain separate sensitivity
-analyses. All **3,240 method trials**, 108 summaries and 270 exact shared split
-manifests are retained. Repeated prompts stay together across source subsets;
-full-content joins preserve two distinct comparisons with the same raw ID.
-
-![Cross-judge audit across reference budgets](reports/rewardbench-audit/cross_judge_audit_budget.svg)
-
-The primary agreement rate is **89.95%**, while reference accuracy is **90.80%**
-for GPT-4o and **86.67%** for GPT-4o mini. Both agree on the reference-incorrect
-answer in 160 comparisons. Positive and signed population tuning improve MAE
-over reference-audit-only in all six primary judge/budget cells, while fixed
-coefficient-one correction worsens five of six. Audit-residual tuning improves
-five and worsens one. Raw agreement still outperforms correction for GPT-4o
-at the lowest budget; this is not a uniform benefit or deployment guarantee.
-
-The [protocol](docs/REWARDBENCH_PROTOCOL.md) separates reference semantics,
-shared label/input costs, empirical point errors and population uncertainty.
-Both caches are historical and from one model family. The analysis is not the
-official weighted leaderboard. [Source notices](reports/rewardbench/NOTICE.md)
-record dataset-specific terms and the cached results' unspecified named license;
-the package license does not relicense source records. No source text or new
-model calls are included.
-
-## Install
+## Install and use
 
 ```bash
 git clone https://github.com/Siquan-Wang/llm-judge-calibration.git
 cd llm-judge-calibration
-pip install -e ".[dev]"
+pip install -e ".[dev,report]"
 ```
 
-Core dependencies: NumPy, SciPy and pandas. The `data` extra downloads pinned
-MT-Bench judgments; `report` adds plotting. The research study uses committed
-public labels and synthetic draws, with no model API key or paid calls.
-
-## Prediction-powered win rates
-
-Let `Y_L` be human preference scores on an audit, `F_L` the matching judge scores
-and `F_U` judge scores on a separate target pool. A target win scores 1, a loss 0
-and a tie 0.5. The power-weighted mean estimator is:
-
-```text
-human preference rate = mean(Y_L) + power * (mean(F_U) - mean(F_L))
-SE² = Var(mean(Y_L - power * F_L)) + power² * Var(mean(F_U))
-
-power=0       human audit only
-power=1       original PPI (backward-compatible default)
-power="auto"  minimize the estimated per-pool variance over [0, 1]
-```
-
-```python
-from judgecal import prediction_powered_win_rate
-
-result = prediction_powered_win_rate(
-    judge_labeled=["A", "A", "B", "tie", "B", "A"],
-    human_labeled=["A", "B", "B", "tie", "A", "A"],
-    judge_unlabeled=["A", "B", "A", "tie", "A", "B", "B", "A"],
-    labeled_groups=[1, 1, 2, 2, 3, 3],
-    unlabeled_groups=[4, 4, 5, 5, 6, 6, 7, 7],
-    power="auto",
-)
-print(result.point, result.interval.low, result.interval.high)
-print(result.selected_power, result.estimated_variance_ratio)
-print(result.as_dict())
-```
-
-This tiny input illustrates the API, not adequate sample size for valid normal inference. Group IDs enable question-cluster variance and reject overlapping audit/evaluation questions. Unequal clusters retain an observation-weighted estimand. Without groups, rows are treated as independent and the caller must ensure disjoint pools.
-
-Both pools must represent the same target population and use the same frozen
-judge. Normal intervals need sufficiently many independent observations or
-clusters. Estimates and intervals are not clipped to [0, 1].
-
-The method follows [PPI](https://arxiv.org/abs/2301.09633) and the
-[PPI++ mean-estimation framework](https://arxiv.org/abs/2311.01453).
-This implementation minimizes a **per-pool sample/sandwich variance**, rather
-than the pooled prediction variance in the authors' `ppi_py` software. Its
-optional one-way cluster adaptation is documented explicitly. The fitted scalar
-power can use audit labels, while the underlying judge must remain frozen.
-Estimated-variance reduction is not a finite-sample MSE or coverage guarantee.
-See [Methods](docs/METHODS.md) for equations, attribution and assumptions.
-
-For bounded numeric predictions or fractional human outcomes, use the
-same inference through `prediction_powered_mean`:
+The core requires NumPy, SciPy and pandas. A bounded numeric mean example:
 
 ```python
 from judgecal import prediction_powered_mean
@@ -326,100 +76,69 @@ result = prediction_powered_mean(
     predictions_unlabeled=[0.3, 0.7, 0.5, 0.9, 0.2],
     power="auto",
 )
-print(result.point, result.prediction_mean, result.outcome_mean)
+print(result.point, result.interval, result.selected_power)
 ```
 
-This is another small API illustration. Inputs must be finite numeric
-scores in `[0,1]`; fractional values are preserved. The result estimates
-the population mean of the explicitly defined outcome, with the same
-sampling assumptions and untruncated normal intervals as above.
+This small example illustrates the signature, not adequate sample size.
+`prediction_powered_mean` targets a population outcome mean; its normal interval
+requires the stated sampling assumptions. Group IDs enable a one-way cluster
+variance, and explicit `power_bounds=(-1,1)` allows signed tuning. Estimates
+and intervals are not clipped to the outcome range.
 
-To study inverse proxy signals, pass `power="auto", power_bounds=(-1,1)`
-to this numeric API. The result records the chosen bounds and coefficient.
-Choose the range before examining evaluation outcomes; same-audit scalar
-tuning is asymptotic and can introduce finite-sample bias. The categorical
-win-rate and finite-sample APIs keep their existing coefficient behavior.
+The [API guide](docs/API_GUIDE.md) preserves categorical preference examples and
+other utilities. It distinguishes `predict_heldout_mean` (iid marginal pool
+prediction), `audit_residual_mean` (grouped point estimation only), and
+`finite_sample_mean` (fixed/grid coefficients under bounded iid assumptions).
+The [mathematical methods](docs/METHODS.md) and
+[pinned author-implementation comparison](docs/REFERENCE_BASELINE.md) explain
+contracts and finite-sample implementation differences.
 
-## Other tools
+## Reproduce and verify
 
-| Question | API | Interpretation |
-|---|---|---|
-| Does the judge agree with humans? | `agreement_rate`, `agreement_with_ci`, `cohens_kappa` | Explicit tie handling; Bayesian intervals assume independent agreement observations. |
-| What is the raw model win rate? | `win_rate_with_ci`, `compare_models` | Ties count as half a win; raw uncertainty is labeled separately. |
-| Can binary judge error be corrected? | `judge_confusion`, `rogan_gladen_correction`, `compare_models` | Rogan–Gladen requires a binary estimand and transferable sensitivity/specificity. |
-| How uncertain is the correction? | `compare_models(..., calibration_judge=..., calibration_human=...)` | Resamples calibration pairs and independent evaluation judgments; reports invalid draws. |
-| Are numeric judge scores calibrated? | `platt_scaling`, `isotonic_calibration` | Fit on calibration data, evaluate separately; duplicate isotonic scores are pooled. |
-| Which judge agrees more with humans? | `paired_agreement_gap` | The paired difference has its own bootstrap interval. |
-
-Rogan–Gladen uses `p_true = (p_observed + specificity - 1) / (sensitivity + specificity - 1)`. Plugging in estimated error rates and clipping is not generally unbiased. The correction does not repair selection bias or distribution shift. Binary correction rejects ties rather than silently changing its estimand. Summary confusion statistics alone do not supply calibration-uncertainty intervals.
-
-Inter-annotator agreement is a reference, not a universal ceiling. Overlapping confidence intervals do not establish equivalence. Repeated annotations or comparisons sharing a question are not independent trials.
-
-## Run the experiments
+All committed empirical analyses run offline without model keys or new labels:
 
 ```bash
-pip install -e ".[data,dev,report]"
-python examples/demo_mtbench.py
-python examples/benchmark_mtbench.py --plot
-
-# Offline: reuse the committed derived public labels.
-python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output reports/reproduced
-
-# New fixed-target study and seven known-truth stress tests, fully offline.
-python examples/research_study.py --output reports/reproduced/research --plot
-python examples/stress_grid.py --output reports/reproduced/stress --plot
-python examples/reference_sensitivity.py --output reports/reproduced/sensitivity --plot
-python examples/finite_sample_study.py --output reports/reproduced/finite-sample --plot
-python examples/llmbar_audit.py --output reports/reproduced/llmbar-audit --plot
-python examples/signed_power_study.py --output reports/reproduced/signed-power --plot
-python examples/estimand_study.py --output reports/reproduced/estimand --plot
-```
-
-The MT-Bench loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The LLMBar loader joins full comparison content, preserves already-canonical choices and pins source-byte hashes. Its [separate attribution](reports/llmbar/DATA_LICENSE.md) retains the official repository notice. Both committed label snapshots contain no prompts, model responses or private user material.
-
-The research runner validates the input hash and exports package versions,
-source/artifact checksums, every trial and all split IDs. Use a fresh output
-directory or the same options when rerunning; stale figures cannot silently enter
-a new manifest. `--repetitions 5 --seeds 2` is an explicitly recorded smoke run.
-
-## Test
-
-```bash
+python examples/rewardbench_audit.py --output reports/reproduced/rewardbench --plot
+python examples/research_evidence.py --check
 pytest -q
-python -m pip wheel --no-deps . --wheel-dir dist
 ```
 
-Tests cover analytic covariance and variance, power limits, weak-judge fallback,
-clustered dependence, target reversal, ties, nested disjoint splits, hidden-label
-isolation, calibration uncertainty, degenerate inputs, artifact provenance and
-seeded simulation. CI runs offline tests and all study smoke tests across
-supported Python versions.
+Each full report gives its own reproduction command. Source preparers can rebuild
+pinned numeric snapshots from public bytes; the `data` extra supplies optional
+readers. Small `--seeds` or `--repetitions` runs are explicitly recorded as smoke
+checks, not substituted for the published full experiments. Historical reports
+retain the source fingerprints of their own versions.
 
-## Related work
+To rebuild the technical report and its figures from the checked evidence:
 
-- [PPI / PPI++ and ppi_py](https://github.com/aangelopoulos/ppi_py): the statistical foundation; this project applies those ideas to judge reliability rather than claiming the estimator as novel.
-- [R-AutoEval+](https://arxiv.org/abs/2505.18659): adaptive automated evaluation and model selection; its sequential setting differs from the fixed-sample mean intervals here.
-- [How to Correctly Report LLM-as-a-Judge Evaluations](https://arxiv.org/abs/2511.21140): complementary work on misclassification correction and evaluation uncertainty.
-- [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval): evaluator validation and length-controlled comparisons.
-- [FastChat / MT-Bench](https://github.com/lm-sys/FastChat): the cached human and GPT-4 judgments used here.
-- [LLMBar](https://github.com/princeton-nlp/LLMBar): curated instruction-following references and cached two-order judgments, used for the second empirical study.
+```bash
+pip install -e ".[paper]"
+python examples/build_research_report.py --output-directory reports/reproduced/synthesis
+```
 
-## Roadmap
+The synthesis creates no new experiment. It records manuscript, evidence, code,
+figure and PDF fingerprints. CI runs numerical/contract tests and offline study
+smoke tests on Python 3.9, 3.11 and 3.12; separate Python 3.11 jobs check the
+pinned author reference and report build. A hash
+or passing test is provenance evidence, not a statistical-validity guarantee.
 
-- [x] PPI win rates with optional question-cluster variance.
-- [x] Question-disjoint MT-Bench benchmark with pinned provenance and complete results.
-- [x] Joint calibration/evaluation bootstrap for binary Rogan–Gladen correction.
-- [x] Power tuning with explicit cluster adaptation and diagnostics.
-- [x] Fixed-target, nested-budget study and known-truth dependence/shift stress tests.
-- [x] Broader prevalence/sample-size grids and pinned author-implementation checks.
-- [x] Sensitivity to human-vote aggregation and a separate cached order-consistency audit.
-- [x] Conservative finite-sample bounds with explicit width/coverage tradeoffs.
-- [x] Optional signed mean coefficients, inverse-proxy experiments and unchanged historical splits.
-- [x] Population versus random-pool target sensitivity, with distinct uncertainty APIs.
-- [ ] Dedicated position-bias and verbosity-bias correction estimators.
-- [ ] Hierarchical category reliability and validated label-budget planning.
-- [ ] Broader benchmarks on newer model judgments.
+## Foundations and scope
 
-## License
+Difference and regression estimation, NLP control variates, PPI/PPI++, bounded
+concentration and finite-sample tuning limits supply the statistical foundation.
+The report's [related work](docs/TECHNICAL_REPORT.md#5-related-work-and-claim-boundaries)
+attributes these methods and distinguishes fixed-budget means from sequential
+model selection and judge-misclassification transfer methods. The contribution
+is an auditable comparison of established corrections under explicit targets,
+references and sampling designs. Prospective current-model validation,
+unequal-group fixed-corpus intervals and a validated budget planner remain open.
 
-Code: [MIT](LICENSE). The derived MT-Bench snapshot retains the dataset's **CC BY 4.0** license and attribution. The derived LLMBar snapshot retains the official repository's **MIT** notice and separate source attribution; no underlying prompt/response text is redistributed.
+## Licenses and sources
+
+Code: [MIT](LICENSE). Source data retain their own terms:
+[MT-Bench](reports/mtbench/DATA_LICENSE.md),
+[LLMBar](reports/llmbar/DATA_LICENSE.md), and
+[RewardBench](reports/rewardbench/NOTICE.md). RewardBench's independently hosted
+cached results have no named license at the pinned revision; the package license
+does not relicense those records. Committed derived panels contain numeric
+labels and identifiers rather than source prompts, responses or completions.

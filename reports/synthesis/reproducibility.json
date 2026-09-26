@@ -1,0 +1,36 @@
+{
+  "artifacts_sha256": {
+    "coverage_width.png": "7499e8634bb0a22b0b4987efe79b69df106c4811b8404024a5fb1f5cd54f197a",
+    "coverage_width.svg": "d5745fcff6db246cc91cbeb409df4280c18ba21c2789b2709547a5bb072fc33c",
+    "judgecal_technical_report.pdf": "f10988d66fd82802da25ac75bcd6a0f5de771b7e9e914fc40ba2cd8e1a2636e4",
+    "proxy_targets.png": "ad6cf778f43388613f750cb2ad9cd94d22039c9abc6de31e30ba781f95acf30a",
+    "proxy_targets.svg": "d444f8fcf0ca82efbe9520387d72559e882b7030c4e428fc605b3ac90b3de03c",
+    "target_tradeoff.png": "b58e2f47b32527782deda11d6d909eb45d3a6e37b041047768199e7d9bff8b3b",
+    "target_tradeoff.svg": "5cd5d7c76f3f73d5d55be9db1928f25fb9e9a50c6117c477a87ab5e0f10a56af"
+  },
+  "evidence_snapshot": "b4bdeab08481a25b529d81fa909f96aab10f368f",
+  "inputs_sha256": {
+    "docs/METHODS.md": "d8b9248daf1eac414c5115f54f8f1ec00720a0e228ec630892ab075671bcf070",
+    "docs/RESEARCH_EVIDENCE.md": "15a5d875550a227dce0c6d463e981615c57e015bca88533347f38a33ee6a16ed",
+    "docs/TECHNICAL_REPORT.md": "c04ff6d6e8080c99e189188fbfa5dbb2f86979a44f53df781ce4712882219402",
+    "docs/research_evidence.json": "4a9f283f5595c0affcc54a81d1f67533baed69f48845e344542e3abcb01fb496",
+    "examples/build_research_report.py": "a8a9d324a8c2b382ccd496255253fcbca3b12023d94949b9cd34c184038790c8",
+    "examples/research_evidence.py": "c5fbffa7ea438297d6f9360d3f0c41fede9c9a22a2c413312d87c6e8aff6773a",
+    "pyproject.toml": "eb604ec370129e203122df60d7310abd36309eea3e6454a239c5433a4dc4b7f3",
+    "reports/estimand/simulation_summary.csv": "e85107c61972ca91bf62a40ef6df2b88c690591724b5b1cca76fff4d882f3a55",
+    "reports/finite-sample/summary.csv": "1bd5f5b609865247bd68739bb98a957768fa019303e5153c0cdfa58350b248a5",
+    "reports/rewardbench-audit/summary.csv": "fa4870c417e8f200a4a53991f4f7877645bfd35cf3fb2ede789f8d7451a0059b"
+  },
+  "kind": "retrospective synthesis; no new experiment",
+  "packages": {
+    "matplotlib": "3.11.2",
+    "pandas": "3.0.6",
+    "pillow": "12.3.0",
+    "pypdf": "6.10.0",
+    "reportlab": "4.4.9"
+  },
+  "pages": 8,
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_text_normalization": "CRLF to LF before SHA-256"
+}

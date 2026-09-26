@@ -7,6 +7,7 @@
   "eligible_pairs": 15,
   "evaluation_fraction": 0.25,
   "min_pair_questions": 40,
+  "plots": true,
   "protocol": "human-audit-reliability-v1",
   "simulation_repetitions": 1000,
   "simulation_seed": 2026,

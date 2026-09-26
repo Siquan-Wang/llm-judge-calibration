@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "judgecal"
-version = "0.3.0"
+version = "0.4.0"
 description = "Human-audit reliability experiments and prediction-powered inference for LLM judges"
 readme = "README.md"
 license = { text = "MIT" }
@@ -21,6 +21,7 @@ dependencies = [
 data = ["datasets>=2.14"]
 dev = ["pytest>=7.0", "pytest-cov"]
 report = ["matplotlib>=3.7"]
+reference = ["ppi-python==0.2.3"]
 
 [project.urls]
 Homepage = "https://github.com/Siquan-Wang/llm-judge-calibration"

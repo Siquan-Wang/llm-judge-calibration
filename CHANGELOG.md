@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.4.0
+
+### Research follow-up
+
+- A 36-cell prevalence/judge-quality/audit-size grid and paired cluster-versus-
+  naive-independence ablation, with complete deterministic gzip trial records,
+  paired loss-difference Monte Carlo errors and diagnostic oracle coefficients.
+- Optional, pinned numerical comparisons to `ppi-python==0.2.3`, distinguishing
+  fixed-weight algebra from intentional finite-sample variance/tuning differences.
+- Explicit reports of small-sample undercoverage and cases where tuning fails
+  to improve error, alongside the favorable scenarios.
+
+### Calibration correctness
+
+- Platt scaling now optimizes and predicts in centered/scaled coordinates while
+  preserving the original raw-slope L2 objective. Large score offsets no longer
+  trigger optimizer failure or silently constant predictions. Public `params_`
+  retain original score units. Regression tests include independent objective
+  verification, translation invariance and finite extreme-score handling.
+
 ## 0.3.0
 
 ### Research methods and experiments

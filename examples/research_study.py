@@ -103,6 +103,8 @@ def make_report(summary, pairs, simulation_summary, config, links):
         table = group.pivot(index=["model_a", "model_b"], columns="method", values="mean_absolute_error")
         count = int((table.ppi_tuned < table.human_only).sum())
         lines.append(f"| {fraction:.0%} | {count}/{len(table)} |")
+    if config.get("plots"):
+        lines += ["", "![Fixed-target budget results](fixed_target_budget.svg)"]
     lines += ["", "The full `trials.csv`, `per_pair.csv` and `split_manifest.json` retain all outcomes "
               "and sampling choices. `human_comparisons_used` and `human_votes_used` count the audited "
               "comparison labels and underlying public votes; these are workload proxies, not a priced annotation study.", "",
@@ -116,6 +118,8 @@ def make_report(summary, pairs, simulation_summary, config, links):
     for row in simulation_summary.itertuples():
         lines.append(f"| {row.scenario} | {NAMES[row.method]} | {row.bias:.4f} | "
                      f"{row.rmse:.4f} | {row.mean_width:.4f} | {row.coverage:.3f} | {row.coverage_mcse:.3f} |")
+    if config.get("plots"):
+        lines += ["", "![Known-truth simulation](simulation.svg)"]
     lines += ["", "Additional Monte Carlo errors are in "
               "`simulation_summary.csv`. Coverage uses known target human truth; the raw interval "
               "estimates the judge-positive rate, so its human-truth containment is a bias diagnostic. "
@@ -232,6 +236,7 @@ def main(argv=None):
     config = {"protocol": "human-audit-reliability-v1", "audit_fractions": [.2, .4, .6],
               "evaluation_fraction": .25, "split_seeds": args.seeds,
               "simulation_repetitions": args.repetitions, "simulation_seed": 2026,
+              "plots": args.plot,
               "eligible_pairs": int(trials[["model_a", "model_b"]].drop_duplicates().shape[0]),
               "min_pair_questions": 40, "source_labels_sha256": source["labels_sha256"]}
     for name, table in [("trials", trials), ("summary", summary), ("per_pair", pairs),

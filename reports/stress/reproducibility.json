@@ -1,0 +1,36 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "1637adc6713f0c808ac52dfb526d39670d8f68dec4c514c2a689e520c87204ea",
+    "config.json": "7295815f3840c5086441ae29d8cc0249b2cd7ebb67a82a97a2833e454465cba4",
+    "dependence_ablation.png": "f3fdf4a0075b0cbb493f9282a81e90bf24e8c6aa43e50b786cf9dc93148663d3",
+    "dependence_ablation.svg": "1cfd7edf9b6c14b907e2f8ad01436a4832ffac3f315393bde908e629c070d91a",
+    "factorial_grid.png": "5b8da8169cb1269b4cd94485944e86de6cae19524ad8f9fca8ad66f0e1d4816c",
+    "factorial_grid.svg": "1be5ccd2e497be7f43591fefca06ea1d46672c63db8c8c96ec0a7bdca8712f8b",
+    "summary.csv": "7100b9923f55de25b40dc0852dff526ec34de2657af4a9494ad6ffebce7c356e",
+    "trials.csv.gz": "cff071eeb59be84c74b8b5491f2f5834f830523aead9b1b04de076a1260ad9ea"
+  },
+  "packages": {
+    "judgecal": "0.4.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/STRESS_PROTOCOL.md": "9daed63852e9e07a9324706f5d4d9fa9a0052f636f41493b698846ad6845f0aa",
+    "examples/stress_grid.py": "a4ce7ecbc63828e09d0e4570d64202ccf63f2187227e559922d22ffafbfbac72",
+    "src/judgecal/__init__.py": "d8d6e5c93c5c3f180dc637ab307b7eed7f13815452dff1be719e56cdba332cdd",
+    "src/judgecal/benchmark.py": "0258ef7613aac1419e9775739f24d85074722e80a7def7123a15c5a1664da735",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/ppi.py": "5ce5e3ddd0e5f43394a071ea0edbd6bad60aa67d5e680d624fba13b60cc42c80",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256"
+}

@@ -136,6 +136,14 @@ def platt_scaling(
     maps raw scores to calibrated probabilities. The strictly positive
     penalty keeps the slope finite under separation; both classes are
     required. Fit only on calibration data and evaluate on separate data.
+
+    Optimization and prediction use centered, internally scaled scores to
+    avoid cancellation from a large score offset. The penalty remains on the
+    original score slope, so this reparameterization does not change the
+    objective. ``params_`` remains the original ``(slope, intercept)`` pair;
+    use the returned callable for numerically stable predictions. Floating
+    point precision cannot recover differences already rounded out of the
+    input, and extreme scales can make a negligible penalty underflow.
     """
     x, y = _calibration_arrays(scores, labels)
     if len(np.unique(y)) != 2:
@@ -143,26 +151,77 @@ def platt_scaling(
     if isinstance(regularization, (bool, np.bool_)) or not isinstance(regularization, Real) or not np.isfinite(regularization) or regularization <= 0:
         raise ValueError("regularization must be finite and strictly positive")
 
+    # The midpoint stays finite even when summing the scores would overflow.
+    # Center before scaling to preserve small, representable differences
+    # around a large offset. Condition the feature and penalty together:
+    # internal features and the square-root penalty coefficient are <= 1.
+    # Unlike an arbitrary scale floor of one, this remains equivariant when
+    # scores and the corresponding original-unit regularization are rescaled.
+    center = float(x.min() / 2.0 + x.max() / 2.0)
+    centered = x - center
+    root_regularization = float(np.sqrt(regularization))
+    scale = max(root_regularization, float(np.max(np.abs(centered))))
+    internal_x = centered / scale
+    penalty_ratio = root_regularization / scale
+
     def nll(params):
-        a, b = params
-        z = a * x + b
-        # numerically stable log-loss
-        log_p = -np.logaddexp(0.0, -z)
-        log_1mp = -np.logaddexp(0.0, z)
-        return -np.sum(y * log_p + (1 - y) * log_1mp) + 0.5 * regularization * a**2
+        slope, intercept = params
+        z = slope * internal_x + intercept
+        # Binary labels permit signed-logit loss, avoiding 0 * infinity at
+        # saturated predictions. The slope penalty uses ORIGINAL units.
+        loss = np.logaddexp(0.0, (1.0 - 2.0 * y) * z).sum()
+        return loss + 0.5 * (penalty_ratio * slope)**2
 
     def gradient(params):
-        a, b = params
-        residual = expit(a * x + b) - y
-        return np.array([np.dot(residual, x) + regularization * a, np.sum(residual)])
+        slope, intercept = params
+        residual = expit(slope * internal_x + intercept) - y
+        penalty_gradient = penalty_ratio * (penalty_ratio * slope)
+        return np.array([
+            np.dot(residual, internal_x) + penalty_gradient,
+            np.sum(residual),
+        ])
 
-    res = optimize.minimize(nll, x0=np.array([1.0, 0.0]), jac=gradient, method="BFGS")
+    # An intercept-only starting model is finite even for enormous raw scores.
+    positives = np.count_nonzero(y)
+    initial_intercept = np.log(positives) - np.log(len(y) - positives)
+    initial_params = np.array([0.0, initial_intercept])
+    gradient_tolerance = 1e-5
+    res = optimize.minimize(
+        nll, x0=initial_params, jac=gradient, method="BFGS",
+        options={"gtol": gradient_tolerance},
+    )
     if not res.success or not np.all(np.isfinite(res.x)):
         raise RuntimeError(f"Platt scaling optimization failed: {res.message}")
-    a, b = res.x
+    final_loss = nll(res.x)
+    final_gradient = gradient(res.x)
+    initial_loss = nll(initial_params)
+    if (
+        not np.isfinite(final_loss)
+        or not np.all(np.isfinite(final_gradient))
+        or np.max(np.abs(final_gradient)) > gradient_tolerance
+        or final_loss > initial_loss + 1e-10 * max(1.0, initial_loss)
+    ):
+        raise RuntimeError("Platt scaling optimization failed first-order/objective checks")
+    slope, intercept = res.x
+    a = slope / scale
+    b = intercept - a * center
+    if not np.all(np.isfinite([a, b])):
+        raise RuntimeError("Platt scaling original-scale coefficients are not finite")
 
     def calibrate(new_scores):
-        z = a * _prediction_scores(new_scores) + b
+        ns = _prediction_scores(new_scores)
+        if slope == 0:
+            return expit(np.zeros_like(ns) + intercept)
+        # Out-of-range finite scores may legitimately saturate the sigmoid.
+        # Divide before subtracting only where the centered difference itself
+        # overflows; ordinary values retain their more accurate subtraction.
+        with np.errstate(over="ignore", invalid="ignore"):
+            difference = ns - center
+            internal = np.where(
+                np.isfinite(difference), difference / scale,
+                ns / scale - center / scale,
+            )
+            z = slope * internal + intercept
         return expit(z)
 
     calibrate.params_ = (float(a), float(b))  # type: ignore[attr-defined]

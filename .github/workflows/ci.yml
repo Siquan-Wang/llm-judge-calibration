@@ -29,3 +29,18 @@ jobs:
         run: python -m pip wheel --no-deps . --wheel-dir dist
       - name: Offline research study smoke test
         run: python examples/research_study.py --repetitions 5 --seeds 2 --output "${{ runner.temp }}/judgecal-research"
+      - name: Offline factorial study smoke test
+        run: python examples/stress_grid.py --repetitions 2 --output "${{ runner.temp }}/judgecal-stress"
+  author-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install optional pinned author baseline
+        run: pip install -e ".[dev,reference]"
+      - name: Verify reference source and numerical contracts
+        run: pytest -q tests/test_reference_contract.py
+      - name: Write author-baseline evidence
+        run: python examples/compare_ppi_reference.py --output "${{ runner.temp }}/judgecal-reference"

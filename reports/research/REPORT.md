@@ -37,6 +37,8 @@ Tuned PPI has lower aggregate MAE than human-only at 3/3 budgets and lower MAE t
 | 40% | 9/15 |
 | 60% | 11/15 |
 
+![Fixed-target budget results](fixed_target_budget.svg)
+
 The full `trials.csv`, `per_pair.csv` and `split_manifest.json` retain all outcomes and sampling choices. `human_comparisons_used` and `human_votes_used` count the audited comparison labels and underlying public votes; these are workload proxies, not a priced annotation study.
 
 ## Known-truth stress tests
@@ -73,6 +75,8 @@ Each scenario uses 1,000 independent replications from a fixed master seed (2026
 | conditional_error_shift | Human audit | 0.0009 | 0.0351 | 0.1357 | 0.949 | 0.007 |
 | conditional_error_shift | PPI (power 1) | -0.0706 | 0.0742 | 0.0848 | 0.098 | 0.009 |
 | conditional_error_shift | Tuned PPI | -0.0545 | 0.0585 | 0.0786 | 0.239 | 0.013 |
+
+![Known-truth simulation](simulation.svg)
 
 Additional Monte Carlo errors are in `simulation_summary.csv`. Coverage uses known target human truth; the raw interval estimates the judge-positive rate, so its human-truth containment is a bias diagnostic. Native-parameter containment is also retained separately.
 

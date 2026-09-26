@@ -1,0 +1,11 @@
+{
+  "algorithm": "sha256",
+  "normalization": "raw bytes",
+  "artifacts": {
+    "cases.json": "296f248140c1a6077e25f439f53417369329e3b59beaacbcfabb66f376f0120f",
+    "environment.json": "4015945a9ae6b63484c7f98dd45df03649136c6595fd8ab5848650120dfa39c2",
+    "comparisons.csv": "f4c402bb8e5f02ed5c0b599e40e10c01cce09d1f4f3347e6779a3bec467dce2b",
+    "summary.json": "ac917e997bda5ecd1b2357e69f2bf2632bd07bd3fe786e8f0fcb2ac6a45ec4bb",
+    "SUMMARY.md": "182d7d807c6ca43553e404f4e886898af3caab15aea98e9f8bbc637f7b946e05"
+  }
+}

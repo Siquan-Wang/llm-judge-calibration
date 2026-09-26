@@ -46,6 +46,34 @@ Its evaluation subset shrinks with audit budget, so its numbers answer a
 different question. Neither study establishes guaranteed annotation savings,
 finite-sample validity or reliability on contemporary judge families.
 
+## Follow-up: where the methods fail
+
+The [factorial stress report](reports/stress/REPORT.md) expands to **36 iid
+settings** across human prevalence, judge quality and audit size, plus six
+analyses of paired dependence-ablation data. Each setting uses 500 replications;
+all **84,000 method/trial rows** are retained in deterministic compressed CSV.
+
+![Factorial study of tuned PPI](reports/stress/factorial_grid.svg)
+
+The tuned method improves observed RMSE in all 18 strong/moderate-judge cells.
+Uninformative judges provide no reliable gain and can slightly worsen error.
+For a strong judge with only 20 audit labels, tuned 95% coverage is 86.8% at
+human prevalence 0.2 and 88.2% at prevalence 0.8. These are simulation-specific
+findings with Monte Carlo uncertainty, not distribution-free guarantees.
+
+![Dependence ablation](reports/stress/dependence_ablation.svg)
+
+The dependence experiment analyzes identical generated data with and without
+question grouping. Naive independent-row intervals substantially undercover;
+correct grouping helps but does not make few-cluster normal inference reliable.
+The report includes paired method-difference Monte Carlo errors, rather than
+treating competing estimates on the same draws as independent.
+
+An [optional numerical comparison](docs/REFERENCE_BASELINE.md) pins the PPI
+authors' `ppi-python==0.2.3` implementation. It verifies fixed-weight algebra
+and explicitly retains the expected finite-sample differences in automatic
+power and interval variance conventions.
+
 ## Install
 
 ```bash
@@ -131,6 +159,7 @@ python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output
 
 # New fixed-target study and seven known-truth stress tests, fully offline.
 python examples/research_study.py --output reports/reproduced/research --plot
+python examples/stress_grid.py --output reports/reproduced/stress --plot
 ```
 
 The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.
@@ -168,7 +197,7 @@ supported Python versions.
 - [x] Joint calibration/evaluation bootstrap for binary Rogan–Gladen correction.
 - [x] Power tuning with explicit cluster adaptation and diagnostics.
 - [x] Fixed-target, nested-budget study and known-truth dependence/shift stress tests.
-- [ ] Broader prevalence/sample-size grids and empirical comparison to author implementations.
+- [x] Broader prevalence/sample-size grids and pinned author-implementation checks.
 - [ ] Sensitivity to human-vote aggregation and judge-order inconsistency.
 - [ ] Dedicated swapped-order and verbosity-bias estimators; the loader currently preserves source inconsistency flags only.
 - [ ] Hierarchical category reliability and validated label-budget planning.

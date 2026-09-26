@@ -1,0 +1,8 @@
+{
+  "cases": 6,
+  "comparisons": 24,
+  "contract_passed": true,
+  "fixed_max_abs_point_difference": 5.551115123125783e-17,
+  "auto_max_abs_point_difference": 0.010638297872340385,
+  "auto_max_abs_power_difference": 0.051680209152382334
+}

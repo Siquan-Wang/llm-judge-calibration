@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this software and the original PPI/PPI++ papers when using the implemented methods."
+type: software
+title: "judgecal: Human-audit reliability for LLM judges"
+authors:
+  - family-names: Wang
+    given-names: Siquan
+version: 0.3.0
+url: "https://github.com/Siquan-Wang/llm-judge-calibration"
+repository-code: "https://github.com/Siquan-Wang/llm-judge-calibration"
+license: MIT
+keywords:
+  - LLM evaluation
+  - prediction-powered inference
+  - human auditing
+  - uncertainty quantification

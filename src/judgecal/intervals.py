@@ -10,7 +10,7 @@ from numbers import Integral, Real
 from typing import Callable, Sequence
 
 import numpy as np
-from scipy import stats
+from scipy import special, stats
 
 
 def _validate_alpha(alpha: float) -> float:
@@ -78,12 +78,15 @@ def wilson_interval(k: int, n: int, alpha: float = 0.05) -> Interval:
     _validate_counts(k, n)
     if n == 0:
         return Interval(float("nan"), 0.0, 1.0, alpha, "wilson")
-    z = stats.norm.ppf(1 - alpha / 2)
+    # Avoid cancellation in 1-alpha/2, including very small valid alpha.
+    z = -float(special.ndtri_exp(np.log(alpha) - np.log(2.0)))
     phat = k / n
     denom = 1 + z**2 / n
     center = (phat + z**2 / (2 * n)) / denom
     half = (z * np.sqrt(phat * (1 - phat) / n + z**2 / (4 * n**2))) / denom
-    return Interval(phat, max(0.0, center - half), min(1.0, center + half), alpha, "wilson")
+    lower = 0.0 if k == 0 else max(0.0, center - half)
+    upper = 1.0 if k == n else min(1.0, center + half)
+    return Interval(phat, lower, upper, alpha, "wilson")
 
 
 def _binomial_exact_interval(k: int, n: int, alpha: float) -> Interval:
@@ -93,7 +96,7 @@ def _binomial_exact_interval(k: int, n: int, alpha: float) -> Interval:
     if n == 0:
         return Interval(float("nan"), 0.0, 1.0, alpha, "clopper-pearson")
     low = 0.0 if k == 0 else float(stats.beta.ppf(alpha / 2, k, n - k + 1))
-    high = 1.0 if k == n else float(stats.beta.ppf(1 - alpha / 2, k + 1, n - k))
+    high = 1.0 if k == n else float(stats.beta.isf(alpha / 2, k + 1, n - k))
     return Interval(k / n, low, high, alpha, "clopper-pearson")
 
 
@@ -103,7 +106,7 @@ def _bounded_mean_interval(data: np.ndarray, low: float, high: float, alpha: flo
     if len(data) == 0:
         return Interval(float("nan"), low, high, alpha, "hoeffding")
     point = float(np.mean(data))
-    radius = (high - low) * np.sqrt(np.log(2 / alpha) / (2 * len(data)))
+    radius = (high - low) * np.sqrt((np.log(2.0) - np.log(alpha)) / (2 * len(data)))
     return Interval(point, max(low, point - radius), min(high, point + radius), alpha, "hoeffding")
 
 
@@ -131,7 +134,7 @@ def beta_binomial_interval(
     a_post = prior_a + k
     b_post = prior_b + (n - k)
     low = stats.beta.ppf(alpha / 2, a_post, b_post)
-    high = stats.beta.ppf(1 - alpha / 2, a_post, b_post)
+    high = stats.beta.isf(alpha / 2, a_post, b_post)
     point = a_post / (a_post + b_post)
     return Interval(point, float(low), float(high), alpha, "beta-binomial")
 

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "judgecal"
-version = "0.2.0"
-description = "Statistically rigorous calibration and evaluation of LLM-as-a-judge against human labels"
+version = "0.3.0"
+description = "Human-audit reliability experiments and prediction-powered inference for LLM judges"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.9"

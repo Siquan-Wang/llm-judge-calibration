@@ -19,7 +19,7 @@ from .metrics import (
 )
 from .ppi import PPIWinRateResult, prediction_powered_win_rate
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "Interval",

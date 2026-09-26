@@ -27,3 +27,5 @@ jobs:
         run: python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output "${{ runner.temp }}/judgecal-report"
       - name: Build wheel
         run: python -m pip wheel --no-deps . --wheel-dir dist
+      - name: Offline research study smoke test
+        run: python examples/research_study.py --repetitions 5 --seeds 2 --output "${{ runner.temp }}/judgecal-research"

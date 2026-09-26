@@ -10,6 +10,20 @@ def test_wilson_basic():
     assert ci.point == 0.5
 
 
+@pytest.mark.parametrize("alpha", [1e-20, 1e-100, np.nextafter(0.0, 1.0)])
+def test_wilson_extreme_confidence_has_finite_score_bounds(alpha):
+    with np.errstate(all="raise"):
+        ci = wilson_interval(5000, 10000, alpha=alpha)
+    assert 0 < ci.low < .5 < ci.high < 1
+    assert ci.low + ci.high == pytest.approx(1)
+
+
+def test_beta_upper_tail_does_not_round_to_one():
+    ci = beta_binomial_interval(5000, 10000, alpha=1e-20)
+    assert .4 < ci.low < .5 < ci.high < .6
+    assert ci.low + ci.high == pytest.approx(1)
+
+
 def test_wilson_extreme_counts_stay_in_unit_interval():
     ci = wilson_interval(0, 20)
     assert ci.low == 0.0

@@ -1,0 +1,15 @@
+{
+  "audit_fractions": [
+    0.2,
+    0.4,
+    0.6
+  ],
+  "eligible_pairs": 15,
+  "evaluation_fraction": 0.25,
+  "min_pair_questions": 40,
+  "protocol": "human-audit-reliability-v1",
+  "simulation_repetitions": 1000,
+  "simulation_seed": 2026,
+  "source_labels_sha256": "ac0b5b074a4c0ecef978983ee7ab7c64c82f94c4eea38def24c68938d96ab943",
+  "split_seeds": 30
+}

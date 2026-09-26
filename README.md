@@ -2,19 +2,49 @@
 
 [![CI](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml/badge.svg)](https://github.com/Siquan-Wang/llm-judge-calibration/actions/workflows/ci.yml)
 
-**Estimate human preference from imperfect LLM judgments, with a human-audit budget and uncertainty.**
+**When does an imperfect LLM judge help a limited human audit—and when does it hurt?**
 
-A Python library for prediction-powered win-rate inference, measurement-error correction, agreement measures, Bayesian credible intervals and bootstrap confidence intervals. Raw judge results and corrected estimates are reported separately.
+A research toolkit for human-preference estimation: prediction-powered inference,
+adaptive reliance on a judge, question-level dependence, and explicit failure
+analysis. It combines established statistical methods with reproducible empirical
+studies. Raw judge predictions, human references and corrected estimates remain
+separate. This project does not claim a new PPI estimator.
 
-## Reproducible MT-Bench case study
+## Research study: audit reliability
 
-The [benchmark report](reports/mtbench/REPORT.md) compares raw GPT-4 judgments, human-only estimates and prediction-powered estimates across **15 model pairs**, at **20%, 40% and 60% human-audit question budgets**, with 30 fixed splits per budget. Within each model pair, every turn of a question stays in one pool. Evaluation human labels enter only the final error calculation.
+The [full report](reports/research/REPORT.md), [analysis plan](docs/RESEARCH_PROTOCOL.md)
+and [mathematical methods](docs/METHODS.md) compare four estimators on identical
+samples: raw GPT-4 judge, human audit only, coefficient-one PPI and tuned PPI.
+All **15 eligible MT-Bench model pairs** and **30 deterministic splits** are retained.
+Evaluation questions stay fixed while audit budgets grow; complete questions,
+including their repeated turns, remain disjoint. No evaluation human labels tune
+the estimator. The analysis is retrospective, not preregistered.
 
-![MT-Bench label-budget experiment](reports/mtbench/label_budget.svg)
+![Fixed-target MT-Bench experiment](reports/research/fixed_target_budget.svg)
 
-Pinned public labels, every trial, per-pair results, explicit question split IDs and a separate known-truth simulation are committed. Repeated-split errors describe this dataset; they do not establish population CI coverage or guaranteed annotation savings.
+| Audit budget | Raw judge MAE | Human-only MAE | PPI MAE | Tuned PPI MAE |
+|---:|---:|---:|---:|---:|
+| 20% | 9.132 pp | 7.842 pp | 8.610 pp | 7.480 pp |
+| 40% | 9.132 pp | 6.506 pp | 7.127 pp | 6.267 pp |
+| 60% | 9.132 pp | 6.321 pp | 7.112 pp | 6.113 pp |
 
-In this case study, PPI lowers raw-judge error at all three budgets, while human-only estimates remain more accurate. The report retains both findings and the synthetic cases where the normal approximation undercovers.
+Tuning yields a modest aggregate improvement over human-only on this case study;
+it does not win on every pair or split. Errors target the realized heldout human
+plurality mean. Correlated repeated splits are descriptive, not independent
+replications or tests of population interval coverage.
+
+Seven known-truth scenarios examine judge quality, repeated-turn dependence,
+few independent questions, prevalence shift and changing judge error rates.
+Each has **1,000 independent replications** with complete trial records and
+Monte Carlo errors. Small-cluster undercoverage and transfer failures are
+retained: optimizing estimated variance does not remove distribution-shift bias.
+
+![Known-truth simulation stress tests](reports/research/simulation.svg)
+
+The [historical coefficient-one study](reports/mtbench/REPORT.md) remains intact.
+Its evaluation subset shrinks with audit budget, so its numbers answer a
+different question. Neither study establishes guaranteed annotation savings,
+finite-sample validity or reliability on contemporary judge families.
 
 ## Install
 
@@ -24,15 +54,23 @@ cd llm-judge-calibration
 pip install -e ".[dev]"
 ```
 
-Core dependencies: NumPy, SciPy and pandas. The `data` extra downloads pinned MT-Bench judgments; `report` adds plotting. No model API key is needed for the examples or benchmark.
+Core dependencies: NumPy, SciPy and pandas. The `data` extra downloads pinned
+MT-Bench judgments; `report` adds plotting. The research study uses committed
+public labels and synthetic draws, with no model API key or paid calls.
 
 ## Prediction-powered win rates
 
-Let `Y_L` be human preference scores on an audit, `F_L` the matching judge scores and `F_U` judge scores on a separate evaluation pool. A target win scores 1, a loss 0 and a tie 0.5. Original, fixed-weight PPI estimates:
+Let `Y_L` be human preference scores on an audit, `F_L` the matching judge scores
+and `F_U` judge scores on a separate target pool. A target win scores 1, a loss 0
+and a tie 0.5. The power-weighted mean estimator is:
 
 ```text
-human preference rate = mean(F_U) + mean(Y_L - F_L)
-SE² = Var(mean(F_U)) + Var(mean(Y_L - F_L))
+human preference rate = mean(Y_L) + power * (mean(F_U) - mean(F_L))
+SE² = Var(mean(Y_L - power * F_L)) + power² * Var(mean(F_U))
+
+power=0       human audit only
+power=1       original PPI (backward-compatible default)
+power="auto"  minimize the estimated per-pool variance over [0, 1]
 ```
 
 ```python
@@ -44,14 +82,27 @@ result = prediction_powered_win_rate(
     judge_unlabeled=["A", "B", "A", "tie", "A", "B", "B", "A"],
     labeled_groups=[1, 1, 2, 2, 3, 3],
     unlabeled_groups=[4, 4, 5, 5, 6, 6, 7, 7],
+    power="auto",
 )
 print(result.point, result.interval.low, result.interval.high)
+print(result.selected_power, result.estimated_variance_ratio)
 print(result.as_dict())
 ```
 
 This tiny input illustrates the API, not adequate sample size for valid normal inference. Group IDs enable question-cluster variance and reject overlapping audit/evaluation questions. Unequal clusters retain an observation-weighted estimand. Without groups, rows are treated as independent and the caller must ensure disjoint pools.
 
-Both pools must represent the same target population and use the same frozen judge. Normal intervals need sufficiently many independent observations or clusters. Estimates and intervals are not clipped to [0, 1]. Original PPI may be less efficient than human-only estimation for a weak judge. This implements [Angelopoulos et al. (2023)](https://arxiv.org/abs/2301.09633), with optional one-way cluster variance; it is not a new PPI estimator or PPI++.
+Both pools must represent the same target population and use the same frozen
+judge. Normal intervals need sufficiently many independent observations or
+clusters. Estimates and intervals are not clipped to [0, 1].
+
+The method follows [PPI](https://arxiv.org/abs/2301.09633) and the
+[PPI++ mean-estimation framework](https://arxiv.org/abs/2311.01453).
+This implementation minimizes a **per-pool sample/sandwich variance**, rather
+than the pooled prediction variance in the authors' `ppi_py` software. Its
+optional one-way cluster adaptation is documented explicitly. The fitted scalar
+power can use audit labels, while the underlying judge must remain frozen.
+Estimated-variance reduction is not a finite-sample MSE or coverage guarantee.
+See [Methods](docs/METHODS.md) for equations, attribution and assumptions.
 
 ## Other tools
 
@@ -77,9 +128,17 @@ python examples/benchmark_mtbench.py --plot
 
 # Offline: reuse the committed derived public labels.
 python examples/benchmark_mtbench.py --input reports/mtbench/labels.csv --output reports/reproduced
+
+# New fixed-target study and seven known-truth stress tests, fully offline.
+python examples/research_study.py --output reports/reproduced/research --plot
 ```
 
 The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.
+
+The research runner validates the input hash and exports package versions,
+source/artifact checksums, every trial and all split IDs. Use a fresh output
+directory or the same options when rerunning; stale figures cannot silently enter
+a new manifest. `--repetitions 5 --seeds 2` is an explicitly recorded smoke run.
 
 ## Test
 
@@ -88,11 +147,17 @@ pytest -q
 python -m pip wheel --no-deps . --wheel-dir dist
 ```
 
-Tests cover analytic variance, clustered dependence, target reversal, ties, disjoint splits, hidden-label leakage, calibration uncertainty, degenerate inputs and fixed-seed simulations. CI runs offline tests and a benchmark smoke test across supported Python versions.
+Tests cover analytic covariance and variance, power limits, weak-judge fallback,
+clustered dependence, target reversal, ties, nested disjoint splits, hidden-label
+isolation, calibration uncertainty, degenerate inputs, artifact provenance and
+seeded simulation. CI runs offline tests and both study smoke tests across
+supported Python versions.
 
 ## Related work
 
-- [ppi_py](https://github.com/aangelopoulos/ppi_py): the statistical foundation for fixed-weight mean correction.
+- [PPI / PPI++ and ppi_py](https://github.com/aangelopoulos/ppi_py): the statistical foundation; this project applies those ideas to judge reliability rather than claiming the estimator as novel.
+- [R-AutoEval+](https://arxiv.org/abs/2505.18659): adaptive automated evaluation and model selection; its sequential setting differs from the fixed-sample mean intervals here.
+- [How to Correctly Report LLM-as-a-Judge Evaluations](https://arxiv.org/abs/2511.21140): complementary work on misclassification correction and evaluation uncertainty.
 - [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval): evaluator validation and length-controlled comparisons.
 - [FastChat / MT-Bench](https://github.com/lm-sys/FastChat): the cached human and GPT-4 judgments used here.
 
@@ -101,6 +166,10 @@ Tests cover analytic variance, clustered dependence, target reversal, ties, disj
 - [x] PPI win rates with optional question-cluster variance.
 - [x] Question-disjoint MT-Bench benchmark with pinned provenance and complete results.
 - [x] Joint calibration/evaluation bootstrap for binary Rogan–Gladen correction.
+- [x] Power tuning with explicit cluster adaptation and diagnostics.
+- [x] Fixed-target, nested-budget study and known-truth dependence/shift stress tests.
+- [ ] Broader prevalence/sample-size grids and empirical comparison to author implementations.
+- [ ] Sensitivity to human-vote aggregation and judge-order inconsistency.
 - [ ] Dedicated swapped-order and verbosity-bias estimators; the loader currently preserves source inconsistency flags only.
 - [ ] Hierarchical category reliability and validated label-budget planning.
 - [ ] Broader benchmarks on newer model judgments.

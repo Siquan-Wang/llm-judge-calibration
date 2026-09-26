@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.3.0
+
+### Research methods and experiments
+
+- Bounded power tuning for the PPI mean estimator, attributed to PPI++.
+  `power=0` gives human-only inference, `power=1` preserves the existing
+  estimator, and `power="auto"` minimizes estimated per-pool variance.
+  Results expose the selected coefficient, tuning method and estimated
+  variance ratio. One-way cluster adaptation and asymptotic limits are explicit.
+- A fixed-evaluation MT-Bench study with nested audit budgets, all four
+  baselines, complete split manifests and annotation-workload counts.
+  Historical complementary-pool results remain separate and unchanged.
+- Seven known-truth simulation scenarios covering weak and anticorrelated
+  judges, dependence, few clusters and two separate distribution-shift mechanisms.
+  Every replication, failure of coverage, Monte Carlo error and zero-width
+  interval is retained; native interval targets are distinct from target-human truth.
+- Versioned analysis plan, mathematical methods, code/artifact checksums and
+  offline reproduction, plus citation metadata. This is an empirical research
+  extension of established methods, not a new estimator claim.
+
+### Correctness
+
+- Stable upper-tail calculations for Wilson and Beta intervals at extreme
+  confidence levels; stable Hoeffding log calculation at very small alpha.
+- Research output directories reject stale or unrelated artifacts and protect
+  the original input study; tampered label provenance fails before analysis.
+
 ## 0.2.0
 
 ### Added

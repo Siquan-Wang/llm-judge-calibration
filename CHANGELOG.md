@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.11.0
+
+- An independent-pilot simulation compares eight established procedures at the
+  same total label budget. Twelve configured law/budget cells retain all pilot
+  costs, degenerate draws, paired losses and normal/finite-bound diagnostics.
+- Addressable random streams preserve earlier draws when replication counts
+  grow. The protocol distinguishes conditional unbiasedness from normal
+  coverage and discloses the coefficient-formula differences between rules.
 
 - A retrospective technical report with three figures, an offline PDF builder,
   and eleven machine-readable claim-to-evidence records. The synthesis preserves

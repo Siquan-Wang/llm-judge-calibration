@@ -49,8 +49,9 @@ population interval, and no guaranteed deployment or annotation saving.
 | Signed coefficients | When does inverse signal help or fitted flexibility hurt? | [Report](reports/signed-power/REPORT.md) |
 | Population versus pool | How do target covariance and coefficient choice interact? | [Report](reports/estimand/REPORT.md) |
 | RewardBench | Does one cross-judge agreement signal serve two accuracy targets? | [Report](reports/rewardbench-audit/REPORT.md) |
+| Independent pilot | Does reserving labels for tuning pay off at the same total budget? | [Report](reports/pilot-study/REPORT.md) |
 
-These are linked analyses, not eight independent datasets. LLMBar extensions
+These are linked analyses, not independent datasets. LLMBar extensions
 reuse the same comparisons; RewardBench contains 419 verified LLMBar overlaps.
 Its primary component excludes those rows, while the full mixture and overlap
 component remain visible sensitivities. Exact prompts stay together across

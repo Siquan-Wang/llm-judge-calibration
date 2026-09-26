@@ -26,7 +26,7 @@ from .pool_prediction import (
     predict_heldout_mean,
 )
 
-__version__ = "0.10.0"
+__version__ = "0.11.0"
 
 __all__ = [
     "Interval",

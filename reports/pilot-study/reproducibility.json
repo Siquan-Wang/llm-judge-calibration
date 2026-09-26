@@ -1,0 +1,49 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "ab442c9532c8a0455f9c10a76c526534f1e0bf18e23ffd9f7a923589536d901f",
+    "paired_differences.csv": "8ad4341c645c09884d77bb95ef9cb30e19cb64fd25efa4555f3f5e59c961b210",
+    "pilot_interval_tradeoff.png": "fa043fef3654a2157d9bb6fa4ea30e656083fae672d27812acf158ce74b54313",
+    "pilot_interval_tradeoff.svg": "2bf9b45887fc37a216af20aa747547ceb4f56435315d6871e573aa926ba79d34",
+    "pilot_point_tradeoff.png": "2883a5473eb8e58a69b5b77a8cb4465614f618cf4376576b91c2fc4faf6f048b",
+    "pilot_point_tradeoff.svg": "607107c2e095aa09f4b79cf8a88d0648f46d276761622220fdfb7392f68cdd65",
+    "study_config.json": "98f01402f8aec708ef956d62643d0a28c8cf8e735ea1cbb7fff9c5a864612acd",
+    "summary.csv": "b54f19668aebc0b8c17dbf7a540c126b9c9394e97afc11aee2b0b3bfda74e34d",
+    "trials.csv.gz": "fd0247774f23fd15872012475e38547878494b79fd9280ef0aff2ceabd929811"
+  },
+  "kind": "independent-pilot fixed-total-budget simulation",
+  "packages": {
+    "judgecal": "0.11.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/PILOT_STUDY_PROTOCOL.md": "91ef6f4d1eec5e1dcc0bf52acaa0c6013f8c9f5df535ce50ea1cac679f12527d",
+    "examples/independent_pilot_study.py": "7bd5605665b2b6177156fd22d6aab63c968f2fba837e887d3d7630f56560fa60",
+    "pyproject.toml": "c1ac6dc6297d52494f1254fa354518cb9c999a3d653852d9a226210ccb0b70ae",
+    "src/judgecal/__init__.py": "82a1f0856fa6a0d8927a536fa7c57959ef337a748aa3522768cfbe0d08a79e82",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/cross_judge_audit.py": "098e518dacc4fbc02ba3f3047350bdeb19108b73f4cae6f5288c837a4836c388",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/estimand_study.py": "85a7b29dbe05b0efd1a61a44b32249b6a02358e7e6515c21eee94b97f4a627ce",
+    "src/judgecal/finite_sample.py": "a9139d6f85ed3832b2bf9634081c29e07b971e4bca32cef22aaab8fba517e25f",
+    "src/judgecal/finite_study.py": "984fca779501429963dbb9e18269f63720cbcd1e11a05b4874269e40cde01599",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/judge_audit.py": "c4efddb6e0168cfaa41cf49b482119a4a450c9919cd49130fecd60c02d7f9499",
+    "src/judgecal/llmbar.py": "8bd2abc9f33024b15802901295a8ac13bde7fe66c2d94953e8332b9707326467",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/pilot_study.py": "2951725e6c97abe99894ef478f9a32f5ce620483cceed7cbba9350af6ea2252a",
+    "src/judgecal/pool_prediction.py": "9a6c7a27ec3921e75149b8a8a10cf583328fd0a65208a58b0ba2b52c0f1bee3b",
+    "src/judgecal/ppi.py": "79c95b549a2f0946388c567cfb80e2b2b5abfb82513856f146f06e82e20dcd90",
+    "src/judgecal/rewardbench.py": "690ab2eb07cc434d5462ffc4df58431a00ac6b108ba033bb4c4bf192d11785b2",
+    "src/judgecal/signed_study.py": "8156403d24983e82df1df43c5945aa4b51492db254b61a00e3f8ab96e3f91c76",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256"
+}

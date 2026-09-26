@@ -1,0 +1,245 @@
+{
+  "alpha": 0.05,
+  "coverage_numerical_convention": "8*float64_epsilon*max(1,abs(low),abs(high),abs(truth)); scoring only",
+  "distinct_point_methods": [
+    "human_normal",
+    "same_audit_normal",
+    "same_audit_grid_eb",
+    "pilot20_normal",
+    "pilot50_normal"
+  ],
+  "finite_interval_api": "judgecal.finite_sample_mean",
+  "interval_estimand": "population bounded-outcome mean",
+  "methods": [
+    "human_normal",
+    "human_eb",
+    "same_audit_normal",
+    "same_audit_grid_eb",
+    "pilot20_normal",
+    "pilot20_eb",
+    "pilot50_normal",
+    "pilot50_eb"
+  ],
+  "monte_carlo_coverage_interval": {
+    "alpha": 0.05,
+    "method": "clopper-pearson",
+    "scope": "pointwise"
+  },
+  "normal_interval_api": "judgecal.prediction_powered_mean",
+  "notes": [
+    "Established sample splitting and scalar PPI; no new estimator, theorem or preregistration claim.",
+    "All methods share one labeled draw and independent prediction pool; no Y_U is generated or used.",
+    "Pilot fitting sees only pilot pairs and design counts; final F_U and audit suffix cannot tune its power.",
+    "Pilot labels count against B and are not reused in the final residual mean.",
+    "All B+N proxies are materialized/supplied; human methods require zero proxies, other procedures B+N regardless of realized power.",
+    "Independent pilot fitting is conditionally unbiased, but normal intervals remain asymptotic.",
+    "Scalar EB is conditional on the independent pilot; grid EB uses its simultaneous finite family.",
+    "Known conditional variance is reported only for fixed human and independent-pilot rules.",
+    "Same-audit and pilot coefficient finite-sample variance functionals differ; gaps cannot be attributed solely to independence.",
+    "Perfect proxies are a structural control, not information given to interval construction.",
+    "All trials, zero widths, constant pilots and out-of-domain points remain; intervals are untruncated.",
+    "Normal and EB variants of a pilot share a point; risk contrasts count distinct point rules only.",
+    "Paired differences are method minus baseline and retain shared-draw covariance.",
+    "Coverage uncertainty concerns independent simulation replications, not deployment uncertainty."
+  ],
+  "numpy_version": "2.5.3",
+  "pilot_fractions": [
+    0.2,
+    0.5
+  ],
+  "pilot_power_formula": "clip(Cov_P(Y,F)/((1+m/N)*Var_P(F)),0,1); exact constant proxy selects zero",
+  "pilot_power_numerics": "Exact integer covariance/variance numerators for binary pairs; scaled fractional moments without tolerance threshold",
+  "pilot_split": "Fixed prefixes B//5 or B//2; disjoint suffixes for inference; all B labels charged",
+  "plots": true,
+  "power_bounds": [
+    0.0,
+    1.0
+  ],
+  "power_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "prediction_pool_ratio_to_total_budget": 10,
+  "profile_codes": {
+    "balanced_strong": 1,
+    "boundary_strong": 2,
+    "perfect": 4,
+    "uninformative": 3
+  },
+  "random_stream_codes": {
+    "audit": 0,
+    "prediction_only": 1
+  },
+  "random_stream_scheme": "numpy.Philox(SeedSequence([seed,profile_code,total_budget,repetition,stream]))",
+  "repetitions": 2000,
+  "same_audit_power_formula": "clip(Cov_L(Y,F)/(Var_L(F)+(B/N)*Var_U(F)),0,1)",
+  "scenarios": [
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 200,
+      "outcome_proxy_covariance": 0.21250000000000002,
+      "profile": "balanced_strong",
+      "profile_code": 1,
+      "proxy_mean": 0.5249999999999999,
+      "scenario": "iid_balanced_strong_b0020",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 20,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 2000,
+      "outcome_proxy_covariance": 0.21250000000000002,
+      "profile": "balanced_strong",
+      "profile_code": 1,
+      "proxy_mean": 0.5249999999999999,
+      "scenario": "iid_balanced_strong_b0200",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 200,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 10000,
+      "outcome_proxy_covariance": 0.21250000000000002,
+      "profile": "balanced_strong",
+      "profile_code": 1,
+      "proxy_mean": 0.5249999999999999,
+      "scenario": "iid_balanced_strong_b1000",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 1000,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 200,
+      "outcome_proxy_covariance": 0.04037500000000004,
+      "profile": "boundary_strong",
+      "profile_code": 2,
+      "proxy_mean": 0.9075,
+      "scenario": "iid_boundary_strong_b0020",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 20,
+      "truth": 0.95
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 2000,
+      "outcome_proxy_covariance": 0.04037500000000004,
+      "profile": "boundary_strong",
+      "profile_code": 2,
+      "proxy_mean": 0.9075,
+      "scenario": "iid_boundary_strong_b0200",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 200,
+      "truth": 0.95
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 10000,
+      "outcome_proxy_covariance": 0.04037500000000004,
+      "profile": "boundary_strong",
+      "profile_code": 2,
+      "proxy_mean": 0.9075,
+      "scenario": "iid_boundary_strong_b1000",
+      "sensitivity": 0.95,
+      "specificity": 0.9,
+      "total_budget": 1000,
+      "truth": 0.95
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 200,
+      "outcome_proxy_covariance": 0.0,
+      "profile": "uninformative",
+      "profile_code": 3,
+      "proxy_mean": 0.6,
+      "scenario": "iid_uninformative_b0020",
+      "sensitivity": 0.6,
+      "specificity": 0.4,
+      "total_budget": 20,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 2000,
+      "outcome_proxy_covariance": 0.0,
+      "profile": "uninformative",
+      "profile_code": 3,
+      "proxy_mean": 0.6,
+      "scenario": "iid_uninformative_b0200",
+      "sensitivity": 0.6,
+      "specificity": 0.4,
+      "total_budget": 200,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 10000,
+      "outcome_proxy_covariance": 0.0,
+      "profile": "uninformative",
+      "profile_code": 3,
+      "proxy_mean": 0.6,
+      "scenario": "iid_uninformative_b1000",
+      "sensitivity": 0.6,
+      "specificity": 0.4,
+      "total_budget": 1000,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 200,
+      "outcome_proxy_covariance": 0.25,
+      "profile": "perfect",
+      "profile_code": 4,
+      "proxy_mean": 0.5,
+      "scenario": "iid_perfect_b0020",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "total_budget": 20,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 2000,
+      "outcome_proxy_covariance": 0.25,
+      "profile": "perfect",
+      "profile_code": 4,
+      "proxy_mean": 0.5,
+      "scenario": "iid_perfect_b0200",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "total_budget": 200,
+      "truth": 0.5
+    },
+    {
+      "iid_same_population": true,
+      "n_unlabeled": 10000,
+      "outcome_proxy_covariance": 0.25,
+      "profile": "perfect",
+      "profile_code": 4,
+      "proxy_mean": 0.5,
+      "scenario": "iid_perfect_b1000",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "total_budget": 1000,
+      "truth": 0.5
+    }
+  ],
+  "schema_version": 1,
+  "seed": 2031,
+  "study": "retrospective-independent-pilot-study-v1",
+  "total_budgets": [
+    20,
+    200,
+    1000
+  ]
+}

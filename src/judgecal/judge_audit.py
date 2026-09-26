@@ -90,6 +90,7 @@ def judge_accuracy_audit(
     alpha: float = 0.05,
     *,
     cohorts: Sequence[str] = _COHORTS,
+    include_signed: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Audit forward-judge accuracy with gold-free response-order agreement.
 
@@ -127,8 +128,15 @@ def judge_accuracy_audit(
     Returns trials and descriptive mean errors/widths over seeds. Seeds
     overlap in this fixed corpus, so no iid Monte Carlo errors are attached.
     Trial attrs contain gold-free split_manifest and audit_protocol metadata.
+    ``include_signed=True`` adds audit-tuned ``ppi_signed`` with prespecified
+    power bounds [-1,1] on exactly the same pools and at the same input cost
+    as PPI. Signed-enabled tables additionally record power_lower/upper;
+    the default tables, schemas and split manifests remain unchanged.
     """
     data = _validate_frame(frame)
+    if not isinstance(include_signed, (bool, np.bool_)):
+        raise ValueError("include_signed must be a boolean")
+    methods = _METHODS + (("ppi_signed",) if include_signed else ())
     fractions, seeds, cohorts = tuple(fractions), tuple(seeds), tuple(cohorts)
     if (not fractions or any(not _fraction(f) for f in fractions)
             or len(set(float(f) for f in fractions)) != len(fractions)):
@@ -209,9 +217,14 @@ def judge_accuracy_audit(
                             **arguments, power=power)
                            for method, power in (("ppi", 1.), ("ppi_tuned", "auto"))},
                     }
+                    if include_signed:
+                        results["ppi_signed"] = prediction_powered_mean(
+                            predictions_labeled=audit_proxy, predictions_unlabeled=evaluation_proxy,
+                            **arguments, power="auto", power_bounds=(-1., 1.),
+                        )
                     # Held-out gold first enters numerical scoring after inference.
                     reference = float(_correct(evaluation).mean())
-                    for method in _METHODS:
+                    for method in methods:
                         result = results.get(method)
                         estimate = float(evaluation_proxy.mean()) if result is None else result.point
                         error = estimate - reference
@@ -236,6 +249,9 @@ def judge_accuracy_audit(
                             "cached_judgments_used": audit_cache + evaluation_cache,
                             "heldout_reference_labels_scored": len(evaluation),
                             "heldout_forward_judgments_scored": len(evaluation),
+                            **({"power_lower": None if result is None else result.power_bounds[0],
+                                "power_upper": None if result is None else result.power_bounds[1]}
+                               if include_signed else {}),
                         })
     trials = pd.DataFrame(records)
     summary = (
@@ -250,6 +266,11 @@ def judge_accuracy_audit(
         .reset_index()
     )
     summary["root_mean_squared_error"] = np.sqrt(summary["mean_squared_error"])
+    if include_signed:
+        summary["power_lower"] = summary.method.map({
+            "human_only": 0., "ppi": 0., "ppi_tuned": 0., "ppi_signed": -1.})
+        summary["power_upper"] = summary.method.map({
+            "human_only": 1., "ppi": 1., "ppi_tuned": 1., "ppi_signed": 1.})
     # Attach large metadata only after grouping, avoiding repeated pandas attrs copies.
     trials.attrs["split_manifest"] = manifests
     trials.attrs["audit_protocol"] = {
@@ -264,4 +285,11 @@ def judge_accuracy_audit(
         "scoring_cost_scope": "Held-out gold/forward scoring counts are separate and may overlap cached inference inputs",
         "aggregation": "Descriptive dependent-split means, separately by overlapping cohort and judge; no iid MCSE",
     }
+    if include_signed:
+        trials.attrs["audit_protocol"]["signed_extension"] = {
+            "method": "ppi_signed", "power_bounds": [-1., 1.],
+            "selection": "Audit covariance and both proxy pools; no held-out correctness or unused data",
+            "interpretation": "Algebraic scalar-proxy orientation; canonical choices and correctness outcomes unchanged",
+            "default_bounds": [0., 1.],
+        }
     return trials, summary

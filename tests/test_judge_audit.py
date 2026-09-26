@@ -212,3 +212,47 @@ def test_absent_requested_cohort_is_not_silently_omitted():
     frame = panel().query("subset == 'Natural'")
     with pytest.raises(ValueError, match="cohort Adversarial"):
         run(frame)
+
+
+def test_signed_opt_in_preserves_default_tables_and_manifests_exactly():
+    default, default_summary = run()
+    explicit, explicit_summary = run(include_signed=False)
+    pd.testing.assert_frame_equal(default, explicit)
+    pd.testing.assert_frame_equal(default_summary, explicit_summary)
+    assert default.attrs == explicit.attrs
+    enabled, enabled_summary = run(include_signed=True)
+    assert len(enabled) == len(default) // 4 * 5
+    assert enabled.attrs["split_manifest"] == default.attrs["split_manifest"]
+    ordinary = enabled.loc[enabled.method != "ppi_signed"].drop(columns=["power_lower", "power_upper"]).reset_index(drop=True)
+    ordinary_summary = enabled_summary.loc[enabled_summary.method != "ppi_signed"].drop(columns=["power_lower", "power_upper"]).reset_index(drop=True)
+    assert ordinary.to_csv(index=False) == default.to_csv(index=False)
+    assert ordinary_summary.to_csv(index=False) == default_summary.to_csv(index=False)
+    signed = enabled.loc[enabled.method == "ppi_signed"]
+    assert signed.power_lower.eq(-1).all() and signed.power_upper.eq(1).all()
+    assert signed.selected_power.between(-1, 1).all()
+    costs = ["human_labels_used", "cached_judgments_used", "heldout_reference_labels_scored"]
+    pd.testing.assert_frame_equal(signed[costs].reset_index(drop=True),
+                                  enabled.loc[enabled.method == "ppi", costs].reset_index(drop=True))
+
+
+def test_signed_hidden_and_unused_gold_do_not_enter_fitting():
+    frame = panel()
+    before, _ = run(frame, cohorts=["All"], fractions=[.2], include_signed=True)
+    split = before.attrs["split_manifest"][0]
+    changed = frame.copy()
+    hidden = changed.sample_id.isin(split["evaluation_sample_ids"] + split["unused_sample_ids"])
+    changed.loc[hidden, "reference_label"] = 3 - changed.loc[hidden, "reference_label"]
+    unused = changed.sample_id.isin(split["unused_sample_ids"])
+    changed.loc[unused, ["forward_prediction", "reverse_prediction"]] = 0
+    after, _ = run(changed, cohorts=["All"], fractions=[.2], include_signed=True)
+    columns = ["estimate", "selected_power", "interval_low", "interval_high", "standard_error",
+               "power_lower", "power_upper", "human_labels_used", "cached_judgments_used"]
+    pd.testing.assert_frame_equal(before[columns], after[columns])
+    assert before.attrs["split_manifest"] == after.attrs["split_manifest"]
+    assert not before.heldout_accuracy_reference.equals(after.heldout_accuracy_reference)
+
+
+@pytest.mark.parametrize("value", [1, "true", None, []])
+def test_include_signed_requires_boolean(value):
+    with pytest.raises(ValueError, match="include_signed"):
+        run(include_signed=value)

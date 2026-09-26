@@ -162,6 +162,37 @@ not represent current model versions, and adversarial filtering limits
 comparative model conclusions. The [pinned provenance](reports/llmbar/dataset.json)
 records all 27 source hashes and source model configurations.
 
+## Follow-up: using an inverse proxy
+
+The [signed-coefficient report](reports/signed-power/REPORT.md) asks whether
+a negatively associated proxy can still help. The numeric mean API now
+accepts explicit `power_bounds=(-1,1)` with `power="auto"`; the existing
+default remains `[0,1]`. This applies the established PPI++ mean principle
+and minimizes the same estimated variance over a larger coefficient range.
+Negative weight on `F` is equivalent to positive weight on `1-F`.
+
+![Signed correction error and coverage](reports/signed-power/signed_simulation_tradeoff.svg)
+
+All **72,000 simulation trial rows** are retained across 18 known-truth
+settings. For an inverse proxy with prevalence 0.5 and 20 audit labels,
+signed tuning reduces RMSE from **0.1098 to 0.0683** relative to positive-only
+tuning. That flexibility has a cost: with an uninformative proxy in the
+same prevalence/sample-size setting, RMSE increases from **0.1108 to 0.1125**.
+Near prevalence 0.95, the inverse-proxy signed normal interval covers in
+only **52.4%** of 1,000 small-audit replications despite lower point error.
+Paired squared-loss Monte Carlo errors and exact coverage uncertainty are
+reported; optimizing estimated variance does not guarantee realized gains.
+
+The empirical extension preserves all 270 historical LLMBar splits and
+every preceding method result, adding signed tuning for **4,050 total
+trials**. Against positive-range tuning, MAE improves in 11 of 27 cells,
+ties in 12 and worsens in four. All six ChatGPT/LLaMA2 Adversarial
+judge/budget cells improve modestly; losses elsewhere remain visible.
+This follow-up was motivated by earlier results on the same corpus, so
+it is exploratory rather than independent validation. The
+[protocol](docs/SIGNED_POWER_PROTOCOL.md) specifies sign selection,
+constraint assumptions, identical costs and the limits of normal inference.
+
 ## Install
 
 ```bash
@@ -240,6 +271,12 @@ scores in `[0,1]`; fractional values are preserved. The result estimates
 the population mean of the explicitly defined outcome, with the same
 sampling assumptions and untruncated normal intervals as above.
 
+To study inverse proxy signals, pass `power="auto", power_bounds=(-1,1)`
+to this numeric API. The result records the chosen bounds and coefficient.
+Choose the range before examining evaluation outcomes; same-audit scalar
+tuning is asymptotic and can introduce finite-sample bias. The categorical
+win-rate and finite-sample APIs keep their existing coefficient behavior.
+
 ## Other tools
 
 | Question | API | Interpretation |
@@ -271,6 +308,7 @@ python examples/stress_grid.py --output reports/reproduced/stress --plot
 python examples/reference_sensitivity.py --output reports/reproduced/sensitivity --plot
 python examples/finite_sample_study.py --output reports/reproduced/finite-sample --plot
 python examples/llmbar_audit.py --output reports/reproduced/llmbar-audit --plot
+python examples/signed_power_study.py --output reports/reproduced/signed-power --plot
 ```
 
 The MT-Bench loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The LLMBar loader joins full comparison content, preserves already-canonical choices and pins source-byte hashes. Its [separate attribution](reports/llmbar/DATA_LICENSE.md) retains the official repository notice. Both committed label snapshots contain no prompts, model responses or private user material.
@@ -312,6 +350,7 @@ supported Python versions.
 - [x] Broader prevalence/sample-size grids and pinned author-implementation checks.
 - [x] Sensitivity to human-vote aggregation and a separate cached order-consistency audit.
 - [x] Conservative finite-sample bounds with explicit width/coverage tradeoffs.
+- [x] Optional signed mean coefficients, inverse-proxy experiments and unchanged historical splits.
 - [ ] Dedicated position-bias and verbosity-bias correction estimators.
 - [ ] Hierarchical category reliability and validated label-budget planning.
 - [ ] Broader benchmarks on newer model judgments.

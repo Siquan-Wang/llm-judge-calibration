@@ -9,6 +9,8 @@ Optional power tuning follows the mean-estimation principle in PPI++
 (https://arxiv.org/abs/2311.01453), minimizing this implementation's
 per-pool variance estimate. Clustered tuning is a sandwich adaptation;
 neither tuning formula is a claim of numerical identity to ppi_py.
+The numeric mean API optionally permits a signed coefficient range, following
+PPI++ Example 6.1 (https://arxiv.org/pdf/2311.01453v2); the default stays [0,1].
 
 Intervals use a large-sample normal approximation, optionally with one-way
 cluster-robust variances. They are not distribution-free guarantees.
@@ -46,6 +48,8 @@ class PPIMeanResult:
     residual_correction. Fractions are scores, not implicit win labels.
     ``estimated_variance_ratio`` compares estimated variance to the audit-only
     mean's estimated variance and is None if that denominator is zero.
+    ``power_bounds`` records the prespecified feasible coefficient interval;
+    its default is (0,1), while (-1,1) explicitly permits inverse proxy signals.
     """
 
     point: float
@@ -66,6 +70,7 @@ class PPIMeanResult:
     selected_power: float = 1.0
     power_method: str = "fixed"
     estimated_variance_ratio: float | None = None
+    power_bounds: tuple[float, float] = (0.0, 1.0)
 
     def as_dict(self) -> dict:
         """Serialize the result, including the nested Interval, to a dict."""
@@ -167,7 +172,26 @@ def _bounded_scores(values: Sequence[float], name: str) -> np.ndarray:
     return np.asarray(arr, dtype=float)
 
 
-def _inference_options(alpha: float, power: float | str) -> tuple[float, float | str]:
+def _validate_power_bounds(bounds: tuple[float, float]) -> tuple[float, float]:
+    """Normalize a prespecified bounded interval that includes audit-only zero."""
+    message = "power_bounds must be a two-real-number tuple with -1 <= lower <= 0 <= upper <= 1 and lower < upper"
+    if (not isinstance(bounds, tuple) or len(bounds) != 2
+            or any(isinstance(value, (bool, np.bool_)) or not isinstance(value, Real)
+                   for value in bounds)):
+        raise ValueError(message)
+    lower, upper = bounds
+    # Check boundedness before float conversion, including arbitrarily large ints.
+    if not (-1 <= lower <= 0 <= upper <= 1 and lower < upper):
+        raise ValueError(message)
+    result = (float(lower), float(upper))
+    if not all(np.isfinite(result)) or not result[0] < result[1]:
+        raise ValueError(message + "; bounds must remain distinct at floating-point precision")
+    return result
+
+
+def _inference_options(
+    alpha: float, power: float | str, *, power_bounds: tuple[float, float] = (0.0, 1.0),
+) -> tuple[float, float | str]:
     if (
         isinstance(alpha, (bool, np.bool_))
         or not isinstance(alpha, Real)
@@ -179,10 +203,12 @@ def _inference_options(alpha: float, power: float | str) -> tuple[float, float |
         if (
             isinstance(power, (bool, np.bool_))
             or not isinstance(power, Real)
-            or not 0 <= power <= 1
+            or not power_bounds[0] <= power <= power_bounds[1]
             or not np.isfinite(float(power))
         ):
-            raise ValueError("power must be a finite number in [0, 1] or 'auto'")
+            if power_bounds == (0.0, 1.0):
+                raise ValueError("power must be a finite number in [0, 1] or 'auto'")
+            raise ValueError("power must be finite and within power_bounds, or 'auto'")
         power = float(power)
     alpha = float(alpha)
     if not 0 < alpha < 1:
@@ -261,6 +287,7 @@ def prediction_powered_mean(
     unlabeled_groups: Sequence | None = None,
     *,
     power: float | str = 1.0,
+    power_bounds: tuple[float, float] = (0.0, 1.0),
 ) -> PPIMeanResult:
     """Estimate a population mean using audited outcomes and frozen predictions.
 
@@ -273,7 +300,7 @@ def prediction_powered_mean(
     than a plurality winner. This API does not infer latent truth, convert
     fractional scores into labels, or weight rows by annotation counts.
 
-    For fixed power lambda in [0, 1], the estimator and variance estimate are
+    For fixed power lambda within ``power_bounds``, the estimator and variance are
 
         mean(Y_L) + lambda * (mean(F_U) - mean(F_L)),
         Q(lambda) = var_mean(Y_L - lambda * F_L)
@@ -281,10 +308,21 @@ def prediction_powered_mean(
 
     Default power one gives original PPI; zero gives the audit-only mean.
     ``power='auto'`` uses the bounded PPI++ mean plug-in minimizer
-    clip(cov_mean(Y_L, F_L)/(var_mean(F_L)+var_mean(F_U)), 0, 1), falling back
+    clip(cov_mean(Y_L, F_L)/(var_mean(F_L)+var_mean(F_U)), lower, upper), falling back
     to zero for a zero denominator. It minimizes estimated variance, not
     realized MSE; it is not generally finite-sample unbiased. This per-pool
     variance implementation differs from ppi_py's pooled variance convention.
+
+    ``power_bounds`` must be a two-real-number tuple satisfying
+    -1 <= lower <= 0 <= upper <= 1 and lower < upper. Its default (0,1)
+    preserves positive-only tuning and rejects negative fixed power. The
+    explicit option (-1,1) also uses inverse proxy signals. Bounds must be
+    selected before examining evaluation outcomes. For means, negative
+    coefficients follow PPI++ Example 6.1; this is not a new estimator.
+    Power -a on F has the same point and variance as +a on 1-F. This numeric
+    complement includes all proxy values; it does not relabel outcomes.
+    The bounds stabilize tuning and need not contain the unconstrained
+    optimal coefficient for continuous proxies or arbitrary cluster designs.
 
     Both pools must be independent, disjoint, and representative of the same
     target population. All predictions must use the same frozen predictor,
@@ -307,7 +345,11 @@ def prediction_powered_mean(
     shift or audit leakage. No finite-sample coverage or efficiency guarantee
     is made, including for fractional outcomes.
     """
-    alpha, power = _inference_options(alpha, power)
+    requested_bounds = power_bounds
+    power_bounds = _validate_power_bounds(requested_bounds)
+    # Compare real-valued fixed powers before rounding their feasible bounds:
+    # e.g. a Fraction exactly on the lower boundary must remain admissible.
+    alpha, power = _inference_options(alpha, power, power_bounds=requested_bounds)
     f_l = _bounded_scores(predictions_labeled, "predictions_labeled")
     y_l = _bounded_scores(outcomes_labeled, "outcomes_labeled")
     f_u = _bounded_scores(predictions_unlabeled, "predictions_unlabeled")
@@ -315,6 +357,7 @@ def prediction_powered_mean(
         raise ValueError("predictions_labeled and outcomes_labeled must have the same length")
     return _mean_inference(
         f_l, y_l, f_u, alpha, labeled_groups, unlabeled_groups, power,
+        power_bounds=power_bounds,
         population_assumptions=(
             "Independent, disjoint audit and prediction-only pools from the same target population.",
             "Same frozen predictor for both pools; no fitting or calibration on the audit outcomes.",
@@ -415,6 +458,7 @@ def prediction_powered_win_rate(
     fields["raw_rate"] = fields.pop("prediction_mean")
     fields["human_only_rate"] = fields.pop("outcome_mean")
     fields.pop("estimand")
+    fields.pop("power_bounds")
     fields["target"] = target
     fields["interval"] = result.interval
     return PPIWinRateResult(**fields)
@@ -430,6 +474,7 @@ def _mean_inference(
     power: float | str,
     *,
     population_assumptions: tuple[str, str, str],
+    power_bounds: tuple[float, float] = (0.0, 1.0),
 ) -> PPIMeanResult:
     """Shared inference on validated scores; preserves original arithmetic."""
     auto_power = isinstance(power, str) and power == "auto"
@@ -459,7 +504,7 @@ def _mean_inference(
         denominator = judge_l_variance + judge_u_variance
         covariance = _covariance_of_means(y_l, f_l, labeled_codes)
         selected_power = (
-            float(np.clip(covariance / denominator, 0.0, 1.0))
+            float(np.clip(covariance / denominator, *power_bounds))
             if denominator > 0 else 0.0
         )
         power_method = (
@@ -497,7 +542,7 @@ def _mean_inference(
         population_assumptions[2],
         "Large-sample normal interval; no finite-sample or distribution-free guarantee.",
         (
-            "Power minimizes estimated variance over [0,1]; no finite-sample MSE or coverage guarantee."
+            f"Power minimizes estimated variance over [{power_bounds[0]:g},{power_bounds[1]:g}]; no finite-sample MSE or coverage guarantee."
             if auto_power else
             f"Fixed lambda={selected_power:g}; no tuning or guaranteed efficiency improvement."
         ),
@@ -507,9 +552,16 @@ def _mean_inference(
         assumptions += (
             "Cluster-sandwich power adaptation requires many independent clusters and no dominating cluster.",
         )
+    if power_bounds != (0.0, 1.0):
+        assumptions += (
+            f"Prespecified coefficient bounds [{power_bounds[0]:g},{power_bounds[1]:g}]; evaluation outcomes cannot select the range or coefficient.",
+            "Negative mean coefficients are equivalent to positive coefficients on the complemented numeric proxy; outcomes are unchanged.",
+        )
     references = _REFERENCES
     if auto_power or selected_power != 1.0:
         references += ("https://arxiv.org/abs/2311.01453",)
+    if power_bounds != (0.0, 1.0):
+        references += ("https://arxiv.org/pdf/2311.01453v2",)
     return PPIMeanResult(
         point=point,
         prediction_mean=raw_rate,
@@ -529,4 +581,5 @@ def _mean_inference(
         selected_power=selected_power,
         power_method=power_method,
         estimated_variance_ratio=variance_ratio,
+        power_bounds=power_bounds,
     )

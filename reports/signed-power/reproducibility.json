@@ -1,0 +1,57 @@
+{
+  "artifacts_sha256": {
+    "REPORT.md": "a56e0ec973c2984fb300e9ad509f2140e5921c8639a60c63abfcbfb329f6bb7b",
+    "config.json": "4fd7baed41f85059dff9aa8122b606ef25c1073d8fd701524cf11f0b73230192",
+    "llmbar_paired_differences.csv": "6bc07393ab060ff056e3f623942f495fb42023e4db7aa8ca89b4ed165291a59d",
+    "llmbar_summary.csv": "e237b97b21750bd808f42b3d5a3d61b93b8ff7d6ab780dd74ee9d352697da788",
+    "llmbar_trials.csv": "27d3ba5cd90e00f5d56da53685095f14b6554b945bb3ca6e6772ade7579e44cc",
+    "signed_llmbar_changes.png": "84ebf16bc76ed1c74f13e6a5eaa97415bfccfd23e8c84516625bcf043d560cb4",
+    "signed_llmbar_changes.svg": "b4b0506102dab81de4483e7d356ca882f7cd4b8f6cb96881d97b1982bef4c2b0",
+    "signed_simulation_tradeoff.png": "8a2302456cd76d30fbd10867011543a6dbfa0bd7067713ed639f67e08e83d54b",
+    "signed_simulation_tradeoff.svg": "bd90929853338d9b9bb49f77ce57ca66144dfbe07b0aca8b9bec751657c57dcf",
+    "simulation_summary.csv": "25287d171c50227bb944ed46cbd3e4bd52cc61f883630c57336b0deb2bee1999",
+    "simulation_trials.csv.gz": "53808e899f75294d43b7dbf5d20b42f196e40aea18b748d8027be2f3d8a8f8d7",
+    "split_manifest.json": "35e8d4eaa365a078f68502db2c8329aa4a4c764b76c692a6a91ddbfc44b33530"
+  },
+  "historical_alignment": {
+    "historical_method_trials_verified": 3240,
+    "historical_splits_verified": 270,
+    "split_manifest_sha256": "35e8d4eaa365a078f68502db2c8329aa4a4c764b76c692a6a91ddbfc44b33530",
+    "trials_sha256": "75b6b7131fa52949cb25256536b8ec4e5b95d6367d78dd3c187fdfce038f3a80"
+  },
+  "input_labels_sha256": "aafff984b410bd1f60e0a3196a10957c5a1f241caf8c85c4c391d8b1e2ef1f97",
+  "input_provenance_sha256": "e6ee5d891fe5697a058af1247634ffc6c3d92338c60bbff14521b03a0f68fb98",
+  "packages": {
+    "judgecal": "0.8.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1"
+  },
+  "platform": "Windows",
+  "python": "3.12.14",
+  "source_sha256": {
+    "docs/METHODS.md": "f632a8d18844cdd62c9992c667a17946fc88cf4e67724f93d8f026dcf770103b",
+    "docs/SIGNED_POWER_PROTOCOL.md": "20bb2942419801eb6e7079e543be5f04d0ad21c204d64f19600195fc1acf25f7",
+    "examples/llmbar_audit.py": "da4aeca46b696549276b62d4fd91c7cfe15e57038c39e3030d1d8eb5487b3288",
+    "examples/research_study.py": "af05fc3463a63b70995e9e5ccba429782e512e55b65a54d3444457224e750143",
+    "examples/signed_power_study.py": "4833eeffb4ea599680d3df704ad2c47897b72c41003c2188dfa900f169e908ed",
+    "pyproject.toml": "1feda1a0a34e15a5f30a4941bcec27c480fa9ad60f3c8d9cdbf2076e2368ee55",
+    "src/judgecal/__init__.py": "4b94e8324f863145ba04123f41d29a4133361a4b016a5fa0894e1824552e2082",
+    "src/judgecal/benchmark.py": "c82412ff8f02f3d8fb7290b695fe5fe3b648d62cee3d32d1dbaa16ad3992f7ef",
+    "src/judgecal/calibration.py": "3a1d6cfe04cb276b4b3aec0d5118ab611e4aaf5b167bf89039048afee621ed55",
+    "src/judgecal/compare.py": "732d84cb3184979e15a1c24d02643f612d2346f635e4ebc18b6240a07ec4a248",
+    "src/judgecal/data.py": "c0d1e380072cbaae9e7e51769d1284abb6b4113fe0a68368a851089f6cbd5882",
+    "src/judgecal/finite_sample.py": "a9139d6f85ed3832b2bf9634081c29e07b971e4bca32cef22aaab8fba517e25f",
+    "src/judgecal/finite_study.py": "984fca779501429963dbb9e18269f63720cbcd1e11a05b4874269e40cde01599",
+    "src/judgecal/intervals.py": "de3fff79cdaeaba26dad12b36b81bc58eefa93e8c80ac286219112a780b7d4b1",
+    "src/judgecal/judge_audit.py": "39e4ae0a046ad7d7707d9c35d54040b65ff0c6233d3ad0f81d1b34b1fe86c6c0",
+    "src/judgecal/llmbar.py": "8bd2abc9f33024b15802901295a8ac13bde7fe66c2d94953e8332b9707326467",
+    "src/judgecal/metrics.py": "09a91c0168d37a449fd3be96a559377929823fdbd81b83da458614dd822bc90a",
+    "src/judgecal/ppi.py": "9ebe5f53b9cbf0ff98c91abc1ef93aa745436c08daa7458a5496e1b424487d98",
+    "src/judgecal/signed_study.py": "8156403d24983e82df1df43c5945aa4b51492db254b61a00e3f8ab96e3f91c76",
+    "src/judgecal/simulation.py": "5fdafb5456d311c9f630e757acc15ec04efb95a2dd7180597a5f826ea15ce832",
+    "src/judgecal/stress_grid.py": "b49a2a1c035bacd242afa590e49810b5117696bb107da38d145e8a256afbf447"
+  },
+  "source_text_normalization": "CRLF to LF before SHA-256 (matches Git text attributes)"
+}

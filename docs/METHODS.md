@@ -72,8 +72,8 @@ Angelopoulos, Duchi, and Zrnic in PPI++. [Original PPI paper](https://arxiv.org/
 [PPI++ paper](https://arxiv.org/abs/2311.01453).
 
 Write `V_L(X)` and `V_U(X)` for estimated variances of sample means, and
-`C_L(Y,F)` for the paired covariance of the audit means. This implementation
-minimizes
+`C_L(Y,F)` for the paired covariance of the audit means. With the default
+coefficient range `[0,1]`, this implementation minimizes
 
 ```text
 Q(lambda) = lambda^2 * V_U(F) + V_L(Y - lambda * F)
@@ -83,12 +83,20 @@ Q(lambda) = lambda^2 * V_U(F) + V_L(Y - lambda * F)
 lambda_hat = projection_to_[0,1](C_L(Y,F) / [V_L(F) + V_U(F)]).
 ```
 
-If the denominator is zero, the implementation selects zero. The bounded
-coefficient is a deliberate choice: an empirically nonpositive covariance
-selects the human-only endpoint. It does not exploit a negatively correlated
-judge by using a negative coefficient. An unconstrained minimum above one
-selects one. The point estimate and interval endpoints themselves are never
-clipped to `[0,1]`.
+If the denominator is zero, the implementation selects zero. In the default
+range, an empirically nonpositive covariance selects the human-only endpoint;
+an unconstrained minimum above one selects one. The categorical win-rate API
+retains this range. The point estimate and interval endpoints themselves are
+never clipped to `[0,1]`.
+
+The numeric mean API also accepts explicit `power_bounds=(-1,1)`, projecting
+the same ratio onto that signed interval. Allowed bounds are contained in
+`[-1,1]`, contain zero, and must be chosen before examining evaluation outcomes.
+This option can exploit negative audit covariance. It follows the mean case
+in PPI++ Example 6.1, while retaining this package's per-pool variance convention.
+See the [signed coefficient protocol](SIGNED_POWER_PROTOCOL.md) for the
+proxy-complement identity, binary-oracle derivation, empirical study and
+small-sample limitations. The finite-sample API is unchanged.
 
 Because zero is feasible, `Q(lambda_hat) <= Q(0)` up to floating-point
 roundoff. `estimated_variance_ratio` reports `Q(lambda_hat)/V_L(Y)` when

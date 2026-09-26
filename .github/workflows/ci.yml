@@ -35,6 +35,8 @@ jobs:
         run: python examples/reference_sensitivity.py --seeds 2 --output "${{ runner.temp }}/judgecal-sensitivity"
       - name: Finite-sample interval study smoke test
         run: python examples/finite_sample_study.py --repetitions 2 --output "${{ runner.temp }}/judgecal-finite-sample"
+      - name: Cached-judge accuracy audit smoke test
+        run: python examples/llmbar_audit.py --seeds 2 --output "${{ runner.temp }}/judgecal-llmbar"
   author-reference:
     runs-on: ubuntu-latest
     steps:

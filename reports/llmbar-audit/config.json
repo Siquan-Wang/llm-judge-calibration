@@ -1,0 +1,29 @@
+{
+  "audit_protocol": {
+    "aggregation": "Descriptive dependent-split means, separately by overlapping cohort and judge; no iid MCSE",
+    "cost_scope": "Logical inference inputs from cached data, not API charges or purchased annotation",
+    "human_label_sharing": "One sample gold label audits every judge; do not sum costs across judges",
+    "interval_scope": "Untruncated asymptotic instruction-cluster intervals; no held-out or population coverage claim",
+    "invalid_prediction_policy": "Only explicit integer 0 denotes invalid; retained, never dropped",
+    "outcome": "1[canonical forward prediction equals reference label]; invalid forward=0",
+    "proxy": "1[both canonical predictions valid and equal]; no reference label",
+    "scoring_cost_scope": "Held-out gold/forward scoring counts are separate and may overlap cached inference inputs",
+    "target": "Realized forward-judge accuracy in the fixed held-out pool",
+    "weighting": "Equal comparison weight, with complete instruction groups assigned together"
+  },
+  "cohorts": [
+    "All",
+    "Natural",
+    "Adversarial"
+  ],
+  "judges": [
+    "GPT-4",
+    "ChatGPT",
+    "LLaMA2"
+  ],
+  "plots": true,
+  "protocol": "cached-judge-accuracy-audit-v1",
+  "source_labels_sha256": "aafff984b410bd1f60e0a3196a10957c5a1f241caf8c85c4c391d8b1e2ef1f97",
+  "source_revision": "900616bff90b6c6c8e1681f7d079250637c55992",
+  "split_seeds": 30
+}

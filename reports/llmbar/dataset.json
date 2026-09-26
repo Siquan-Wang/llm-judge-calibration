@@ -1,0 +1,302 @@
+{
+  "canonicalization_source": "LLMEvaluator/evaluate.py: winner if not swap else reverse_label(winner)",
+  "citation": "Zeng et al. (ICLR 2024), Evaluating Large Language Models at Evaluating Instruction Following",
+  "columns": [
+    "sample_id",
+    "instruction_id",
+    "subset",
+    "judge",
+    "reference_label",
+    "forward_prediction",
+    "reverse_prediction"
+  ],
+  "comparisons": 419,
+  "dataset_id": "princeton-nlp/LLMBar",
+  "instruction_groups": 418,
+  "instruction_id_definition": "SHA-256 of exact input UTF-8; no normalization; split complete instruction groups",
+  "invalid_predictions": {
+    "ChatGPT": {
+      "forward": 0,
+      "reverse": 0
+    },
+    "GPT-4": {
+      "forward": 0,
+      "reverse": 0
+    },
+    "LLaMA2": {
+      "forward": 1,
+      "reverse": 1
+    }
+  },
+  "join_policy": "Every cached full input/output tuple must match gold exactly once; reference labels checked separately; no row-position join",
+  "judges": [
+    "GPT-4",
+    "ChatGPT",
+    "LLaMA2"
+  ],
+  "labels_sha256": "aafff984b410bd1f60e0a3196a10957c5a1f241caf8c85c4c391d8b1e2ef1f97",
+  "license": "MIT (official repository notice retained in DATA_LICENSE.md)",
+  "model_configurations": {
+    "ChatGPT": {
+      "model_name": "gpt-3.5-turbo",
+      "openai_kwargs": {
+        "engine": "gpt-35-turbo-0613",
+        "max_tokens": 50,
+        "temperature": 0.0,
+        "tokens_to_avoid": [
+          "Both",
+          "Neither",
+          "None",
+          " Both",
+          " Neither",
+          "Either",
+          "depends",
+          "context",
+          "It",
+          "both",
+          "Sorry"
+        ],
+        "tokens_to_favor": [
+          "Output (a)",
+          "Output (b)"
+        ]
+      },
+      "parsing": {
+        "1": "(?:^|\\n) ?Output \\(a\\)",
+        "2": "(?:^|\\n) ?Output \\(b\\)"
+      },
+      "prompt": "comparison/Vanilla.txt"
+    },
+    "GPT-4": {
+      "model_name": "gpt-4",
+      "openai_kwargs": {
+        "engine": "gpt-4",
+        "max_tokens": 50,
+        "temperature": 0.0,
+        "tokens_to_avoid": [
+          "Both",
+          "Neither",
+          "None",
+          " Both",
+          " Neither",
+          "Either",
+          "depends",
+          "context",
+          "It",
+          "both",
+          "Sorry"
+        ],
+        "tokens_to_favor": [
+          "Output (a)",
+          "Output (b)"
+        ]
+      },
+      "parsing": {
+        "1": "(?:^|\\n) ?Output \\(a\\)",
+        "2": "(?:^|\\n) ?Output \\(b\\)"
+      },
+      "prompt": "comparison/Vanilla.txt"
+    },
+    "LLaMA2": {
+      "generate_kwargs": {
+        "max_new_tokens": 50
+      },
+      "model_name": "meta-llama/Llama-2-70b-chat-hf",
+      "parsing": {
+        "1": "(?:^|\\n) ?Output \\(a\\)",
+        "2": "(?:^|\\n) ?Output \\(b\\)"
+      },
+      "prompt": "comparison/Vanilla.txt"
+    }
+  },
+  "model_version_limitations": "GPT-4 is an undated gpt-4 alias; ChatGPT config names gpt-3.5-turbo with engine gpt-35-turbo-0613; LLaMA2 names meta-llama/Llama-2-70b-chat-hf without a weight revision. Cached-source pins reproduce this reanalysis, not new inference.",
+  "paper_url": "https://arxiv.org/abs/2310.07641",
+  "prediction_definition": "Original output ID 1 or 2; null cached winner maps to 0 invalid. Both cached orders already canonical; reverse winner is NOT flipped again.",
+  "prompt_interpretation": "Vanilla in the repository corresponds to Vanilla+Rules in the paper; Vanilla_NoRules is a different cache",
+  "raw_text_published": false,
+  "reference_definition": "Curated objective instruction-following reference; not subjective preference or unrestricted population ground truth",
+  "reference_label_counts": {
+    "1": 206,
+    "2": 213
+  },
+  "rows": 1257,
+  "sample_id_definition": "SHA-256 of UTF-8 JSON [input,output_1,output_2], ensure_ascii=False, separators=(',',':'); excludes gold",
+  "schema_version": 1,
+  "selected_prompt_directory": "Vanilla",
+  "selection_limitations": "Natural examples were filtered/modified; Adversarial examples were constructed/filtered against ChatGPT evaluators. Report cohorts separately; do not infer universal judge rankings.",
+  "source_revision": "900616bff90b6c6c8e1681f7d079250637c55992",
+  "source_total_bytes": 2630581,
+  "source_url": "https://github.com/princeton-nlp/LLMBar/tree/900616bff90b6c6c8e1681f7d079250637c55992",
+  "sources": [
+    {
+      "bytes": 211768,
+      "path": "Dataset/LLMBar/Adversarial/GPTInst/dataset.json",
+      "sha256": "1002425f73c2cf54b6e6de99bce3f6c60fa2a17d13194772e37d7481c1351d42",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTInst/dataset.json"
+    },
+    {
+      "bytes": 241944,
+      "path": "Dataset/LLMBar/Adversarial/GPTInst/evaluators/ChatGPT/Vanilla/result.json",
+      "sha256": "7c6122b0cb68c5b02fff840e6657d5e03dfa7a69cef0b06e7f1b1cf589a4443a",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTInst/evaluators/ChatGPT/Vanilla/result.json"
+    },
+    {
+      "bytes": 241944,
+      "path": "Dataset/LLMBar/Adversarial/GPTInst/evaluators/GPT-4/Vanilla/result.json",
+      "sha256": "31ca00033a84f9442a3fc131cb17bf9c51b2693cf48b0c0ec97a894d759e1cfb",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTInst/evaluators/GPT-4/Vanilla/result.json"
+    },
+    {
+      "bytes": 241438,
+      "path": "Dataset/LLMBar/Adversarial/GPTInst/evaluators/LLaMA2/Vanilla/result.json",
+      "sha256": "141c3f3caa774309983d077f2ecbef99cd05198645b836cada2038c43f4e4886",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTInst/evaluators/LLaMA2/Vanilla/result.json"
+    },
+    {
+      "bytes": 32640,
+      "path": "Dataset/LLMBar/Adversarial/GPTOut/dataset.json",
+      "sha256": "1ff56e520d7607750a9866a3be0f5b850392ca4477a1f69d80f32bd3e310f561",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTOut/dataset.json"
+    },
+    {
+      "bytes": 48056,
+      "path": "Dataset/LLMBar/Adversarial/GPTOut/evaluators/ChatGPT/Vanilla/result.json",
+      "sha256": "f47a67afe29c81b731b58f061704d1fc192d8dc6ae0044c108b36be0ed71aba1",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTOut/evaluators/ChatGPT/Vanilla/result.json"
+    },
+    {
+      "bytes": 48056,
+      "path": "Dataset/LLMBar/Adversarial/GPTOut/evaluators/GPT-4/Vanilla/result.json",
+      "sha256": "bf711216e700aa25172fc3177b181919d65675fd8a32f90cd9fff297dd5ed6d4",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTOut/evaluators/GPT-4/Vanilla/result.json"
+    },
+    {
+      "bytes": 47914,
+      "path": "Dataset/LLMBar/Adversarial/GPTOut/evaluators/LLaMA2/Vanilla/result.json",
+      "sha256": "cdd4cd4d8459a50239306a3af14237409113a2e6370674ea99453ca0e46788c5",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/GPTOut/evaluators/LLaMA2/Vanilla/result.json"
+    },
+    {
+      "bytes": 79050,
+      "path": "Dataset/LLMBar/Adversarial/Manual/dataset.json",
+      "sha256": "0d9598769a39cdbbd265778c37e49939d41d5f76dcfb17bd75dcfa07516d3837",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Manual/dataset.json"
+    },
+    {
+      "bytes": 94138,
+      "path": "Dataset/LLMBar/Adversarial/Manual/evaluators/ChatGPT/Vanilla/result.json",
+      "sha256": "ecd62d71890ee57c92deb125e77623c553dbc7a15ad720e6129b9045edfb48a9",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Manual/evaluators/ChatGPT/Vanilla/result.json"
+    },
+    {
+      "bytes": 94138,
+      "path": "Dataset/LLMBar/Adversarial/Manual/evaluators/GPT-4/Vanilla/result.json",
+      "sha256": "49785f158253f346a97e63fed70fc1434f7b54768c7f7b5f6abd7dfa7f51f606",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Manual/evaluators/GPT-4/Vanilla/result.json"
+    },
+    {
+      "bytes": 93770,
+      "path": "Dataset/LLMBar/Adversarial/Manual/evaluators/LLaMA2/Vanilla/result.json",
+      "sha256": "b87be8f0972f5b6c2ec516f2ad88c5f697e6cf0514487a77ba70de08fab762d2",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Manual/evaluators/LLaMA2/Vanilla/result.json"
+    },
+    {
+      "bytes": 131988,
+      "path": "Dataset/LLMBar/Adversarial/Neighbor/dataset.json",
+      "sha256": "6712c7eda6342602e0bc7c06c282fa95e2110d4e741a284026a62d937f9780a0",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Neighbor/dataset.json"
+    },
+    {
+      "bytes": 175940,
+      "path": "Dataset/LLMBar/Adversarial/Neighbor/evaluators/ChatGPT/Vanilla/result.json",
+      "sha256": "54c0b167619c36980df1c1bac259790d6fc310a5bc2c826cd995d18641f911b6",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Neighbor/evaluators/ChatGPT/Vanilla/result.json"
+    },
+    {
+      "bytes": 175940,
+      "path": "Dataset/LLMBar/Adversarial/Neighbor/evaluators/GPT-4/Vanilla/result.json",
+      "sha256": "aa0f8137af29a893f92d9c8706ad0e873cf686a340345e7c1db7591775de0275",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Neighbor/evaluators/GPT-4/Vanilla/result.json"
+    },
+    {
+      "bytes": 174868,
+      "path": "Dataset/LLMBar/Adversarial/Neighbor/evaluators/LLaMA2/Vanilla/result.json",
+      "sha256": "e234234894ebae0c78693857cc68dd3befab5ea599e8b94833da40dd935ddcda",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Adversarial/Neighbor/evaluators/LLaMA2/Vanilla/result.json"
+    },
+    {
+      "bytes": 91269,
+      "path": "Dataset/LLMBar/Natural/dataset.json",
+      "sha256": "f7127b7aa78104cb8e03a2b1b3ac0077e95b125714dd441a8ee63666145a3375",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Natural/dataset.json"
+    },
+    {
+      "bytes": 124069,
+      "path": "Dataset/LLMBar/Natural/evaluators/ChatGPT/Vanilla/result.json",
+      "sha256": "94062f9b5c4b4be7fc74ce8d23315b53b97c97bdcbe613be089a0ffa188e686c",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Natural/evaluators/ChatGPT/Vanilla/result.json"
+    },
+    {
+      "bytes": 124069,
+      "path": "Dataset/LLMBar/Natural/evaluators/GPT-4/Vanilla/result.json",
+      "sha256": "4e3f72a6490e2cbac3243c0a144105a1b1c34baec2a82964bf181e9bbf8d5b4b",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Natural/evaluators/GPT-4/Vanilla/result.json"
+    },
+    {
+      "bytes": 123269,
+      "path": "Dataset/LLMBar/Natural/evaluators/LLaMA2/Vanilla/result.json",
+      "sha256": "0050748ad99fcd48242f79bd5688d54b6e487d0098dde4fd9591314a93de5636",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/Dataset/LLMBar/Natural/evaluators/LLaMA2/Vanilla/result.json"
+    },
+    {
+      "bytes": 1094,
+      "path": "LICENSE",
+      "sha256": "8872dbf8660b00890b5e07ce1ea1f7a44fa7ae4e1857da56caba172b51dab3cb",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LICENSE"
+    },
+    {
+      "bytes": 23282,
+      "path": "LLMEvaluator/evaluate.py",
+      "sha256": "8f9a645239d91d5ad0ffcf977425714e285663a853eefcd21b11bf43a525229a",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LLMEvaluator/evaluate.py"
+    },
+    {
+      "bytes": 570,
+      "path": "LLMEvaluator/evaluators/config/ChatGPT/Vanilla.json",
+      "sha256": "0c088384399a9f3dc4c674a829a962fe461c043f67a85b38ef41b6cf95f7f088",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LLMEvaluator/evaluators/config/ChatGPT/Vanilla.json"
+    },
+    {
+      "bytes": 550,
+      "path": "LLMEvaluator/evaluators/config/GPT-4/Vanilla.json",
+      "sha256": "2f03c7d7f06b9901b48f77b39ed338e057bea30ea2605b7d41a588cf767e8087",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LLMEvaluator/evaluators/config/GPT-4/Vanilla.json"
+    },
+    {
+      "bytes": 317,
+      "path": "LLMEvaluator/evaluators/config/LLaMA2/Vanilla.json",
+      "sha256": "b7051fadc6d3cea9f1e664eb9502cd59c41048d93e568ee2d8f6e8c975ccb7fa",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LLMEvaluator/evaluators/config/LLaMA2/Vanilla.json"
+    },
+    {
+      "bytes": 1343,
+      "path": "LLMEvaluator/evaluators/prompts/comparison/Vanilla.txt",
+      "sha256": "77a3a8f354472bc3b39a78847246c93b824bd1c59c57070bf91e06da927aa7da",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/LLMEvaluator/evaluators/prompts/comparison/Vanilla.txt"
+    },
+    {
+      "bytes": 7157,
+      "path": "README.md",
+      "sha256": "07b3f12f2a4f283ce33e475456fb548f7adb81fee674ad345d9d92f59a49bd1c",
+      "url": "https://raw.githubusercontent.com/princeton-nlp/LLMBar/900616bff90b6c6c8e1681f7d079250637c55992/README.md"
+    }
+  ],
+  "subset_counts": {
+    "GPTInst": 92,
+    "GPTOut": 47,
+    "Manual": 46,
+    "Natural": 100,
+    "Neighbor": 134
+  },
+  "upstream_license_text": "MIT License\n\nCopyright (c) 2023 Princeton Natural Language Processing\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+}

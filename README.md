@@ -4,7 +4,7 @@
 
 **When does an imperfect LLM judge help a limited human audit—and when does it hurt?**
 
-A research toolkit for human-preference estimation: prediction-powered inference,
+A research toolkit for human-preference and judge-accuracy estimation: prediction-powered inference,
 adaptive reliance on a judge, question-level dependence, and explicit failure
 analysis. It combines established statistical methods with reproducible empirical
 studies. Raw judge predictions, human references and corrected estimates remain
@@ -127,6 +127,41 @@ and contains the entire [0,1] range in 64.7% of draws. Coverage counts have
 explicit Monte Carlo intervals; these findings concern the specified
 generator, and neither concentration bound repairs population shift.
 
+## Second benchmark: consistency can be confidently wrong
+
+The [LLMBar audit report](reports/llmbar-audit/REPORT.md) uses **419 comparisons,
+three cached judges and both presentation orders**. Its outcome is agreement
+with curated instruction-following references, a different target from MT-Bench
+human preference. The gold-free proxy is whether the judge chooses the same
+answer in both orders. No new model calls or annotations are purchased.
+
+![Judge accuracy versus order consistency](reports/llmbar-audit/accuracy_vs_consistency.svg)
+
+On the Adversarial subset, ChatGPT's order agreement is **64.3%** while its
+original-order accuracy is **28.2%**. Of 205 consistent comparisons, 176
+consistently choose the reference-incorrect answer. Consistency alone does
+not validate judge accuracy.
+
+The fixed-target experiment retains **3,240 method trials**, with 30 shared
+instruction-group splits, three nested audit budgets and three named cohorts.
+Tuned PPI has lower MAE than gold-audit-only estimation in **14 of 27**
+cohort/judge/budget cells, ties in nine, and has higher MAE in four.
+For ChatGPT and LLaMA2 on the Adversarial subset, fixed-power PPI worsens
+MAE at every budget; tuned PPI sets power to zero on every split and falls
+back to the gold audit. This is evidence about when to distrust a proxy,
+not a universal gain from calibration.
+
+![LLMBar judge accuracy audit](reports/llmbar-audit/judge_accuracy_budget.svg)
+
+The [retrospective protocol](docs/LLMBAR_PROTOCOL.md) preserves invalid outputs,
+groups the one repeated instruction, distinguishes shared gold-label cost from
+cached judgment records, and prohibits using heldout labels to fit the estimator.
+It reports errors against realized heldout accuracy; normal interval widths do
+not establish coverage. These historical GPT-4, ChatGPT and LLaMA2 caches do
+not represent current model versions, and adversarial filtering limits
+comparative model conclusions. The [pinned provenance](reports/llmbar/dataset.json)
+records all 27 source hashes and source model configurations.
+
 ## Install
 
 ```bash
@@ -235,9 +270,10 @@ python examples/research_study.py --output reports/reproduced/research --plot
 python examples/stress_grid.py --output reports/reproduced/stress --plot
 python examples/reference_sensitivity.py --output reports/reproduced/sensitivity --plot
 python examples/finite_sample_study.py --output reports/reproduced/finite-sample --plot
+python examples/llmbar_audit.py --output reports/reproduced/llmbar-audit --plot
 ```
 
-The loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The committed label snapshot contains no prompts, model responses or private user material.
+The MT-Bench loader pins the dataset revision, canonicalizes model order, aggregates unique human votes by plurality, retains ties and records transformation counts. [Data attribution](reports/mtbench/DATA_LICENSE.md) explains the license and changes. The LLMBar loader joins full comparison content, preserves already-canonical choices and pins source-byte hashes. Its [separate attribution](reports/llmbar/DATA_LICENSE.md) retains the official repository notice. Both committed label snapshots contain no prompts, model responses or private user material.
 
 The research runner validates the input hash and exports package versions,
 source/artifact checksums, every trial and all split IDs. Use a fresh output
@@ -254,7 +290,7 @@ python -m pip wheel --no-deps . --wheel-dir dist
 Tests cover analytic covariance and variance, power limits, weak-judge fallback,
 clustered dependence, target reversal, ties, nested disjoint splits, hidden-label
 isolation, calibration uncertainty, degenerate inputs, artifact provenance and
-seeded simulation. CI runs offline tests and both study smoke tests across
+seeded simulation. CI runs offline tests and all study smoke tests across
 supported Python versions.
 
 ## Related work
@@ -264,6 +300,7 @@ supported Python versions.
 - [How to Correctly Report LLM-as-a-Judge Evaluations](https://arxiv.org/abs/2511.21140): complementary work on misclassification correction and evaluation uncertainty.
 - [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval): evaluator validation and length-controlled comparisons.
 - [FastChat / MT-Bench](https://github.com/lm-sys/FastChat): the cached human and GPT-4 judgments used here.
+- [LLMBar](https://github.com/princeton-nlp/LLMBar): curated instruction-following references and cached two-order judgments, used for the second empirical study.
 
 ## Roadmap
 
@@ -273,11 +310,12 @@ supported Python versions.
 - [x] Power tuning with explicit cluster adaptation and diagnostics.
 - [x] Fixed-target, nested-budget study and known-truth dependence/shift stress tests.
 - [x] Broader prevalence/sample-size grids and pinned author-implementation checks.
-- [ ] Sensitivity to human-vote aggregation and judge-order inconsistency.
-- [ ] Dedicated swapped-order and verbosity-bias estimators; the loader currently preserves source inconsistency flags only.
+- [x] Sensitivity to human-vote aggregation and a separate cached order-consistency audit.
+- [x] Conservative finite-sample bounds with explicit width/coverage tradeoffs.
+- [ ] Dedicated position-bias and verbosity-bias correction estimators.
 - [ ] Hierarchical category reliability and validated label-budget planning.
 - [ ] Broader benchmarks on newer model judgments.
 
 ## License
 
-Code: [MIT](LICENSE). The derived MT-Bench snapshot retains the dataset's **CC BY 4.0** license and attribution, separately from the code license.
+Code: [MIT](LICENSE). The derived MT-Bench snapshot retains the dataset's **CC BY 4.0** license and attribution. The derived LLMBar snapshot retains the official repository's **MIT** notice and separate source attribution; no underlying prompt/response text is redistributed.
